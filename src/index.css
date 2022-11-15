@@ -8,19 +8,43 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+ 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --color-red: #ff5555;
+  /*--color-red: #ff5555;
   --color-green: #16db65;
   --color-blue: #1789fc;
   --color-purple: #646cff;
-  --color-yellow: #f5b342;
+  --color-yellow: #f5b342;*/
+
+  /* Neutral color palette */
+  --color-neutral-0: #000000;
+  --color-neutral-1: #111111;
+  --color-neutral-2: #222222;
+  --color-neutral-3: #333333;
+  --color-neutral-4: #444444;
+  --color-neutral-5: #555555;
+  --color-neutral-6: #666666;
+  --color-neutral-7: #777777;
+  --color-neutral-8: #888888;
+  --color-neutral-9: #999999;
+  --color-neutral-a: #aaaaaa;
+  --color-neutral-b: #bbbbbb;
+  --color-neutral-c: #cccccc;
+  --color-neutral-d: #dddddd;
+  --color-neutral-e: #eeeeee;
+  --color-neutral-f: #ffffff;
+
+  /* App color mappings */
+  --success-color: var(--color-green);
+  --warn-color: var(--color-yellow);
+  --error-color: var(--color-red);
+  --highlight-color: var(--color-blue);
+  --link-color: var(--color-purple);
 }
 
 a {
@@ -67,7 +91,7 @@ button:focus-visible {
 /*@media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: var(--color-neutral-f);
   }
   a:hover {
     color: var(--color-purple)

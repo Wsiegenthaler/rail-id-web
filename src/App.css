@@ -1,36 +1,3 @@
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-red: #ff5555;
-    --color-green: #16db65;
-    --color-blue: #1789fc;
-    --color-purple: #646cff;
-    --color-yellow: #f5b342;
-
-    --color-neutral-0: #000;
-    --color-neutral-1: #111;
-    --color-neutral-2: #222;
-    --color-neutral-3: #333;
-    --color-neutral-4: #444;
-    --color-neutral-5: #555;
-    --color-neutral-6: #666;
-    --color-neutral-7: #777;
-    --color-neutral-8: #888;
-    --color-neutral-9: #999;
-    --color-neutral-a: #aaa;
-    --color-neutral-b: #bbb;
-    --color-neutral-c: #ccc;
-    --color-neutral-d: #ddd;
-    --color-neutral-e: #eee;
-    --color-neutral-f: #fff;
-
-    --success-color: var(--color-green);
-    --warn-color: var(--color-yellow);
-    --error-color: var(--color-red);
-    --highlight-color: var(--color-yellow);
-    --link-color: var(--color-purple);
-  }
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     --color-red: #ff5555;
@@ -39,28 +6,49 @@
     --color-purple: #646cff;
     --color-yellow: #f5b342;
 
-    --color-neutral-0: #fff;
-    --color-neutral-1: #eee;
-    --color-neutral-2: #ddd;
-    --color-neutral-3: #ccc;
-    --color-neutral-4: #bbb;
-    --color-neutral-5: #aaa;
-    --color-neutral-6: #999;
-    --color-neutral-7: #888;
-    --color-neutral-8: #777;
-    --color-neutral-9: #666;
-    --color-neutral-a: #555;
-    --color-neutral-b: #444;
-    --color-neutral-c: #333;
-    --color-neutral-d: #222;
-    --color-neutral-e: #111;
-    --color-neutral-f: #000;
+    /* App */
+    background-color: var(--color-neutral-2);
+    --title-color: var(--color-neutral-d);
 
-    --success-color: var(--color-green);
-    --warn-color: var(--color-yellow);
-    --error-color: var(--color-red);
-    --highlight-color: var(--color-yellow);
-    --link-color: var(--color-purple);
+    /* Codebox */
+    --codebox-color-text: var(--color-neutral-7);
+    --codebox-color-background: var(--color-neutral-3);
+    --codebox-color-border: var(--color-neutral-3);
+    --codebox-color-border-focus: var(--color-neutral-6);
+
+    /* Fields */
+    --field-color: var(--color-neutral-7);
+    --field-alt-color: var(--color-neutral-8);
+    --field-name-color: var(--color-neutral-5);
+    --field-value-color: var(--color-neutral-c);
+    --field-decorator-color: var(--color-neutral-4);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-red: #EB5353;
+    --color-green: #36AE7C;
+    --color-blue: #1789fc;
+    --color-purple: #646cff;
+    --color-yellow: #f5b342;
+
+    /* App */
+    background-color: var(--color-neutral-f);
+    --title-color: var(--color-neutral-5);
+
+    /* Codebox */
+    --codebox-color-text: var(--color-neutral-5);
+    --codebox-color-background: var(--color-neutral-d);
+    --codebox-color-border: var(--color-neutral-b);
+    --codebox-color-border-focus: var(--color-neutral-9);
+
+    /* Fields */
+    --field-color: var(--color-neutral-7);
+    --field-alt-color: var(--color-neutral-6);
+    --field-name-color: var(--color-neutral-9);
+    --field-value-color: var(--color-neutral-5);
+    --field-decorator-color: var(--color-neutral-b);
   }
 }
 #root {
@@ -89,7 +77,7 @@
   margin: 1em;
   font-size: 4em;
   font-weight: 600;
-  color: #ddd;
+  color: var(--title-color);
 }
 
 .body {
@@ -109,26 +97,26 @@
 .code-box {
   font-size: 2em;
   font-weight: 700;
-  color: #777;
-  background: #333;
+  color: var(--codebox-color-text);
+  background: var(--codebox-color-background);
   min-width: 800px;
   width: 70%;
   text-align: center;
   padding: 0.5em;
   margin-right: auto;
   margin-left: auto;
-  outline: 4px solid #333;
+  outline: 4px solid var(--codebox-color-border);
 }
 
 .code-box:focus {
-  outline: 4px solid #666;
+  outline: 4px solid var(--codebox-color-border-focus);
 }
 
 .status-valid .code-box {
   outline: 4px solid var(--success-color);
 }
 .status-warn .code-box {
-  outline: 4px solid var(--highlight-color);
+  outline: 4px solid var(--warn-color);
 }
 
 .code-box span.error {
@@ -198,7 +186,7 @@
   content: "⟫";
 
   position: absolute;
-  color: #444;
+  color: var(--field-decorator-color);
   font-size: 2em;
   line-height: 0.85em;
 }
@@ -207,7 +195,7 @@
   cursor: default;
 }
 .highlight .field-value-header .field-value {
-  animation: pulse 120ms ease-out 0s 1 normal forwards;
+  animation: highlight-pulse 350ms ease-out 0s 1 normal forwards;
 }
 
 .highlight .field-body::before {
@@ -215,20 +203,19 @@
 }
 
 .field {
-  color: #777;
+  color: var(--field-color);
   padding-bottom: 1.6em;
-  animation: pulse 120ms ease-out 0s 1 normal forwards;
-  /* transform-origin: center center; */
+  animation: highlight-pulse 350ms ease-in 0s 1 normal forwards;
 }
 
 .field-name {
-  color: #555;
+  color: var(--field-name-color);
   font-size: 1.75em;
   font-weight: 600;
 }
 
 .field-value {
-  color: #ccc;
+  color: var(--field-value-color);
   font-size: 1.45em;
   font-weight: 600;
   width: fit-content;
@@ -239,12 +226,12 @@
 }
 
 .field-desc {
-  color: #888;
+  color: var(--field-alt-color);
   font-size: 1.1em;
 }
 
 .field-notes * {
-  color: #888;
+  color: var(--field-alt-color);
   font-size: 1em;
 }
 .field-notes > *:first-child {
@@ -257,27 +244,32 @@
   list-style-type: disc;
 }
 
-.pos-0 .pos-0 { color: var(--highlight-color) }
-.pos-1 .pos-1 { color: var(--highlight-color) }
-.pos-2 .pos-2 { color: var(--highlight-color) }
-.pos-3 .pos-3 { color: var(--highlight-color) }
-.pos-4 .pos-4 { color: var(--highlight-color) }
-.pos-5 .pos-5 { color: var(--highlight-color) }
-.pos-6 .pos-6 { color: var(--highlight-color) }
-.pos-7 .pos-7 { color: var(--highlight-color) }
-.pos-8 .pos-8 { color: var(--highlight-color) }
-.pos-9 .pos-9 { color: var(--highlight-color) }
-.pos-10 .pos-10 { color: var(--highlight-color) }
-.pos-11 .pos-11 { color: var(--highlight-color) }
-.pos-12 .pos-12 { color: var(--highlight-color) }
-.pos-13 .pos-13 { color: var(--highlight-color) }
-.pos-14 .pos-14 { color: var(--highlight-color) }
-.pos-15 .pos-15 { color: var(--highlight-color) }
-.pos-16 .pos-16 { color: var(--highlight-color) }
-.pos-17 .pos-17 { color: var(--highlight-color) }
-.pos-18 .pos-18 { color: var(--highlight-color) }
-.pos-19 .pos-19 { color: var(--highlight-color) }
-.pos-20 .pos-20 { color: var(--highlight-color) }
+.pos-0 .pos-0 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-1 .pos-1 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-2 .pos-2 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-3 .pos-3 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-4 .pos-4 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-5 .pos-5 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-6 .pos-6 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-7 .pos-7 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-8 .pos-8 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-9 .pos-9 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-10 .pos-10 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-11 .pos-11 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-12 .pos-12 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-13 .pos-13 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-14 .pos-14 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-15 .pos-15 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-16 .pos-16 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-17 .pos-17 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-18 .pos-18 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-19 .pos-19 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-20 .pos-20 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-21 .pos-21 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-22 .pos-22 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-23 .pos-23 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-24 .pos-24 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+.pos-25 .pos-25 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
 
 /* Field specific styles */
 .field.country img {
@@ -289,16 +281,14 @@
 }
 .field.country .short {
   font-size: .8em;
-  color: #444;
+  color: var(--field-decorator-color);
 }
 
 .vehicle-notes ul {
-  /*list-style-position: outside;*/
   list-style: none;
 }
 .vehicle-notes ul li {
-  /*list-style-type: disc;*/
-  color: #888;
+  color: var(--field-alt-color);
   font-size: 1.1em;
   line-height: 1.9em;
 }
@@ -309,8 +299,7 @@
 
 /* Animations */
 
-@keyframes pulse {
-	0% { transform: scale(1); transform-origin: center center; }
-	50% { transform: scale(1.02); transform-origin: center center; }
-	100% { transform: scale(1); transform-origin: center center; }
+@keyframes highlight-pulse {
+	0% { opacity: 0; color: var(--highlight-color); }
+	100% { color: var(--highlight-color); }
 }
