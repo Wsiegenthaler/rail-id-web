@@ -1,6 +1,6 @@
 import { ScalarFieldMeta } from 'rail-id'
 
-import { SetHighlights } from '../../RailIDApp'
+import { SetHighlights } from '../../App'
 
 import FieldValueBody from './FieldValueBody'
 

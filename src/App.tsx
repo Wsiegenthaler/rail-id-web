@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 
-import './RailIDApp.css'
+import './App.css'
 import 'bulma/css/bulma.css'
 //TODO import reactLogo from './assets/react.svg'
 
@@ -14,7 +14,7 @@ import ErrorPanel from './components/ErrorPanel'
 
 export type SetHighlights = React.Dispatch<React.SetStateAction<number[]>>
 
-function RailIDApp() {
+function App() {
   const [code, setCode] = useState('')
   const [result, setResult] = useState<RailID | undefined>()
   const [highlights, setHighlights] = useState<number[]>([])
@@ -93,4 +93,4 @@ function RailIDApp() {
   )
 }
 
-export default RailIDApp
+export default App

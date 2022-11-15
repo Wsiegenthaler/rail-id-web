@@ -6,7 +6,7 @@ import { faCircleExclamation, faCircleInfo } from '@fortawesome/free-solid-svg-i
 import { RailID, ParseWarnings, SetFieldMeta, ValueMeta } from 'rail-id'
 
 import Highlighter from './Highlighter'
-import { SetHighlights } from '../RailIDApp'
+import { SetHighlights } from '../App'
 import { hashCode } from '../util'
 
 type Props = {

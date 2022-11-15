@@ -1,6 +1,6 @@
 import { SetFieldMeta } from 'rail-id'
 
-import { SetHighlights } from '../../RailIDApp'
+import { SetHighlights } from '../../App'
 
 import Highlighter from '../../components/Highlighter'
 import FieldValueBody from './FieldValueBody'

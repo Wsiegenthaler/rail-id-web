@@ -3,7 +3,7 @@ import { minBy, partition, sortBy, values } from 'lodash-es'
 
 import { RailID, FieldMeta } from 'rail-id'
 
-import { SetHighlights } from '../RailIDApp'
+import { SetHighlights } from '../App'
 
 import Field from '../fields/generic/Field'
 import CountryField from '../fields/custom/CountryField'

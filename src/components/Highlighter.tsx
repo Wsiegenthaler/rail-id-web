@@ -2,7 +2,7 @@ import { range } from 'lodash-es'
 
 import { ValueMeta } from 'rail-id'
 import { useState } from 'react'
-import { SetHighlights } from '../RailIDApp'
+import { SetHighlights } from '../App'
 
 type Props = {
   values: ValueMeta<any>[]

@@ -1,3 +1,68 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-red: #ff5555;
+    --color-green: #16db65;
+    --color-blue: #1789fc;
+    --color-purple: #646cff;
+    --color-yellow: #f5b342;
+
+    --color-neutral-0: #000;
+    --color-neutral-1: #111;
+    --color-neutral-2: #222;
+    --color-neutral-3: #333;
+    --color-neutral-4: #444;
+    --color-neutral-5: #555;
+    --color-neutral-6: #666;
+    --color-neutral-7: #777;
+    --color-neutral-8: #888;
+    --color-neutral-9: #999;
+    --color-neutral-a: #aaa;
+    --color-neutral-b: #bbb;
+    --color-neutral-c: #ccc;
+    --color-neutral-d: #ddd;
+    --color-neutral-e: #eee;
+    --color-neutral-f: #fff;
+
+    --success-color: var(--color-green);
+    --warn-color: var(--color-yellow);
+    --error-color: var(--color-red);
+    --highlight-color: var(--color-yellow);
+    --link-color: var(--color-purple);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-red: #ff5555;
+    --color-green: #16db65;
+    --color-blue: #1789fc;
+    --color-purple: #646cff;
+    --color-yellow: #f5b342;
+
+    --color-neutral-0: #fff;
+    --color-neutral-1: #eee;
+    --color-neutral-2: #ddd;
+    --color-neutral-3: #ccc;
+    --color-neutral-4: #bbb;
+    --color-neutral-5: #aaa;
+    --color-neutral-6: #999;
+    --color-neutral-7: #888;
+    --color-neutral-8: #777;
+    --color-neutral-9: #666;
+    --color-neutral-a: #555;
+    --color-neutral-b: #444;
+    --color-neutral-c: #333;
+    --color-neutral-d: #222;
+    --color-neutral-e: #111;
+    --color-neutral-f: #000;
+
+    --success-color: var(--color-green);
+    --warn-color: var(--color-yellow);
+    --error-color: var(--color-red);
+    --highlight-color: var(--color-yellow);
+    --link-color: var(--color-purple);
+  }
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -13,28 +78,11 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
-  padding: 2em;
-  text-align: left;
 }
 
 .rail-id h1 {
@@ -77,19 +125,19 @@
 }
 
 .status-valid .code-box {
-  outline: 4px solid #16db65;
+  outline: 4px solid var(--success-color);
 }
 .status-warn .code-box {
-  outline: 4px solid #f5b342;
+  outline: 4px solid var(--highlight-color);
 }
 
 .code-box span.error {
-  color: #ff5555;
+  color: var(--error-color);
 }
 
 .warnings {
   display: flex;
-  color: #f5b342;
+  color: var(--warn-color);
   align-items: center;
   justify-content: center;
   margin-top: 3em;
@@ -120,7 +168,7 @@
 
 .error-msg {
   display: flex;
-  color: #ff5555;
+  color: var(--error-color);
   align-items: center;
   justify-content: center;
   margin-top: 3em;
@@ -163,7 +211,7 @@
 }
 
 .highlight .field-body::before {
-  color: #1789fc;
+  color: var(--highlight-color);
 }
 
 .field {
@@ -209,27 +257,27 @@
   list-style-type: disc;
 }
 
-.pos-0 .pos-0 { color: #1789fc }
-.pos-1 .pos-1 { color: #1789fc }
-.pos-2 .pos-2 { color: #1789fc }
-.pos-3 .pos-3 { color: #1789fc }
-.pos-4 .pos-4 { color: #1789fc }
-.pos-5 .pos-5 { color: #1789fc }
-.pos-6 .pos-6 { color: #1789fc }
-.pos-7 .pos-7 { color: #1789fc }
-.pos-8 .pos-8 { color: #1789fc }
-.pos-9 .pos-9 { color: #1789fc }
-.pos-10 .pos-10 { color: #1789fc }
-.pos-11 .pos-11 { color: #1789fc }
-.pos-12 .pos-12 { color: #1789fc }
-.pos-13 .pos-13 { color: #1789fc }
-.pos-14 .pos-14 { color: #1789fc }
-.pos-15 .pos-15 { color: #1789fc }
-.pos-16 .pos-16 { color: #1789fc }
-.pos-17 .pos-17 { color: #1789fc }
-.pos-18 .pos-18 { color: #1789fc }
-.pos-19 .pos-19 { color: #1789fc }
-.pos-20 .pos-20 { color: #1789fc }
+.pos-0 .pos-0 { color: var(--highlight-color) }
+.pos-1 .pos-1 { color: var(--highlight-color) }
+.pos-2 .pos-2 { color: var(--highlight-color) }
+.pos-3 .pos-3 { color: var(--highlight-color) }
+.pos-4 .pos-4 { color: var(--highlight-color) }
+.pos-5 .pos-5 { color: var(--highlight-color) }
+.pos-6 .pos-6 { color: var(--highlight-color) }
+.pos-7 .pos-7 { color: var(--highlight-color) }
+.pos-8 .pos-8 { color: var(--highlight-color) }
+.pos-9 .pos-9 { color: var(--highlight-color) }
+.pos-10 .pos-10 { color: var(--highlight-color) }
+.pos-11 .pos-11 { color: var(--highlight-color) }
+.pos-12 .pos-12 { color: var(--highlight-color) }
+.pos-13 .pos-13 { color: var(--highlight-color) }
+.pos-14 .pos-14 { color: var(--highlight-color) }
+.pos-15 .pos-15 { color: var(--highlight-color) }
+.pos-16 .pos-16 { color: var(--highlight-color) }
+.pos-17 .pos-17 { color: var(--highlight-color) }
+.pos-18 .pos-18 { color: var(--highlight-color) }
+.pos-19 .pos-19 { color: var(--highlight-color) }
+.pos-20 .pos-20 { color: var(--highlight-color) }
 
 /* Field specific styles */
 .field.country img {

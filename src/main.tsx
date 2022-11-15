@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import RailIDApp from './RailIDApp'
+import RailIDApp from './App'
 import './index.css'
 
 
