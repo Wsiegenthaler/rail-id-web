@@ -8,7 +8,8 @@
 
     /* App */
     background-color: var(--color-neutral-2);
-    --title-color: var(--color-neutral-d);
+    --h1-color: var(--color-neutral-d);
+    --h3-color: var(--color-neutral-6);
 
     /* Codebox */
     --codebox-color-text: var(--color-neutral-7);
@@ -19,7 +20,7 @@
     /* Fields */
     --field-color: var(--color-neutral-7);
     --field-alt-color: var(--color-neutral-8);
-    --field-name-color: var(--color-neutral-5);
+    --field-name-color: var(--color-neutral-7);
     --field-value-color: var(--color-neutral-c);
     --field-decorator-color: var(--color-neutral-4);
   }
@@ -36,7 +37,8 @@
 
     /* App */
     background-color: var(--color-neutral-f);
-    --title-color: var(--color-neutral-5);
+    --h1-color: var(--color-neutral-5);
+    --h3-color: var(--color-neutral-9);
 
     /* Codebox */
     --codebox-color-text: var(--color-neutral-5);
@@ -75,10 +77,17 @@
 }
 
 .rail-id h1 {
-  margin: 1em;
-  font-size: 4em;
+  margin: 0.5em;
+  font-size: 5em;
   font-weight: 600;
-  color: var(--title-color);
+  color: var(--h1-color);
+}
+
+.rail-id h3 {
+  margin: 3em;
+  font-size: 1.6em;
+  font-weight: 300;
+  color: var(--h3-color);
 }
 
 .body {

@@ -81,6 +81,7 @@ function App() {
         </a>*/}
       </div>
       <h1>Rail ID</h1>
+      <h3>A tool for interpreting European train codes</h3>
       <div className={`code-box-container ${statusClass()} ${highlightClasses}`}>
         <CodeBox code={code} onChange={onChange} error={error} />
       </div>
