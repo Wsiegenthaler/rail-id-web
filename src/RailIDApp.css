@@ -1,0 +1,268 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+  text-align: left;
+}
+
+.rail-id h1 {
+  margin: 1em;
+  font-size: 4em;
+  font-weight: 600;
+  color: #ddd;
+}
+
+.body {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  text-align: left;
+  margin-top: 3em;
+}
+
+.code-box-container {
+  position: sticky;
+  top: 25px;
+  z-index: 99;
+}
+
+.code-box {
+  font-size: 2em;
+  font-weight: 700;
+  color: #777;
+  background: #333;
+  min-width: 800px;
+  width: 70%;
+  text-align: center;
+  padding: 0.5em;
+  margin-right: auto;
+  margin-left: auto;
+  outline: 4px solid #333;
+}
+
+.code-box:focus {
+  outline: 4px solid #666;
+}
+
+.status-valid .code-box {
+  outline: 4px solid #16db65;
+}
+.status-warn .code-box {
+  outline: 4px solid #f5b342;
+}
+
+.code-box span.error {
+  color: #ff5555;
+}
+
+.warnings {
+  display: flex;
+  color: #f5b342;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3em;
+  text-align: left;
+  font-size: 1em;
+  user-select: none;
+}
+.warnings .gutter svg {
+  width: 4em;
+  height: 100%;
+  margin-right: 2.5em;
+}
+.warnings ul {
+  list-style-position: outside;
+}
+.warnings li {
+  list-style-type: disc;
+  margin-top: .4em;
+  margin-bottom: .4em;
+}
+.warnings li svg {
+  width: 1em;
+  height: 100%;
+  margin-left: 0.3em;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.error-msg {
+  display: flex;
+  color: #ff5555;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3em;
+  text-align: left;
+  font-size: 1em;
+  user-select: none;
+}
+.error-msg .gutter svg {
+  width: 4em;
+  height: 100%;
+  margin-right: 1em;
+}
+
+.field-body {
+  margin-top: 0.75em;
+}
+
+.field-body {
+  flex-direction: column;
+}
+
+.field-body > * {
+  margin-left: 1.75em;
+}
+
+.field-body::before {
+  content: "⟫";
+
+  position: absolute;
+  color: #444;
+  font-size: 2em;
+  line-height: 0.85em;
+}
+
+.highlight .field-body {
+  cursor: default;
+}
+.highlight .field-value-header .field-value {
+  animation: pulse 120ms ease-out 0s 1 normal forwards;
+}
+
+.highlight .field-body::before {
+  color: #1789fc;
+}
+
+.field {
+  color: #777;
+  padding-bottom: 1.6em;
+  animation: pulse 120ms ease-out 0s 1 normal forwards;
+  /* transform-origin: center center; */
+}
+
+.field-name {
+  color: #555;
+  font-size: 1.75em;
+  font-weight: 600;
+}
+
+.field-value {
+  color: #ccc;
+  font-size: 1.45em;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.field-value a {
+  margin-left: 0.2em;
+}
+
+.field-desc {
+  color: #888;
+  font-size: 1.1em;
+}
+
+.field-notes * {
+  color: #888;
+  font-size: 1em;
+}
+.field-notes > *:first-child {
+  margin-top: .4em;
+}
+.field-notes ul {
+  list-style-position: inside;
+}
+.field-notes ul li {
+  list-style-type: disc;
+}
+
+.pos-0 .pos-0 { color: #1789fc }
+.pos-1 .pos-1 { color: #1789fc }
+.pos-2 .pos-2 { color: #1789fc }
+.pos-3 .pos-3 { color: #1789fc }
+.pos-4 .pos-4 { color: #1789fc }
+.pos-5 .pos-5 { color: #1789fc }
+.pos-6 .pos-6 { color: #1789fc }
+.pos-7 .pos-7 { color: #1789fc }
+.pos-8 .pos-8 { color: #1789fc }
+.pos-9 .pos-9 { color: #1789fc }
+.pos-10 .pos-10 { color: #1789fc }
+.pos-11 .pos-11 { color: #1789fc }
+.pos-12 .pos-12 { color: #1789fc }
+.pos-13 .pos-13 { color: #1789fc }
+.pos-14 .pos-14 { color: #1789fc }
+.pos-15 .pos-15 { color: #1789fc }
+.pos-16 .pos-16 { color: #1789fc }
+.pos-17 .pos-17 { color: #1789fc }
+.pos-18 .pos-18 { color: #1789fc }
+.pos-19 .pos-19 { color: #1789fc }
+.pos-20 .pos-20 { color: #1789fc }
+
+/* Field specific styles */
+.field.country img {
+  height: 1em;
+  translate: .1em .15em;
+}
+.field.country span {
+  margin-left: .5em;
+}
+.field.country .short {
+  font-size: .8em;
+  color: #444;
+}
+
+.vehicle-notes ul {
+  /*list-style-position: outside;*/
+  list-style: none;
+}
+.vehicle-notes ul li {
+  /*list-style-type: disc;*/
+  color: #888;
+  font-size: 1.1em;
+  line-height: 1.9em;
+}
+.vehicle-notes .field-body::before {
+  xcontent: "\2022";
+  xcontent: ""; /* hide arrows */
+}
+
+/* Animations */
+
+@keyframes pulse {
+	0% { transform: scale(1); transform-origin: center center; }
+	50% { transform: scale(1.02); transform-origin: center center; }
+	100% { transform: scale(1); transform-origin: center center; }
+}
