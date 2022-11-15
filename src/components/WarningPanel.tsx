@@ -3,7 +3,7 @@ import { values } from 'lodash-es'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 
-import { RailID, ParseWarnings, SetFieldMeta, ValueMeta } from 'rail-id'
+import { RailID, ParseWarning, ParseWarnings, SetFieldMeta, ValueMeta } from 'rail-id'
 
 import Highlighter from './Highlighter'
 import { SetHighlights } from '../App'
@@ -17,20 +17,22 @@ type Props = {
 function WarningPanel({ result, setHighlights }: Props) {
   if (!result) return (<></>)
 
-  const warningField = values(result._meta.fields).filter(f => f.path === ParseWarnings.path).pop() as SetFieldMeta<string> | undefined
+  const warningField: SetFieldMeta<ParseWarning> =
+    values(result._meta.fields).filter(f => f.path === ParseWarnings.path).pop()
+
   if (!warningField) return (<></>)
 
-  const warningInfo = (w: ValueMeta<string>) => w.source ? (<FontAwesomeIcon icon={faCircleInfo} />) : (<></>)
+  const warningInfoIcon = (w: ValueMeta<ParseWarning>) => w.source.length > 0 ? (<FontAwesomeIcon icon={faCircleInfo} />) : (<></>)
 
-  const warning = (w: ValueMeta<string>) => (
-    <li key={hashCode(w.value)}>
+  const warning = (w: ValueMeta<ParseWarning>) => (
+    <li key={hashCode(w.readableValue)}>
       <Highlighter setHighlights={setHighlights} values={[ w ]}>
-        <span>{w.value}</span>
-        {warningInfo(w)}
+        <span>{w.readableValue}</span>
+        {warningInfoIcon(w)}
       </Highlighter>
     </li>)
 
-  const warnings = (vms: ValueMeta<string>[]) => vms.map(warning)
+  const warnings = (vms: ValueMeta<ParseWarning>[]) => vms.map(warning)
 
   return (
     <div className="warnings">
