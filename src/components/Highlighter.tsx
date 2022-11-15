@@ -16,7 +16,7 @@ function Highlighter({ values, setHighlights, children }: Props) {
   const highlight = (active: boolean) => () => {
     setHighlightActive(active)
     if (active && values.length > 0) {
-      const highlights = values.filter(vm => vm.source).flatMap(vm => range(vm.source!.start, vm.source!.end))
+      const highlights = values.flatMap(vm => vm.source)
       setHighlights(highlights)
     } else setHighlights([])
   }
