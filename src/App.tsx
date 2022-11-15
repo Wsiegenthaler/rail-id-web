@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 
@@ -25,19 +25,16 @@ function App() {
 
   function onChange(newCode: string) {
     setCode(newCode)
-
-    // Always clear highlights when code has changed
-    setHighlights([])
+    setHighlights([]) // Always clear highlights when code has changed
 
     try {
       const result = railID(newCode)
       setResult(result)
       setError(undefined)
-      
+      setScrollTarget('code-box')//TODO
     } catch (e) {
       if (isParseError(e)) {
         const pe = e as ParseError
-
         if (pe.incompleteInput) {
           // If user clears input, reset everything
           if (newCode.trim().length === 0) {
@@ -48,9 +45,30 @@ function App() {
         } else {
           setError(pe)
           setResult(undefined)
+          setScrollTarget('top')
         }
       } else console.error(e)
     }
+  }
+
+  // Auto-scrolling
+  const [scrollTarget, setScrollTarget] = useState<ScrollTarget>('none')
+  const scrollRef = useRef<Element>()
+
+  useEffect(() => scrollTo(scrollTarget))
+  type ScrollTarget = 'top' | 'code-box' | 'none'
+
+  const scrollTo = (target: ScrollTarget) => {
+    if (target === 'top') window.scrollTo({ top: 0 })
+    if (target === 'code-box') {
+      const rect = scrollRef.current?.getBoundingClientRect()
+      if (rect) {
+        const bodyRect = document.body.getBoundingClientRect()
+        const top = rect.top - bodyRect.top;
+        window.scrollTo({ top })
+      }
+    }
+    setScrollTarget('none') // clear state
   }
 
   function printState() {
@@ -82,6 +100,7 @@ function App() {
       </div>
       <h1>Rail ID</h1>
       <h3>A tool for interpreting European train codes</h3>
+      <span ref={scrollRef} id="scroll-target" />
       <div className={`code-box-container ${statusClass()} ${highlightClasses}`}>
         <CodeBox code={code} onChange={onChange} error={error} />
       </div>
