@@ -1,4 +1,5 @@
 import { ParseError } from 'rail-id'
+
 import { createRef, useEffect, useState } from 'react'
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 import sanitizeHtml from 'sanitize-html'
