@@ -1,7 +1,7 @@
 import React from 'react'
-import { minBy, partition, sortBy, values } from 'lodash-es'
+import { max, min, partition, sortBy, values } from 'lodash-es'
 
-import { RailID, FieldMeta } from 'rail-id'
+import { RailID, Source, FieldMeta } from 'rail-id'
 
 import { SetHighlights } from '../App'
 
@@ -46,13 +46,19 @@ const buildElems = (fields: FieldMeta<any>[], elemMap: ElementMap, setHighlights
     .map(({ field, fn }) => ({ field, elem: fn({ field, setHighlights }) }))
     .map(({ field, elem }) => React.cloneElement(elem, { key: field.path }))
 
+// Simple method to determine sort order of a field given its start/end positions in the code
+const sortValue = (source: Source) => {
+  const [ start, end ] = [ min(source), max(source) ] as [number, number]
+  return start + (end - start) / 2
+}
+
 function FieldRouter({ result, setHighlights }: Props) {
-  if (result) {
+  if (result !== undefined) {
 
     // Order fields by their source location in the code
     const fields = sortBy(values(result._meta.fields), f => {
-      if (f.type === 'set') return minBy(f.valueMetas, m => m.source?.start ?? 99)
-      else return f.valueMeta.source?.start ?? 99
+      if (f.type === 'set') return sortValue(f.valueMetas.flatMap(m => m.source))
+      else return sortValue(f.valueMeta.source)
     })
 
     // Split meta fields from vehicle ones
