@@ -294,21 +294,18 @@
   color: var(--field-decorator-color);
 }
 
-.vehicle-notes ul {
-  list-style: none;
+/* Vehicle Notes field */
+.vehicle-notes .field-body {
+  color: var(--field-value-color);
 }
-.vehicle-notes ul li {
-  color: var(--field-alt-color);
-  font-size: 1.1em;
-  line-height: 1.9em;
+.vehicle-notes .field-value-body {
+  margin-top: .3em;
 }
-.vehicle-notes .field-body::before {
-  xcontent: "\2022";
-  xcontent: ""; /* hide arrows */
+.vehicle-notes .field-desc {
+  color: var(--field-value-color);
 }
 
 /* Animations */
-
 @keyframes highlight-pulse {
 	0% { opacity: 0; color: var(--highlight-color); }
 	100% { color: var(--highlight-color); }
