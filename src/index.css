@@ -15,12 +15,6 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  /*--color-red: #ff5555;
-  --color-green: #16db65;
-  --color-blue: #1789fc;
-  --color-purple: #646cff;
-  --color-yellow: #f5b342;*/
-
   /* Neutral color palette */
   --color-neutral-0: #000000;
   --color-neutral-1: #111111;
@@ -38,7 +32,6 @@
   --color-neutral-d: #dddddd;
   --color-neutral-e: #eeeeee;
   --color-neutral-f: #ffffff;
-
 }
 
 a {
@@ -48,14 +41,6 @@ a {
 }
 a:hover {
   color: var(--link-color);
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 /*button {

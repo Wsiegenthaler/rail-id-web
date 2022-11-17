@@ -64,24 +64,19 @@ function FieldRouter({ result, setHighlights }: Props) {
     // Split meta fields from vehicle ones
     const [ metaFields, vehicleFields ] = partition(fields, f => f.path.startsWith('_meta'))
 
-    vehicleFields.map(f => f.path)//TODO
     // Generate element sets
     const vehicleElems = buildElems(vehicleFields, VehicleFieldMap, setHighlights)
-    const metaElems = buildElems(metaFields, MetaFieldMap, setHighlights)
+    //TODO const metaElems = buildElems(metaFields, MetaFieldMap, setHighlights)
 
     return (
-      <div className="details columns">
-        <div className="vehicle column is-8 is-12-mobile">
+      <div className="details">
+      <div className="column is-12 is-12-mobile is-10-tablet">
+        <div className="vehicle">
           <div>
             { vehicleElems }
           </div>
         </div>
-        <div className="code column is-4 is-12-mobile">
-          <h5>Code Details</h5>
-          <div>
-            { metaElems }
-          </div>
-        </div>
+      </div>
       </div>
     )
   } else return (<></>)

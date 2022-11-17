@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
-import { ParseError } from 'rail-id'
-
 import { AppError } from '../App'
 
 
@@ -11,17 +9,17 @@ type Props = {
 }
 
 function ErrorPanel({ error }: Props) {
-  if (!error || error.incompleteInput) return (<></>)
+  if (error.type === 'none')
+    return (<></>)
+  if (error.type === 'parse-error' && error.ref.incompleteInput)
+    return (<></>)
 
   let msg = 'Something went wrong, please try again!'
-  let opacity = '1'
-  if (error !== 'unknown') {
-    const pe = error as ParseError
-    msg = pe.friendlyMessage
-  }
+  if (error.type === 'parse-error')
+    msg = error.ref.friendlyMessage
 
   return (
-    <div className="error-msg" style={{ opacity }}>
+    <div className="error">
       <div className="gutter">
         <FontAwesomeIcon icon={faCircleExclamation} />
       </div>

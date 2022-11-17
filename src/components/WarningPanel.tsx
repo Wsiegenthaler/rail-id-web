@@ -11,15 +11,16 @@ import { hashCode } from '../util'
 
 type Props = {
   result?: RailID
-  error?: AppError
+  error: AppError
   setHighlights: SetHighlights
 }
 
 function WarningPanel({ result, error, setHighlights }: Props) {
   if (!result || error) return (<></>)
 
-  const warningField: SetFieldMeta<ParseWarning> =
-    values(result._meta.fields).filter(f => f.path === ParseWarnings.path).pop()
+  //const warningField: SetFieldMeta<ParseWarning> =
+  const warningField =
+    values(result._meta.fields).filter(f => f.path === ParseWarnings.path).pop() as SetFieldMeta<ParseWarning>
 
   if (!warningField) return (<></>)
 

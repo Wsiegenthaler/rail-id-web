@@ -6,26 +6,25 @@ import { useDelay } from 'react-use-precision-timer'
 import './App.css'
 import 'bulma/css/bulma.css'
 
-import AttrRouter from './components/FieldRouter'
+import FieldRouter from './components/FieldRouter'
 import CodeBox from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
 import { scrollTo, ScrollTarget } from './util'
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faCircleExclamation, faTrainSubway } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 export type SetHighlights = React.Dispatch<React.SetStateAction<number[]>>
 
-export type CodeState = 'incomplete' | 'complete' | 'error'
-export type AppError = ParseError | 'unknown' | undefined
+export type AppError = { type: 'parse-error', ref: ParseError } | { type: 'internal', ref: unknown } | { type: 'none' }
 
 
 function App() {
   const [code, setCode] = useState('')
   const [result, setResult] = useState<RailID | undefined>()
   const [highlights, setHighlights] = useState<number[]>([])
-  const [error, setError] = useState<AppError>()
+  const [error, setError] = useState<AppError>({ type: 'none' })
 
   //DEBUG
   //printState()
@@ -61,29 +60,26 @@ function App() {
     try {
       const result = railID(newCode, { logLevel: 'none' })
       setResult(result)
-      setError(undefined)
+      setError({ type: 'none' })
       scrollToCodeBox()
       stopKeepTyping()
     } catch (e) {
       if (isParseError(e)) {
         const pe = e as ParseError
-        setError(pe)
+        setError({ type: 'parse-error', ref: pe })
         stopKeepTyping()
         if (pe.incompleteInput) {
-          startKeepTyping()
 
           // If user clears input, reset everything
           if (newCode.trim().length === 0) {
             setCode('')
             setResult(undefined)
-            setError(undefined)
+            setError({ type: 'none' })
             scrollTo('top')
-          }
-        } else {
-          scrollToCodeBox()
+          } else startKeepTyping()
         }
       } else {
-        setError('unknown')
+        setError({ type: 'internal', ref: e })
         console.error(e)
       }
     }
@@ -96,7 +92,9 @@ function App() {
   useEffect(() => { scrollTo(scrollTarget); setScrollTarget('none') })
 
   // Whether to temporarily fade/disable results
-  const bodyStyle = result && error ? { opacity: '0.15', pointerEvents: 'none' } : {}
+  //TODO const bodyStyle = result && error ? { opacity: '0.15', pointerEvents: 'none' } : {}
+  //TODO    <div className="body container" style={bodyStyle} >
+  const disableBody = result && error.type !== 'none' ? 'disable' : ''
 
   // Classes placed at a parent element to enable highlighting select parts of the code
   const highlightClasses = highlights.map(n => `pos-${n}`).join(' ')
@@ -111,26 +109,24 @@ function App() {
 
   return (
     <div className="rail-id">
-      <div>
-        <img src="/rail-id.svg" className="logo" alt="Rail ID logo" />
-        {/*<a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>*/}
-      </div>
+      <FontAwesomeIcon className="logo" icon={faTrainSubway} />
       <h1>Rail ID</h1>
       <h3>The European rolling stock code reader</h3>
       <div ref={scrollRef} id="scroll-target" />
-      <div className={`code-box-container ${statusClass()} ${highlightClasses}`}>
-        <CodeBox code={code} onChange={onChange} error={error} />
+      <div className={`controls ${statusClass()} ${highlightClasses}`}>
+        <div className="controls-blur" />
+        <div className="container xcolumn">
+          <CodeBox code={code} onChange={onChange} error={error} />
+          <ErrorPanel error={error} />
+          <WarningPanel result={result} error={error} setHighlights={setHighlights} />
+        </div>
       </div>
-      <ErrorPanel error={error} />
-      <WarningPanel result={result} error={error} setHighlights={setHighlights} />
-      <div className="keep-typing-msg" style={{ display: showKeepTyping ? 'inherit' : 'none' }}>
+      <div className="keep-typing" style={{ display: showKeepTyping ? 'inherit' : 'none' }}>
         <FontAwesomeIcon icon={faCircleExclamation} />
         <span>This code is too short... keep typing!</span>
       </div>
-      <div className="body column" style={bodyStyle} >
-        <AttrRouter result={result} setHighlights={setHighlights} />
+      <div className={"body container " + disableBody} >
+        <FieldRouter result={result} setHighlights={setHighlights} />
       </div>
     </div>
   )

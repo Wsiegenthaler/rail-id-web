@@ -1,13 +1,12 @@
-import { ParseError } from 'rail-id'
-
 import { createRef, useEffect, useState } from 'react'
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 import sanitizeHtml from 'sanitize-html'
+import { AppError } from '../App'
 
 type Props = {
   code: string
   onChange: (code: string) => void
-  error: ParseError | undefined
+  error: AppError
 }
 
 export default CodeBox
@@ -17,8 +16,8 @@ const sanitize = (html: string) => sanitizeHtml(html, { disallowedTagsMode: 'dis
 
   function getCaretCharacterOffsetWithin(el: Node) {
     var caretOffset = 0
-    var doc = el.ownerDocument! //TODO || el.document
-    var win = doc.defaultView! //|| doc.parentWindow
+    var doc = el.ownerDocument!
+    var win = doc.defaultView!
     var sel
     if (typeof win.getSelection != 'undefined') {
       sel = win.getSelection()
@@ -65,18 +64,21 @@ function CodeBox({ code, onChange, error }: Props) {
 
   useEffect(() => setCaretPos(innerRef.current!, caret))
 
-  const errorPos = error?.position ?? -1
-  const html = code.split('').map((c, i) => `<span class="pos-${i} ${errorPos === i ? 'error' : ''}">${c}</span>`).join('')
+  const errorPos = (error.type === 'parse-error') ? error.ref.position : -1
+  const html = code.split('').map((c, i) => `<span class="pos-${i} ${errorPos === i ? 'pos-error' : ''}">${c}</span>`).join('')
 
   return (
-    <ContentEditable
-      className="code-box"
-      tagName="pre"
-      spellCheck="false"
-      placeholder='Enter vehicle marking...'
-      html={html} // innerHTML of the editable div
-      onChange={handleChange} // handle innerHTML change
-      innerRef={innerRef}
-    />
+    <div className='code-box-wrapper columns is-centered'>
+      <div className='column is-6-fullhd is-7-widescreen is-8-desktop is-10-tablet is-12-mobile'>
+        <ContentEditable
+          className="code-box"
+          tagName="pre"
+          spellCheck="false"
+          placeholder='Enter vehicle marking...'
+          html={html} // innerHTML of the editable div
+          onChange={handleChange} // handle innerHTML change
+          innerRef={innerRef} />
+      </div>
+    </div>
   )
 }
