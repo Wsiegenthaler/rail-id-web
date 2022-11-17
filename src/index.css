@@ -39,12 +39,6 @@
   --color-neutral-e: #eeeeee;
   --color-neutral-f: #ffffff;
 
-  /* App color mappings */
-  --success-color: var(--color-green);
-  --warn-color: var(--color-yellow);
-  --error-color: var(--color-red);
-  --highlight-color: var(--color-purple);
-  --link-color: var(--color-blue);
 }
 
 a {

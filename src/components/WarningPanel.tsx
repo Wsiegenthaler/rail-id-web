@@ -5,17 +5,18 @@ import { faCircleExclamation, faCircleInfo } from '@fortawesome/free-solid-svg-i
 
 import { RailID, ParseWarning, ParseWarnings, SetFieldMeta, ValueMeta } from 'rail-id'
 
+import { AppError, SetHighlights } from '../App'
 import Highlighter from './Highlighter'
-import { SetHighlights } from '../App'
 import { hashCode } from '../util'
 
 type Props = {
   result?: RailID
+  error?: AppError
   setHighlights: SetHighlights
 }
 
-function WarningPanel({ result, setHighlights }: Props) {
-  if (!result) return (<></>)
+function WarningPanel({ result, error, setHighlights }: Props) {
+  if (!result || error) return (<></>)
 
   const warningField: SetFieldMeta<ParseWarning> =
     values(result._meta.fields).filter(f => f.path === ParseWarnings.path).pop()

@@ -1,15 +1,26 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-red: #ff5555;
-    --color-green: #16db65;
+    --color-green: #00FB56;
     --color-blue: #1789fc;
     --color-purple: #646cff;
     --color-yellow: #f5b342;
 
-    /* App */
+    /* Semantic colors */
+    --success-color: var(--color-green);
+    --warn-color: var(--color-yellow);
+    --error-color: var(--color-red);
+    --highlight-color: var(--color-purple);
+    --link-color: var(--color-blue);
+
+    /* App general */
     background-color: var(--color-neutral-2);
     --h1-color: var(--color-neutral-d);
     --h3-color: var(--color-neutral-6);
+
+    /* Keep Typing */
+    --keep-typing-color: var(--color-neutral-7);
+    --keep-typing-icon-color: var(--color-neutral-6);
 
     /* Codebox */
     --codebox-color-text: var(--color-neutral-7);
@@ -30,18 +41,29 @@
   :root {
     /*TODO improve these for light theme */
     --color-red: #EB5353;
-    --color-green: #36AE7C;
+    --color-green: #00FB56;
     --color-blue: #1789fc;
     --color-purple: #646cff;
     --color-yellow: #f5b342;
 
-    /* App */
+    /* Semantic colors */
+    --success-color: var(--color-green);
+    --warn-color: var(--color-yellow);
+    --error-color: var(--color-red);
+    --highlight-color: var(--color-purple);
+    --link-color: var(--color-blue);
+
+    /* App general */
     background-color: var(--color-neutral-f);
     --h1-color: var(--color-neutral-5);
     --h3-color: var(--color-neutral-9);
 
+    /* Keep Typing */
+    --keep-typing-color: var(--color-neutral-a);
+    --keep-typing-icon-color: var(--color-neutral-b);
+
     /* Codebox */
-    --codebox-color-text: var(--color-neutral-5);
+    --codebox-color-text: var(--color-neutral-7);
     --codebox-color-background: var(--color-neutral-d);
     --codebox-color-border: var(--color-neutral-b);
     --codebox-color-border-focus: var(--color-neutral-9);
@@ -49,8 +71,8 @@
     /* Fields */
     --field-color: var(--color-neutral-7);
     --field-alt-color: var(--color-neutral-6);
-    --field-name-color: var(--color-neutral-9);
-    --field-value-color: var(--color-neutral-5);
+    --field-name-color: var(--color-neutral-8);
+    --field-value-color: var(--color-neutral-4);
     --field-decorator-color: var(--color-neutral-b);
   }
 }
@@ -59,6 +81,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+* {
+  scroll-behavior: smooth;
+  overflow-anchor: none;
 }
 
 .logo {
@@ -76,6 +102,11 @@
   }
 }
 
+.rail-id {
+  display: flex;
+  flex-direction: column;
+}
+
 .rail-id h1 {
   margin: 0.5em;
   font-size: 5em;
@@ -84,10 +115,16 @@
 }
 
 .rail-id h3 {
-  margin: 3em;
+  margin-top: 1em;
+  margin-bottom: 3em;
   font-size: 1.6em;
   font-weight: 300;
   color: var(--h3-color);
+}
+
+#scroll-target {
+  overflow-anchor: auto !important;
+  height: 1px;
 }
 
 .body {
@@ -95,7 +132,8 @@
   justify-content: space-around;
   align-items: flex-start;
   text-align: left;
-  margin-top: 3em;
+  margin-top: 2em;
+  min-height: 500px;
 }
 
 .code-box-container {
@@ -162,6 +200,23 @@
   margin-left: 0.3em;
   opacity: 0.3;
   cursor: pointer;
+}
+
+.keep-typing-msg {
+  color: var(--keep-typing-color);
+  margin-top: 2em;
+  text-align: center;
+  font-size: 1.15em;
+  user-select: none;
+  display: flex;
+  align-self: center;
+}
+.keep-typing-msg svg {
+  width: 1.7em;
+  height: 100%;
+  color: var(--keep-typing-icon-color);
+  margin-right: 0.5em;
+  margin-top: -0.1em;
 }
 
 .error-msg {
@@ -281,7 +336,8 @@
 .pos-24 .pos-24 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
 .pos-25 .pos-25 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
 
-/* Field specific styles */
+
+/* Vehicle Country field */
 .field.country img {
   height: 1em;
   translate: .1em .15em;

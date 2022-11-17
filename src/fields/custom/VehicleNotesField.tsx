@@ -3,7 +3,6 @@ import { FieldElementProps } from '../../components/FieldRouter'
 import Highlighter from '../../components/Highlighter'
 
 
-//TODO
 function VehicleNotesField({ field, setHighlights }: FieldElementProps) {
 
   const noteField = field as SetFieldMeta<string>
