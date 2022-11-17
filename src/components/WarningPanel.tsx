@@ -16,9 +16,8 @@ type Props = {
 }
 
 function WarningPanel({ result, error, setHighlights }: Props) {
-  if (!result || error) return (<></>)
+  if (!result || error.type !== 'none') return (<></>)
 
-  //const warningField: SetFieldMeta<ParseWarning> =
   const warningField =
     values(result._meta.fields).filter(f => f.path === ParseWarnings.path).pop() as SetFieldMeta<ParseWarning>
 

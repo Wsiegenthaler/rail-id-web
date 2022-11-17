@@ -92,15 +92,13 @@ function App() {
   useEffect(() => { scrollTo(scrollTarget); setScrollTarget('none') })
 
   // Whether to temporarily fade/disable results
-  //TODO const bodyStyle = result && error ? { opacity: '0.15', pointerEvents: 'none' } : {}
-  //TODO    <div className="body container" style={bodyStyle} >
   const disableBody = result && error.type !== 'none' ? 'disable' : ''
 
   // Classes placed at a parent element to enable highlighting select parts of the code
   const highlightClasses = highlights.map(n => `pos-${n}`).join(' ')
 
   const statusClass = () => {
-    if (result && !error) {
+    if (result && error.type === 'none') {
       if (result._meta.warnings.length > 0) return 'status-warn'
       else return 'status-valid'
     } else return ''
