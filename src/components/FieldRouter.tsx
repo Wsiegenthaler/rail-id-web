@@ -28,8 +28,6 @@ type ElementMap = { [index: string]: (props: FieldElementProps) => JSX.Element }
 const VehicleFieldMap: ElementMap = {
   'country': CountryField,
   'keeper': KeeperField,
-  'speeds': SpeedsField,
-  'selfPropelledSpeeds': SpeedField, //TODO rename component
   'notes': VehicleNotesField
 }
 
