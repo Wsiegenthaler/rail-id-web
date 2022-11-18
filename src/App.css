@@ -440,8 +440,9 @@ svg.logo {
   animation: fade-in 250ms ease-in;
 }
 .msg-pulse {
-  animation: msg-pulse 1800ms ease-out infinite;
+  xanimation: msg-pulse 1800ms ease-out infinite;
 }
 .fade-in.msg-pulse {
-  animation: fade-in 600ms ease-in, msg-pulse 1800ms ease-out 600ms infinite;
+  xanimation: fade-in 600ms ease-in, msg-pulse 1800ms ease-out 600ms infinite;
+  animation: fade-in 600ms ease-in;
 }
