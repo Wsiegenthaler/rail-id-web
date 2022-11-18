@@ -11,7 +11,7 @@ function VehicleNotesField({ field, setHighlights }: FieldElementProps) {
     <Highlighter values={[ vm ]} setHighlights={setHighlights}>
       <div className="field-body">
         <div className="field-value-body">
-          <div className="field-desc">
+          <div className="field-value-desc">
               { vm.value }
           </div>
         </div>
@@ -22,6 +22,7 @@ function VehicleNotesField({ field, setHighlights }: FieldElementProps) {
     <div className="field vehicle-notes">
       <div className="field-header">
         <div className="field-name">{field.name}</div>
+        <div className="field-desc">{field.desc}</div>
       </div>
       { listItems }
     </div>)

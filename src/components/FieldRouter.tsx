@@ -69,8 +69,8 @@ function FieldRouter({ result, setHighlights }: Props) {
     //TODO const metaElems = buildElems(metaFields, MetaFieldMap, setHighlights)
 
     return (
-      <div className="details">
-      <div className="column is-12 is-12-mobile is-10-tablet">
+      <div className="details columns is-centered">
+      <div className="column is-12-mobile is-11-tablet is-11-desktop is-10-widescreen is-9-fullhd">
         <div className="vehicle">
           <div>
             { vehicleElems }

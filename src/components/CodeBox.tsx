@@ -69,7 +69,7 @@ function CodeBox({ code, onChange, error }: Props) {
 
   return (
     <div className='code-box-wrapper columns is-centered'>
-      <div className='column is-9-fullhd is-10-widescreen is-11-desktop is-10-tablet is-12-mobile'>
+      <div className='column is-9-fullhd is-10-widescreen is-11-desktop is-11-tablet is-12-mobile'>
         <ContentEditable
           className="code-box"
           tagName="pre"

@@ -83,7 +83,7 @@ button:focus-visible {
 /* Mobile */
 @media only screen and (max-width: 768px) {
   html {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 
@@ -97,14 +97,14 @@ button:focus-visible {
 /* Desktop */
 @media only screen and (min-width: 1025px) and (max-width: 1216px) {
   html {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 
 /* Widescreen */
 @media only screen and (min-width: 1217px) and (max-width: 1408px) {
   html {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 

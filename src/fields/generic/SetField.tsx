@@ -26,14 +26,13 @@ function SetField({ field, setHighlights }: Props) {
   ))
 
   return (
-    <Highlighter values={field.valueMetas} setHighlights={setHighlights}>
-      <div className={fieldClasses}>
-        <div className="field-header">
-          <div className="field-name">{field.name}</div>
-          { fieldValues }
-        </div>
+    <div className={fieldClasses}>
+      <div className="field-header">
+        <div className="field-name">{field.name}</div>
+        <div className="field-desc">{field.desc}</div>
+        { fieldValues }
       </div>
-    </Highlighter>
+    </div>
   )
 }
 

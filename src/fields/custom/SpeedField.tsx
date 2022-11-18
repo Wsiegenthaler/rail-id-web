@@ -14,14 +14,15 @@ function SpeedsField({ field, setHighlights }: FieldElementProps) {
     <div className={fieldClasses}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
-          <Highlighter values={[ speedField.valueMeta ]} setHighlights={setHighlights}>
-            <div className="field-body">
-              <div className="field-value-header">
-                <div className="field-value">{speedField.valueMeta.readableValue}</div>
-              </div>
-              <FieldValueBody desc={speedField.valueMeta.desc} footnotes={speedField.valueMeta.footnotes} />
+        <div className="field-desc">{field.desc}</div>
+        <Highlighter values={[ speedField.valueMeta ]} setHighlights={setHighlights}>
+          <div className="field-body">
+            <div className="field-value-header">
+              <div className="field-value">{speedField.valueMeta.readableValue}</div>
             </div>
-          </Highlighter>
+            <FieldValueBody desc={speedField.valueMeta.desc} footnotes={speedField.valueMeta.footnotes} />
+          </div>
+        </Highlighter>
       </div>
     </div>
   )

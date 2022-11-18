@@ -29,6 +29,7 @@ function SpeedsField({ field, setHighlights }: FieldElementProps) {
       <div className={fieldClasses}>
         <div className="field-header">
           <div className="field-name">{field.name}</div>
+          <div className="field-desc">{field.desc}</div>
           { fieldValues }
         </div>
       </div>

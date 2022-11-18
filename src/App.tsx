@@ -41,10 +41,12 @@ function App() {
 
   // Keep typing prompt
   const [showKeepTyping, setShowKeepTyping] = useState<boolean>(false)
-  const keepTypingTimer = useDelay(1600, () => {
+  const keepTypingTimer = useDelay(1500, () => {
     if (code.length > 0) {
-      setShowKeepTyping(true)
-      scrollToCodeBox()
+      if (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput) {
+        setShowKeepTyping(true)
+        scrollToCodeBox()
+      }
     }
   })
   const startKeepTyping = () => { keepTypingTimer.start(); setShowKeepTyping(false) }
@@ -54,13 +56,13 @@ function App() {
   // Handle code change and update state
   function onChange(newCode: string) {
     setCode(newCode)
+    setError({ type: 'none' })
     setHighlights([]) // Always clear highlights when code has changed
     startKeepTyping()
 
     try {
       const result = railID(newCode, { logLevel: 'none' })
       setResult(result)
-      setError({ type: 'none' })
       scrollToCodeBox()
       stopKeepTyping()
     } catch (e) {
@@ -92,7 +94,7 @@ function App() {
   useEffect(() => { scrollTo(scrollTarget); setScrollTarget('none') })
 
   // Whether to temporarily fade/disable results
-  const disableBody = result && error.type !== 'none' ? 'disable' : ''
+  const disableResults = result && error.type !== 'none' ? 'disable' : ''
 
   // Classes placed at a parent element to enable highlighting select parts of the code
   const highlightClasses = highlights.map(n => `pos-${n}`).join(' ')
@@ -107,13 +109,16 @@ function App() {
 
   return (
     <div className="rail-id">
+
       <FontAwesomeIcon className="logo" icon={faTrainSubway} />
       <h1>Rail ID</h1>
       <h3>The European rolling stock code reader</h3>
+
       <div ref={scrollRef} id="scroll-target" />
+
       <div className={`controls ${statusClass()} ${highlightClasses}`}>
         <div className="controls-blur" />
-        <div className="container xcolumn">
+        <div className="container">
           <CodeBox code={code} onChange={onChange} error={error} />
           <ErrorPanel error={error} />
           <WarningPanel result={result} error={error} setHighlights={setHighlights} />
@@ -123,7 +128,8 @@ function App() {
           </div>
         </div>
       </div>
-      <div className={"body container " + disableBody} >
+
+      <div className={"results container " + disableResults} >
         <FieldRouter result={result} setHighlights={setHighlights} />
       </div>
     </div>

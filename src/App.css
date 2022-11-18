@@ -33,6 +33,7 @@
     --field-color: var(--color-neutral-7);
     --field-alt-color: var(--color-neutral-8);
     --field-name-color: var(--color-neutral-7);
+    --field-desc-color: var(--color-neutral-7);
     --field-value-color: var(--color-neutral-c);
     --field-decorator-color: var(--color-neutral-4);
   }
@@ -74,6 +75,7 @@
     --field-color: var(--color-neutral-7);
     --field-alt-color: var(--color-neutral-6);
     --field-name-color: var(--color-neutral-8);
+    --field-desc-color: var(--color-neutral-8);
     --field-value-color: var(--color-neutral-4);
     --field-decorator-color: var(--color-neutral-b);
   }
@@ -135,16 +137,20 @@ svg.logo {
   width: 100%;
 }
 
-.body {
+.results {
   text-align: left;
   min-height: 150px;
+  padding-bottom: 3rem;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
-.body.disable {
+
+.results.disable {
   user-select: none;
   -webkit-user-select: none;
   pointer-events: none;
 }
-.body.disable::after {
+.results.disable::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -187,6 +193,13 @@ svg.logo {
   margin-bottom: .5em;
 }
 
+.controls .keep-typing,
+.controls .error,
+.controls .warnings {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .controls .keep-typing *,
 .controls .error *,
 .controls .warnings * {
@@ -198,23 +211,23 @@ svg.logo {
   font-family: Source Code Pro, Inter, Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   font-size: 2.1rem;
-  font-weight: 400;
+  font-weight: 600;
   margin-right: 0.4rem;
   margin-left: 0.4rem;
   padding: .7rem;
 
   color: var(--codebox-color-text);
   background: var(--codebox-color-background);
-  outline: 4px solid var(--codebox-color-border);
+  outline: 2px solid var(--codebox-color-border);
 }
 .code-box:focus {
-  outline: 4px solid var(--codebox-color-border-focus);
+  outline: 2px solid var(--codebox-color-border-focus);
 }
 .status-valid .code-box {
-  outline: 4px solid var(--success-color);
+  outline: 2px solid var(--success-color);
 }
 .status-warn .code-box {
-  outline: 4px solid var(--warn-color);
+  outline: 2px solid var(--warn-color);
 }
 .code-box span.pos-error {
   color: var(--error-color);
@@ -227,6 +240,7 @@ svg.logo {
   justify-content: center;
   text-align: left;
   font-size: 1rem;
+  font-weight: 300;
 }
 .warnings .gutter svg {
   width: 3.25rem;
@@ -314,7 +328,13 @@ svg.logo {
 .field-name {
   color: var(--field-name-color);
   font-size: 1.75em;
-  font-weight: 600;
+  font-weight: 200;
+}
+
+.field-desc {
+  color: var(--field-desc-color);
+  font-size: 1em;
+  font-weight: 200;
 }
 
 .field-value {
@@ -328,7 +348,11 @@ svg.logo {
   margin-left: 0.2em;
 }
 
-.field-desc {
+.field-value-body {
+  font-weight: 200;
+}
+
+.field-value-desc {
   color: var(--field-alt-color);
   font-size: 1.1em;
 }
@@ -389,14 +413,11 @@ svg.logo {
 }
 
 /* Vehicle Notes field */
-.vehicle-notes .field-body {
-  color: var(--field-value-color);
-}
 .vehicle-notes .field-value-body {
-  margin-top: .3em;
+  padding-top: .25em;
 }
-.vehicle-notes .field-desc {
-  color: var(--field-value-color);
+.vehicle-notes .field-value-name {
+  color: var(--field-alt-value-color);
 }
 
 /* Animation Keyframes */
