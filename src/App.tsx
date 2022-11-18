@@ -75,7 +75,7 @@ function App() {
             setCode('')
             setResult(undefined)
             setError({ type: 'none' })
-            scrollTo('top')
+            if (!showKeepTyping) scrollTo('top')
           } else startKeepTyping()
         }
       } else {
@@ -117,11 +117,11 @@ function App() {
           <CodeBox code={code} onChange={onChange} error={error} />
           <ErrorPanel error={error} />
           <WarningPanel result={result} error={error} setHighlights={setHighlights} />
+          <div className="keep-typing msg-pulse fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
+            <FontAwesomeIcon icon={faCircleExclamation} />
+            <span>This code is too short. Keep typing!</span>
+          </div>
         </div>
-      </div>
-      <div className="keep-typing" style={{ display: showKeepTyping ? 'inherit' : 'none' }}>
-        <FontAwesomeIcon icon={faCircleExclamation} />
-        <span>This code is too short... keep typing!</span>
       </div>
       <div className={"body container " + disableBody} >
         <FieldRouter result={result} setHighlights={setHighlights} />

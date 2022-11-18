@@ -2,7 +2,6 @@
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
@@ -74,3 +73,44 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }*/
+
+/* Disable browser-added horizonal bounce on overscroll */
+* {
+  overscroll-behavior-x: none;
+}
+
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* Tablet */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1025px) and (max-width: 1216px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Widescreen */
+@media only screen and (min-width: 1217px) and (max-width: 1408px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* Full HD */
+@media only screen and (min-width: 1409px) {
+  html {
+    font-size: 19px;
+  }
+}
