@@ -166,8 +166,6 @@ svg.logo {
   margin: 0;
   top: 0;
   position: sticky;
-  padding-top: 2em;
-  padding-bottom: 2em;
   z-index: 99;
 }
 .controls > .controls-blur {
@@ -245,7 +243,7 @@ svg.logo {
 .warnings .gutter svg {
   width: 3.25rem;
   height: 100%;
-  margin-right: 2.5rem;
+  margin-right: 2rem;
 }
 .warnings ul {
   list-style-position: outside;
@@ -328,13 +326,13 @@ svg.logo {
 .field-name {
   color: var(--field-name-color);
   font-size: 1.75em;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .field-desc {
   color: var(--field-desc-color);
   font-size: 1em;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .field-value {
@@ -349,7 +347,7 @@ svg.logo {
 }
 
 .field-value-body {
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .field-value-desc {

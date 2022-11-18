@@ -70,13 +70,13 @@ function FieldRouter({ result, setHighlights }: Props) {
 
     return (
       <div className="details columns is-centered">
-      <div className="column is-12-mobile is-11-tablet is-11-desktop is-10-widescreen is-9-fullhd">
-        <div className="vehicle">
-          <div>
-            { vehicleElems }
+        <div className="column is-12-mobile is-11-tablet is-11-desktop is-10-widescreen is-9-fullhd">
+          <div className="vehicle">
+            <div>
+              { vehicleElems }
+            </div>
           </div>
         </div>
-      </div>
       </div>
     )
   } else return (<></>)

@@ -116,9 +116,9 @@ function App() {
 
       <div ref={scrollRef} id="scroll-target" />
 
-      <div className={`controls ${statusClass()} ${highlightClasses}`}>
+      <div className={`controls columns is-centered ${statusClass()} ${highlightClasses}`}>
         <div className="controls-blur" />
-        <div className="container">
+        <div className="column is-12-mobile is-11-tablet is-11-desktop is-10-widescreen is-9-fullhd">
           <CodeBox code={code} onChange={onChange} error={error} />
           <ErrorPanel error={error} />
           <WarningPanel result={result} error={error} setHighlights={setHighlights} />
