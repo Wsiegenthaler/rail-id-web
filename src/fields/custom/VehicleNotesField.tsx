@@ -9,7 +9,7 @@ function VehicleNotesField({ field, setHighlights }: FieldElementProps) {
   const noteField = field as SetFieldMeta<string>
 
   const listItems = noteField.valueMetas.map(vm => (
-    <Highlighter values={[ vm ]} setHighlights={setHighlights}>
+    <Highlighter values={[ vm ]} setHighlights={setHighlights} key={vm.value}>
       <div className="field-body">
         <div className="field-value-body">
           <div className="field-value-desc">

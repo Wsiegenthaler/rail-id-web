@@ -8,9 +8,8 @@ import { SetHighlights } from '../App'
 import Field from '../fields/generic/Field'
 import CountryField from '../fields/custom/CountryField'
 import KeeperField from '../fields/custom/KeeperField'
-import SpeedField from '../fields/custom/SpeedField'
-import SpeedsField from '../fields/custom/SpeedsField'
 import VehicleNotesField from '../fields/custom/VehicleNotesField'
+import { hashCode } from '../util'
 
 type Props = {
   result: RailID | undefined
@@ -42,7 +41,7 @@ const buildElems = (fields: FieldMeta<any>[], elemMap: ElementMap, setHighlights
   fields
     .map(field => ({ field, fn: elemMap[field.path] ?? Field }))
     .map(({ field, fn }) => ({ field, elem: fn({ field, setHighlights }) }))
-    .map(({ field, elem }) => React.cloneElement(elem, { key: field.path }))
+    .map(({ field, elem }) => React.cloneElement(elem, { key: hashCode(field.path) }))
 
 // Simple method to determine sort order of a field given its start/end positions in the code
 const sortValue = (source: Source) => {
