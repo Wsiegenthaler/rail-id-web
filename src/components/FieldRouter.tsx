@@ -8,7 +8,7 @@ import { SetHighlights } from '../App'
 import Field from '../fields/generic/Field'
 import CountryField from '../fields/custom/CountryField'
 import KeeperField from '../fields/custom/KeeperField'
-import VehicleNotesField from '../fields/custom/VehicleNotesField'
+import OtherNotesField from '../fields/custom/OtherNotesField'
 import { hashCode } from '../util'
 
 type Props = {
@@ -27,13 +27,7 @@ type ElementMap = { [index: string]: (props: FieldElementProps) => JSX.Element }
 const VehicleFieldMap: ElementMap = {
   'country': CountryField,
   'keeper': KeeperField,
-  'notes': VehicleNotesField
-}
-
-// Map meta field paths to the elements used to render them
-//TODO deprecate meta routing in favor of purpose-built component
-const MetaFieldMap: ElementMap = {
-  '_meta.type': Field
+  'notes': OtherNotesField
 }
 
 // Creates elements for each field using the lookup map

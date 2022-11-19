@@ -4,7 +4,7 @@ import Highlighter from '../../components/Highlighter'
 import HighlightHintDot from '../../components/util/HighlightHintDot'
 
 
-function VehicleNotesField({ field, setHighlights }: FieldElementProps) {
+function OtherNotesField({ field, setHighlights }: FieldElementProps) {
 
   const noteField = field as SetFieldMeta<string>
 
@@ -30,4 +30,4 @@ function VehicleNotesField({ field, setHighlights }: FieldElementProps) {
     </div>)
 }
 
-export default VehicleNotesField
+export default OtherNotesField
