@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 import { useDelay } from 'react-use-precision-timer'
 
-import './App.css'
+import './App.scss'
 import 'bulma/css/bulma.css'
 
 import FieldRouter from './components/FieldRouter'

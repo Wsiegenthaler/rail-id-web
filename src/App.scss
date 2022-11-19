@@ -24,16 +24,16 @@
     --keep-typing-icon-color: var(--color-purple);
 
     /* Codebox */
-    --codebox-color-text: var(--color-neutral-7);
+    --codebox-color-text: var(--color-neutral-a);
     --codebox-color-background: var(--color-neutral-3);
     --codebox-color-border: var(--color-neutral-4);
     --codebox-color-border-focus: var(--color-neutral-6);
 
     /* Fields */
-    --field-color: var(--color-neutral-7);
+    --field-color: var(--color-neutral-6);
     --field-alt-color: var(--color-neutral-8);
-    --field-name-color: var(--color-neutral-7);
-    --field-desc-color: var(--color-neutral-7);
+    --field-name-color: var(--color-neutral-4);
+    --field-text-color: var(--color-neutral-7);
     --field-value-color: var(--color-neutral-c);
     --field-decorator-color: var(--color-neutral-4);
 
@@ -79,8 +79,8 @@
     /* Fields */
     --field-color: var(--color-neutral-7);
     --field-alt-color: var(--color-neutral-6);
-    --field-name-color: var(--color-neutral-8);
-    --field-desc-color: var(--color-neutral-8);
+    --field-name-color: var(--color-neutral-a);
+    --field-text-color: var(--color-neutral-8);
     --field-value-color: var(--color-neutral-4);
     --field-decorator-color: var(--color-neutral-b);
 
@@ -217,10 +217,10 @@ svg.logo {
 }
 
 .code-box {
-  font-family: Source Code Pro, Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "JetBrains Mono";
+  font-weight: 500;
   text-align: center;
   font-size: 2.1rem;
-  font-weight: 600;
   margin-right: 0.4rem;
   margin-left: 0.4rem;
   padding: .7rem;
@@ -297,6 +297,7 @@ svg.logo {
 .field-body {
   margin-top: 0.75em;
   flex-direction: column;
+  margin-left: .5em;
 }
 .field-body > * {
   margin-left: 1.8rem;
@@ -329,37 +330,39 @@ svg.logo {
 .field-name {
   color: var(--field-name-color);
   font-size: 1.75em;
-  font-weight: 300;
+  font-weight: 800;
 }
 
 .field-desc {
-  color: var(--field-desc-color);
-  font-size: 1em;
+  color: var(--field-text-color);
+  font-size: 1.1rem;
   font-weight: 300;
+  margin-bottom: .5rem;
 }
 
 .field-value {
   color: var(--field-value-color);
-  font-size: 1.5em;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 400;
   width: fit-content;
 }
 
 .field-value a {
-  margin-left: 0.2em;
+  margin-left: 0.2rem;
 }
 
 .field-value-body {
-  font-weight: 300;
-  font-size: 1.2em;
+  font-weight: 200;
+  font-size: 1rem;
 }
 
 .field-value-desc {
-  color: var(--field-alt-color);
+  color: var(--field-text-color);
+  font-size: 1rem;
 }
 
 .field-notes * {
-  color: var(--field-alt-color);
+  color: var(--field-text-color);
 }
 .field-notes > *:first-child {
   margin-top: .4em;
@@ -371,32 +374,13 @@ svg.logo {
   list-style-type: disc;
 }
 
-.pos-0 .pos-0 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-1 .pos-1 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-2 .pos-2 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-3 .pos-3 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-4 .pos-4 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-5 .pos-5 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-6 .pos-6 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-7 .pos-7 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-8 .pos-8 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-9 .pos-9 {   color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-10 .pos-10 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-11 .pos-11 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-12 .pos-12 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-13 .pos-13 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-14 .pos-14 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-15 .pos-15 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-16 .pos-16 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-17 .pos-17 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-18 .pos-18 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-19 .pos-19 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-20 .pos-20 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-21 .pos-21 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-22 .pos-22 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-23 .pos-23 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-24 .pos-24 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
-.pos-25 .pos-25 { color: var(--highlight-color); animation: highlight-pulse 350ms ease-out 0s 1 normal forwards; }
+/* Highlights by position */
+@for $i from 0 through 50 {
+  .pos-#{$i} .pos-#{$i} {
+    color: var(--highlight-color);
+    animation: highlight-pulse 350ms ease-out 0ms 1 normal forwards;
+  }
+}
 
 /* Highlight Hint - Underline */
 .highlight-hint-underline {
