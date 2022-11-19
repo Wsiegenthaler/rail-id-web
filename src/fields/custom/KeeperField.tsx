@@ -35,7 +35,7 @@ function GenericScalarField({ field, setHighlights }: FieldElementProps) {
       <Highlighter values={[ scalar.valueMeta ]} setHighlights={setHighlights}>
         <div className="field-body">
           <div className="field-value-header">
-            <div className="field-value">{keeper.company} {link}</div>
+            <div className="field-value highlight-hint-underline">{keeper.company} {link}</div>
           </div>
           <FieldValueBody desc={scalar.valueMeta.desc} footnotes={footnotes} />
         </div>

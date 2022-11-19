@@ -24,7 +24,7 @@ function CountryField({ field, setHighlights }: FieldElementProps) {
           <div className="field-value-header">
             <div className="field-value">
               <Flag code={country.short} />
-              <span className="long">{country.long}</span>
+              <span className="long highlight-hint-underline">{country.long}</span>
               <span className="short">{country.short}</span>
             </div>
           </div>

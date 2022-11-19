@@ -8,6 +8,7 @@ import { RailID, ParseWarning, ParseWarnings, SetFieldMeta, ValueMeta } from 'ra
 import { AppError, SetHighlights } from '../App'
 import Highlighter from './Highlighter'
 import { hashCode } from '../util'
+import HighlightHintDot from './util/HighlightHintDot'
 
 type Props = {
   result?: RailID
@@ -23,13 +24,11 @@ function WarningPanel({ result, error, setHighlights }: Props) {
 
   if (!warningField) return (<></>)
 
-  const warningInfoIcon = (w: ValueMeta<ParseWarning>) => w.source.length > 0 ? (<FontAwesomeIcon icon={faCircleInfo} />) : (<></>)
-
   const warning = (w: ValueMeta<ParseWarning>) => (
     <li key={hashCode(w.readableValue)}>
       <Highlighter setHighlights={setHighlights} values={[ w ]}>
         <span>{w.readableValue}</span>
-        {warningInfoIcon(w)}
+        { w.source.length > 0 ? <HighlightHintDot /> : <></> }
       </Highlighter>
     </li>)
 

@@ -1,6 +1,7 @@
 import { SetFieldMeta } from 'rail-id'
 import { FieldElementProps } from '../../components/FieldRouter'
 import Highlighter from '../../components/Highlighter'
+import HighlightHintDot from '../../components/util/HighlightHintDot'
 
 
 function VehicleNotesField({ field, setHighlights }: FieldElementProps) {
@@ -13,6 +14,7 @@ function VehicleNotesField({ field, setHighlights }: FieldElementProps) {
         <div className="field-value-body">
           <div className="field-value-desc">
               { vm.value }
+              <HighlightHintDot />
           </div>
         </div>
       </div>

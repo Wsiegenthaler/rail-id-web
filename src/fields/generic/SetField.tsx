@@ -24,7 +24,7 @@ function SetField({ field, setHighlights }: Props) {
     <Highlighter values={field.valueMetas} setHighlights={setHighlights} key={i}>
       <div className="field-body">
         <div className="field-value-header">
-          <div className="field-value">{friendlyValue(vm)}</div>
+          <div className="field-value highlight-hint-underline">{friendlyValue(vm)}</div>
         </div>
         <FieldValueBody desc={vm.desc} footnotes={vm.footnotes} />
       </div>
