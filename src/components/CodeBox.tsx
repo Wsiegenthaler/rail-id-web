@@ -68,17 +68,15 @@ function CodeBox({ code, onChange, error }: Props) {
   const html = code.split('').map((c, i) => `<span class="pos-${i} ${errorPos === i ? 'pos-error' : ''}">${c}</span>`).join('')
 
   return (
-    <div className='code-box-wrapper columns is-centered'>
-      <div className='column'>
-        <ContentEditable
-          className="code-box"
-          tagName="pre"
-          spellCheck="false"
-          placeholder='Enter vehicle marking...'
-          html={html} // innerHTML of the editable div
-          onChange={handleChange} // handle innerHTML change
-          innerRef={innerRef} />
-      </div>
+    <div className='code-box-wrapper'>
+      <ContentEditable
+        className="code-box"
+        tagName="pre"
+        spellCheck="false"
+        placeholder='Enter vehicle marking...'
+        html={html} // innerHTML of the editable div
+        onChange={handleChange} // handle innerHTML change
+        innerRef={innerRef} />
     </div>
   )
 }

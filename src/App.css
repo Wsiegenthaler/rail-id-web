@@ -138,11 +138,15 @@ svg.logo {
 }
 
 .results {
-  text-align: left;
   min-height: 150px;
   padding-bottom: 3rem;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+}
+
+.results > .field-router {
+  flex-grow: 1 !important;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .results.disable {
@@ -187,15 +191,17 @@ svg.logo {
   overflow: hidden;
 }
 .controls > * {
-  margin-top: .5em;
-  margin-bottom: .5em;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
 }
 
 .controls .keep-typing,
 .controls .error,
 .controls .warnings {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: .2rem;
 }
 
 .controls .keep-typing *,
@@ -263,9 +269,8 @@ svg.logo {
 
 .keep-typing {
   color: var(--keep-typing-color);
-  margin-top: 0.7em;
   text-align: center;
-  font-size: 1.15em;
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -296,7 +301,7 @@ svg.logo {
   flex-direction: column;
 }
 .field-body > * {
-  margin-left: 1.75em;
+  margin-left: 1.8rem;
 }
 .field-body::before {
   content: "⟫";
@@ -337,7 +342,7 @@ svg.logo {
 
 .field-value {
   color: var(--field-value-color);
-  font-size: 1.45em;
+  font-size: 1.5em;
   font-weight: 600;
   width: fit-content;
 }
@@ -348,16 +353,15 @@ svg.logo {
 
 .field-value-body {
   font-weight: 300;
+  font-size: 1.2em;
 }
 
 .field-value-desc {
   color: var(--field-alt-color);
-  font-size: 1.1em;
 }
 
 .field-notes * {
   color: var(--field-alt-color);
-  font-size: 1em;
 }
 .field-notes > *:first-child {
   margin-top: .4em;

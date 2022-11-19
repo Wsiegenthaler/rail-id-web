@@ -33,6 +33,10 @@
   --color-neutral-f: #ffffff;
 }
 
+html, body {
+  font-family: inherit;
+}
+
 a {
   font-weight: 500;
   color: var(--link-color);
@@ -111,6 +115,6 @@ button:focus-visible {
 /* Full HD */
 @media only screen and (min-width: 1409px) {
   html {
-    font-size: 19px;
+    font-size: 18px;
   }
 }

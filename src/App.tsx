@@ -129,7 +129,7 @@ function App() {
         </div>
       </div>
 
-      <div className={"results container " + disableResults} >
+      <div className={"results columns " + disableResults} >
         <FieldRouter result={result} setHighlights={setHighlights} />
       </div>
     </div>
