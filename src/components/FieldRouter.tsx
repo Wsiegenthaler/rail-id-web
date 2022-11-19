@@ -10,6 +10,8 @@ import CountryField from '../fields/custom/CountryField'
 import KeeperField from '../fields/custom/KeeperField'
 import OtherNotesField from '../fields/custom/OtherNotesField'
 import { hashCode } from '../util'
+import { ScalarFieldMeta } from 'rail-id'
+import { SetFieldMeta } from 'rail-id'
 
 type Props = {
   result: RailID | undefined
@@ -21,42 +23,61 @@ export type FieldElementProps = {
   setHighlights: SetHighlights
 }
 
-type ElementMap = { [index: string]: (props: FieldElementProps) => JSX.Element }
+type Map<V> = { [index: string]: V }
 
 // Map vehicle field paths to the elements used to render them
-const VehicleFieldMap: ElementMap = {
+type ComponentFactory = (props: FieldElementProps) => JSX.Element
+const CustomComponents: Map<ComponentFactory> = {
   'country': CountryField,
   'keeper': KeeperField,
   'notes': OtherNotesField
 }
 
+// Allow control over field ordering
+enum Priority { ExtraHigh, High, MediumHigh, Normal, MediumLow, Low, ExtraLow }
+const FieldPriorities: Map<Priority> = {
+  'type':            Priority.High,
+  'subtype':         Priority.High,
+  'country':         Priority.MediumHigh,
+  'special.type':    Priority.MediumHigh,
+  'special.subtype': Priority.MediumHigh,
+  'serial':          Priority.Low,
+  'notes':           Priority.ExtraLow,
+}
+
 // Creates elements for each field using the lookup map
-const buildElems = (fields: FieldMeta<any>[], elemMap: ElementMap, setHighlights: SetHighlights) =>
+const buildElems = (fields: FieldMeta<any>[], elemMap: Map<ComponentFactory>, setHighlights: SetHighlights) =>
   fields
     .map(field => ({ field, fn: elemMap[field.path] ?? Field }))
     .map(({ field, fn }) => ({ field, elem: fn({ field, setHighlights }) }))
     .map(({ field, elem }) => React.cloneElement(elem, { key: hashCode(field.path) }))
 
 // Simple method to determine sort order of a field given its start/end positions in the code
-const sortValue = (source: Source) => {
+const sortValue = (source: Source, priority: Priority = Priority.Normal) => {
   const [ start, end ] = [ min(source), max(source) ] as [number, number]
-  return start + (end - start) / 2
+  const centerOfMass = start + (end - start) / 2
+  return 1000 * priority + centerOfMass
 }
 
 function FieldRouter({ result, setHighlights }: Props) {
   if (result !== undefined) {
 
     // Order fields by their source location in the code
-    const fields = sortBy(values(result._meta.fields), f => {
-      if (f.type === 'set') return sortValue(f.valueMetas.flatMap(m => m.source))
-      else return sortValue(f.valueMeta.source)
+    const fields = sortBy(values(result._meta.fields), (f: FieldMeta<any>) => {
+      if (f.type === 'set') {
+        const set = f as SetFieldMeta<any>
+        return sortValue(set.valueMetas.flatMap(m => m.source), FieldPriorities[f.path])
+      } else {
+        const scalar = f as ScalarFieldMeta<any>
+        return sortValue(f.valueMeta.source, FieldPriorities[f.path])
+      }
     })
 
     // Split meta fields from vehicle ones
     const [ metaFields, vehicleFields ] = partition(fields, f => f.path.startsWith('_meta'))
 
     // Generate element sets
-    const vehicleElems = buildElems(vehicleFields, VehicleFieldMap, setHighlights)
+    const vehicleElems = buildElems(vehicleFields, CustomComponents, setHighlights)
     //TODO const metaElems = buildElems(metaFields, MetaFieldMap, setHighlights)
 
     return (
