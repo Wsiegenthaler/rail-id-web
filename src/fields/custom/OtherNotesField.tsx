@@ -24,7 +24,7 @@ function OtherNotesField({ field, setHighlights }: FieldElementProps) {
     <div className="field vehicle-notes">
       <div className="field-header">
         <div className="field-name">{field.name}</div>
-        <div className="field-desc">{field.desc}</div>
+        { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }
       </div>
       { listItems }
     </div>)

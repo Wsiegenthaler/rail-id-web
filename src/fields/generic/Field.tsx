@@ -12,7 +12,7 @@ function Field({ field, setHighlights }: FieldElementProps) {
   if (field.type === 'scalar') {
     const scalar = field as ScalarFieldMeta<any>
     const ft = typeof scalar.valueMeta.value
-    if (ft !== 'object' || (scalar.valueMeta.readableValue && scalar.valueMeta.readablValue.length > 0)) {
+    if (ft !== 'object' || (scalar.valueMeta.readableValue && scalar.valueMeta.readableValue.length > 0)) {
       return (<ScalarField field={field} setHighlights={setHighlights} />)
     } else {
       console.warn(`Could not render '${scalar.name}' field with value of type '${ft}':`, field)
