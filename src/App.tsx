@@ -15,15 +15,18 @@ import { faCircleExclamation, faTrainSubway } from '@fortawesome/free-solid-svg-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-export type SetHighlights = React.Dispatch<React.SetStateAction<number[]>>
+export type AppError =
+  { type: 'parse-error', ref: ParseError } |
+  { type: 'internal', ref: unknown } |
+  { type: 'none' }
 
-export type AppError = { type: 'parse-error', ref: ParseError } | { type: 'internal', ref: unknown } | { type: 'none' }
-
+export type HighlightState = 'clear' | { origin: string, source: number[]  }
+export type SetHighlights = React.Dispatch<React.SetStateAction<HighlightState>>
 
 function App() {
   const [code, setCode] = useState('')
   const [result, setResult] = useState<RailID | undefined>()
-  const [highlights, setHighlights] = useState<number[]>([])
+  const [highlights, setHighlights] = useState<HighlightState>('clear')
   const [error, setError] = useState<AppError>({ type: 'none' })
 
   //DEBUG
@@ -57,7 +60,7 @@ function App() {
   function onChange(newCode: string) {
     setCode(newCode)
     setError({ type: 'none' })
-    setHighlights([]) // Always clear highlights when code has changed
+    setHighlights('clear') // Always clear highlights when code has changed
     startKeepTyping()
 
     try {
@@ -97,8 +100,9 @@ function App() {
   const disableResults = result && error.type !== 'none' ? 'disable' : ''
 
   // Classes placed at a parent element to enable highlighting select parts of the code
-  const highlightClasses = highlights.map(n => `pos-${n}`).join(' ')
+  const highlightClasses = highlights !== 'clear' ? highlights.source.map(n => `pos-${n}`).join(' ') : ''
 
+  // CodeBox valid/warn border classes
   const statusClass = () => {
     if (result && error.type === 'none') {
       if (result._meta.warnings.length > 0) return 'status-warn'
@@ -106,6 +110,11 @@ function App() {
     } else return ''
   }
 
+  // Catch touch events to disable highlight selection
+  useEffect(() => document.addEventListener('touchstart', ev => {
+    ev.stopPropagation()
+    setHighlights('clear')
+  }), [/* onMount only */])
 
   return (
     <div className="rail-id">
@@ -121,7 +130,7 @@ function App() {
         <div className="column is-12-mobile is-11-tablet is-11-desktop is-10-widescreen is-9-fullhd">
           <CodeBox code={code} onChange={onChange} error={error} />
           <ErrorPanel error={error} />
-          <WarningPanel result={result} error={error} setHighlights={setHighlights} />
+          <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
           <div className="keep-typing msg-pulse fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
             <FontAwesomeIcon icon={faCircleExclamation} />
             <span>This code is too short. Keep typing!</span>
@@ -130,7 +139,7 @@ function App() {
       </div>
 
       <div className={"results columns " + disableResults} >
-        <FieldRouter result={result} setHighlights={setHighlights} />
+        <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
       </div>
     </div>
   )

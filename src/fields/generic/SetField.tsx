@@ -1,16 +1,17 @@
 import { SetFieldMeta, ValueMeta } from 'rail-id'
 
-import { SetHighlights } from '../../App'
+import { HighlightState, SetHighlights } from '../../App'
 
 import Highlighter from '../../components/Highlighter'
 import FieldValueBody from './FieldValueBody'
 
 type Props = {
   field: SetFieldMeta<any>
+  highlights: HighlightState
   setHighlights: SetHighlights
 }
 
-function SetField({ field, setHighlights }: Props) {
+function SetField({ field, highlights, setHighlights }: Props) {
 
   const fieldClasses = `field ${field.path.replaceAll(/\./g, '-')}`
 
@@ -21,7 +22,7 @@ function SetField({ field, setHighlights }: Props) {
   }
 
   const fieldValues = field.valueMetas.map((vm, i) => (
-    <Highlighter values={field.valueMetas} setHighlights={setHighlights} key={i}>
+    <Highlighter values={field.valueMetas} highlights={highlights} setHighlights={setHighlights} key={i}>
       <div className="field-body">
         <div className="field-value-header">
           <div className="field-value highlight-hint-underline">{friendlyValue(vm)}</div>

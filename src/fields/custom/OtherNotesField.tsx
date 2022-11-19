@@ -1,15 +1,16 @@
 import { SetFieldMeta } from 'rail-id'
+
 import { FieldElementProps } from '../../components/FieldRouter'
 import Highlighter from '../../components/Highlighter'
 import HighlightHintDot from '../../components/util/HighlightHintDot'
 
 
-function OtherNotesField({ field, setHighlights }: FieldElementProps) {
+function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps) {
 
   const noteField = field as SetFieldMeta<string>
 
   const listItems = noteField.valueMetas.map(vm => (
-    <Highlighter values={[ vm ]} setHighlights={setHighlights} key={vm.value}>
+    <Highlighter values={[ vm ]} highlights={highlights} setHighlights={setHighlights} key={vm.value}>
       <div className="field-body">
         <div className="field-value-body">
           <div className="field-value-desc">

@@ -1,25 +1,26 @@
 import React from 'react'
 import { max, min, partition, sortBy, values } from 'lodash-es'
 
-import { RailID, Source, FieldMeta } from 'rail-id'
+import { RailID, Source, FieldMeta, ScalarFieldMeta, SetFieldMeta } from 'rail-id'
 
-import { SetHighlights } from '../App'
+import { hashCode } from '../util'
+
+import { HighlightState, SetHighlights } from '../App'
 
 import Field from '../fields/generic/Field'
 import CountryField from '../fields/custom/CountryField'
 import KeeperField from '../fields/custom/KeeperField'
 import OtherNotesField from '../fields/custom/OtherNotesField'
-import { hashCode } from '../util'
-import { ScalarFieldMeta } from 'rail-id'
-import { SetFieldMeta } from 'rail-id'
 
 type Props = {
   result: RailID | undefined
+  highlights: HighlightState
   setHighlights: SetHighlights
 }
 
 export type FieldElementProps = {
   field: FieldMeta<any>
+  highlights: HighlightState
   setHighlights: SetHighlights
 }
 
@@ -46,10 +47,10 @@ const FieldPriorities: Map<Priority> = {
 }
 
 // Creates elements for each field using the lookup map
-const buildElems = (fields: FieldMeta<any>[], elemMap: Map<ComponentFactory>, setHighlights: SetHighlights) =>
+const buildElems = (fields: FieldMeta<any>[], elemMap: Map<ComponentFactory>, highlights: HighlightState, setHighlights: SetHighlights) =>
   fields
     .map(field => ({ field, fn: elemMap[field.path] ?? Field }))
-    .map(({ field, fn }) => ({ field, elem: fn({ field, setHighlights }) }))
+    .map(({ field, fn }) => ({ field, elem: fn({ field, highlights, setHighlights }) }))
     .map(({ field, elem }) => React.cloneElement(elem, { key: hashCode(field.path) }))
 
 // Simple method to determine sort order of a field given its start/end positions in the code
@@ -59,7 +60,7 @@ const sortValue = (source: Source, priority: Priority = Priority.Normal) => {
   return 1000 * priority + centerOfMass
 }
 
-function FieldRouter({ result, setHighlights }: Props) {
+function FieldRouter({ result, highlights, setHighlights }: Props) {
   if (result !== undefined) {
 
     // Order fields by their source location in the code
@@ -77,7 +78,7 @@ function FieldRouter({ result, setHighlights }: Props) {
     const [ metaFields, vehicleFields ] = partition(fields, f => f.path.startsWith('_meta'))
 
     // Generate element sets
-    const vehicleElems = buildElems(vehicleFields, CustomComponents, setHighlights)
+    const vehicleElems = buildElems(vehicleFields, CustomComponents, highlights, setHighlights)
     //TODO const metaElems = buildElems(metaFields, MetaFieldMap, setHighlights)
 
     return (

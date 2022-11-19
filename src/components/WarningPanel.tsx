@@ -1,22 +1,25 @@
 import { values } from 'lodash-es'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 import { RailID, ParseWarning, ParseWarnings, SetFieldMeta, ValueMeta } from 'rail-id'
 
-import { AppError, SetHighlights } from '../App'
-import Highlighter from './Highlighter'
 import { hashCode } from '../util'
+
+import { AppError, HighlightState, SetHighlights } from '../App'
+
+import Highlighter from './Highlighter'
 import HighlightHintDot from './util/HighlightHintDot'
 
 type Props = {
   result?: RailID
   error: AppError
+  highlights: HighlightState
   setHighlights: SetHighlights
 }
 
-function WarningPanel({ result, error, setHighlights }: Props) {
+function WarningPanel({ result, error, highlights, setHighlights }: Props) {
   if (!result || error.type !== 'none') return (<></>)
 
   const warningField =
@@ -26,7 +29,7 @@ function WarningPanel({ result, error, setHighlights }: Props) {
 
   const warning = (w: ValueMeta<ParseWarning>) => (
     <li key={hashCode(w.readableValue)}>
-      <Highlighter setHighlights={setHighlights} values={[ w ]}>
+      <Highlighter highlights={highlights} setHighlights={setHighlights} values={[ w ]}>
         <span>{w.readableValue}</span>
         { w.source.length > 0 ? <HighlightHintDot /> : <></> }
       </Highlighter>

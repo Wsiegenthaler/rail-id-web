@@ -1,6 +1,6 @@
 import { ScalarFieldMeta, ValueMeta } from 'rail-id'
 
-import { SetHighlights } from '../../App'
+import { HighlightState, SetHighlights } from '../../App'
 
 import FieldValueBody from './FieldValueBody'
 
@@ -8,10 +8,11 @@ import Highlighter from '../../components/Highlighter'
 
 type Props = {
   field: ScalarFieldMeta<any>
+  highlights: HighlightState
   setHighlights: SetHighlights
 }
 
-function ScalarField({ field, setHighlights }: Props) {
+function ScalarField({ field, highlights, setHighlights }: Props) {
 
   let fieldClasses = `field ${field.path.replaceAll(/\./g, '-')}`
 
@@ -27,7 +28,7 @@ function ScalarField({ field, setHighlights }: Props) {
         <div className="field-name">{field.name}</div>
         { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }
       </div>
-      <Highlighter values={[ field.valueMeta ]} setHighlights={setHighlights}>
+      <Highlighter values={[ field.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
         <div className="field-body">
           <div className="field-value-header">
             <div className="field-value highlight-hint-underline">{friendlyValue(field.valueMeta)}</div>

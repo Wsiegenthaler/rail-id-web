@@ -1,28 +1,38 @@
-import { range } from 'lodash-es'
+import { useState } from 'react'
+import { nanoid } from 'nanoid'
 
 import { ValueMeta } from 'rail-id'
-import { useState } from 'react'
-import { SetHighlights } from '../App'
+
+import { HighlightState, SetHighlights } from '../App'
 
 type Props = {
   values: ValueMeta<any>[]
+  highlights: HighlightState
   setHighlights: SetHighlights
   children: JSX.Element[] | JSX.Element
 }
 
-function Highlighter({ values, setHighlights, children }: Props) {
-  const [highlightActive, setHighlightActive] = useState(false)
+function Highlighter({ values, highlights, setHighlights, children }: Props) {
+  const [uid, setUid] = useState<string>(nanoid())
 
-  const highlight = (active: boolean) => () => {
-    setHighlightActive(active)
-    if (active && values.length > 0) {
-      const highlights = values.flatMap(vm => vm.source)
-      setHighlights(highlights)
-    } else setHighlights([])
+  const active = highlights !== 'clear' && highlights.origin === uid
+
+  const onMouseEnter = (ev: React.MouseEvent<HTMLDivElement>) => set(true)
+  const onMouseLeave = (ev: React.MouseEvent<HTMLDivElement>) => set(false)
+  const toggleTouch = (ev: React.TouchEvent<HTMLDivElement>) => {
+    ev.stopPropagation()
+    set(!active)
+  }
+
+  const set = (to: boolean) => {
+    if (to && values.length > 0) {
+      const source = values.flatMap(vm => vm.source)
+      setHighlights({ origin: uid, source })
+    } else setHighlights('clear')
   }
 
   return (
-    <div className={highlightActive ? 'highlight' : ''} onMouseEnter={highlight(true)} onMouseLeave={highlight(false)} onTouchStart={highlight(true)}>
+    <div className={active ? 'highlight' : ''} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onTouchStart={toggleTouch} >
       {children}
     </div>
   )
