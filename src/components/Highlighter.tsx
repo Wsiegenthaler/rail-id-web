@@ -17,9 +17,9 @@ function Highlighter({ values, highlights, setHighlights, children }: Props) {
 
   const active = highlights !== 'clear' && highlights.origin === uid
 
-  const onMouseEnter = (ev: React.MouseEvent<HTMLDivElement>) => set(true)
-  const onMouseLeave = (ev: React.MouseEvent<HTMLDivElement>) => set(false)
-  const toggleTouch = (ev: React.TouchEvent<HTMLDivElement>) => {
+  const onMouseEnter = (ev: React.MouseEvent<HTMLSpanElement>) => set(true)
+  const onMouseLeave = (ev: React.MouseEvent<HTMLSpanElement>) => set(false)
+  const toggleTouch = (ev: React.TouchEvent<HTMLSpanElement>) => {
     ev.stopPropagation()
     set(!active)
   }
@@ -32,9 +32,9 @@ function Highlighter({ values, highlights, setHighlights, children }: Props) {
   }
 
   return (
-    <div className={active ? 'highlight' : ''} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onTouchStart={toggleTouch} >
+    <span className={active ? 'highlight' : ''} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onTouchStart={toggleTouch} >
       {children}
-    </div>
+    </span>
   )
 }
 
