@@ -38,7 +38,7 @@ function WarningPanel({ result, error, highlights, setHighlights }: Props) {
   const warnings = (vms: ValueMeta<ParseWarning>[]) => vms.map(warning)
 
   return (
-    <div className="warnings">
+    <div className="warnings fade-in">
       <div className="gutter">
         <FontAwesomeIcon icon={faCircleExclamation} />
       </div>
