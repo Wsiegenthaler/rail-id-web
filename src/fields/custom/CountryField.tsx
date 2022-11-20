@@ -32,7 +32,6 @@ function CountryField({ field, highlights, setHighlights }: FieldElementProps) {
         </div>
       </Highlighter>
     </div>)
-
 }
 
 export default CountryField

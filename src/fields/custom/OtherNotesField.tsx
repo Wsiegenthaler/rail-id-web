@@ -10,16 +10,17 @@ function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps
   const noteField = field as SetFieldMeta<string>
 
   const listItems = noteField.valueMetas.map(vm => (
-    <Highlighter values={[ vm ]} highlights={highlights} setHighlights={setHighlights} key={vm.value}>
       <div className="field-body">
         <div className="field-value-body">
           <div className="field-value-desc">
               { vm.value }
-              <HighlightHintDot />
+              <Highlighter values={[ vm ]} highlights={highlights} setHighlights={setHighlights} key={vm.value}>
+                <HighlightHintDot />
+              </Highlighter>
           </div>
         </div>
       </div>
-    </Highlighter>))
+    ))
 
   return (
     <div className="field vehicle-notes">
