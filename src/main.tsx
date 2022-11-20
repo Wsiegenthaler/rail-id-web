@@ -1,11 +1,9 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import RailIDApp from './App'
-import './index.css'
 
+import App from './App'
+import './index.scss'
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RailIDApp />
-  </React.StrictMode>
-)
+ReactDOM
+  .createRoot(document.getElementById('root') as HTMLElement)
+  .render( <StrictMode> <App/> </StrictMode>)
