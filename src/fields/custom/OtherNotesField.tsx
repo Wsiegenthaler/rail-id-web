@@ -1,3 +1,5 @@
+import { kebabCase } from 'lodash-es'
+
 import { SetFieldMeta } from 'rail-id'
 
 import { FieldElementProps } from '../../components/FieldRouter'
@@ -23,7 +25,7 @@ function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps
     ))
 
   return (
-    <div className="field vehicle-notes">
+    <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
         { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }

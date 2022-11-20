@@ -334,7 +334,7 @@
   
   /* -------------------- Custom Fields ----------------------- */
 
-  /* Vehicle Country field */
+  /* Country Field */
   .field.country {
     img {
       height: 1em;
@@ -350,10 +350,9 @@
       color: var(--field-decorator-color);
     }
   }
- 
   
-  /* Vehicle Notes field */
-  .vehicle-notes {
+  /* Other Notes Field */
+  .field.notes {
 
     .field-value-body {
       padding-top: .2rem;
