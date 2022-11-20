@@ -127,7 +127,7 @@ function App() {
 
       <div className={`controls columns is-centered ${statusClass()} ${highlightClasses}`}>
         <div className="controls-blur" />
-        <div className="column is-12-mobile is-11-tablet is-11-desktop is-10-widescreen is-9-fullhd">
+        <div className="column is-12-mobile is-11-tablet is-11-desktop is-9-widescreen is-8-fullhd">
           <CodeBox code={code} onChange={onChange} error={error} />
           <ErrorPanel error={error} />
           <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
