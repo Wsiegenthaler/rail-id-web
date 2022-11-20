@@ -412,7 +412,8 @@ svg.logo {
   height: 1em;
   translate: .1em .15em;
 }
-.field.country span {
+.field.country .long,
+.field.country .short {
   margin-left: .5em;
 }
 .field.country .short {
