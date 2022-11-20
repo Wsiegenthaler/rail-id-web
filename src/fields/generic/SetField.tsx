@@ -1,3 +1,5 @@
+import { kebabCase } from 'lodash-es'
+
 import { SetFieldMeta, ValueMeta } from 'rail-id'
 
 import { HighlightState, SetHighlights } from '../../App'
@@ -12,8 +14,6 @@ type Props = {
 }
 
 function SetField({ field, highlights, setHighlights }: Props) {
-
-  const fieldClasses = `field ${field.path.replaceAll(/\./g, '-')}`
 
   const friendlyValue = (vm: ValueMeta<any>) => {
     const tpe = typeof vm.value
@@ -33,7 +33,7 @@ function SetField({ field, highlights, setHighlights }: Props) {
   ))
 
   return (
-    <div className={fieldClasses}>
+    <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
         { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }

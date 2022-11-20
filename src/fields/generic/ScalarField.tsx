@@ -1,3 +1,5 @@
+import { kebabCase } from 'lodash-es'
+
 import { ScalarFieldMeta, ValueMeta } from 'rail-id'
 
 import { HighlightState, SetHighlights } from '../../App'
@@ -14,8 +16,6 @@ type Props = {
 
 function ScalarField({ field, highlights, setHighlights }: Props) {
 
-  let fieldClasses = `field ${field.path.replaceAll(/\./g, '-')}`
-
   const friendlyValue = (vm: ValueMeta<any>) => {
     const tpe = typeof vm.value
     if (tpe === 'number' || tpe === 'string') return vm.value
@@ -23,7 +23,7 @@ function ScalarField({ field, highlights, setHighlights }: Props) {
   }
 
   return (
-    <div className={fieldClasses}>
+    <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
         { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }

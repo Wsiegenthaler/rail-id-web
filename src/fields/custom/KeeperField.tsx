@@ -1,3 +1,5 @@
+import { kebabCase } from 'lodash-es'
+
 import { KeeperDef, ScalarFieldMeta } from 'rail-id'
 
 import FieldValueBody from '../generic/FieldValueBody'
@@ -17,13 +19,11 @@ function GenericScalarField({ field, highlights, setHighlights }: FieldElementPr
     keeper.status === 'blocked' || keeper.status === 'revoked' ? [`This keeper marking is listed as "${keeper.status}" by the International Union of Railways`] : [],
   ].flat()
 
-  let fieldClasses = `field ${field.path.replaceAll(/\./g, '-')}`
- 
   const link = !keeper.website ? (<></>) :
     (<span>&nbsp;[<Link href={keeper.website} className="external">web</Link>]</span>)
 
   return (
-    <div className={fieldClasses}>
+    <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
         { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }

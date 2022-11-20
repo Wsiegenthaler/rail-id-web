@@ -1,4 +1,5 @@
 import Flag from 'react-world-flags'
+import { kebabCase } from 'lodash-es'
 
 import { Country, ScalarFieldMeta } from 'rail-id'
 
@@ -12,10 +13,8 @@ function CountryField({ field, highlights, setHighlights }: FieldElementProps) {
   const scalar = field as ScalarFieldMeta<Country>
   const country = scalar.valueMeta.value as Country
 
-  const fieldClasses = `field ${field.path.replaceAll(/\./g, '-')}`
-
   return (
-    <div className={fieldClasses}>
+    <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
       </div>
