@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-
 import { KeeperDef, ScalarFieldMeta } from 'rail-id'
 
 import FieldValueBody from '../generic/FieldValueBody'
@@ -22,9 +19,8 @@ function GenericScalarField({ field, highlights, setHighlights }: FieldElementPr
 
   let fieldClasses = `field ${field.path.replaceAll(/\./g, '-')}`
  
-  const link = keeper.website ?
-    (<Link href={keeper.website} className="external"><FontAwesomeIcon icon={faArrowUpRightFromSquare} /></Link>) :
-    (<></>)
+  const link = !keeper.website ? (<></>) :
+    (<span>&nbsp;[<Link href={keeper.website} className="external">web</Link>]</span>)
 
   return (
     <div className={fieldClasses}>
@@ -35,14 +31,13 @@ function GenericScalarField({ field, highlights, setHighlights }: FieldElementPr
       <Highlighter values={[ scalar.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
         <div className="field-body">
           <div className="field-value-header">
-            <div className="field-value highlight-hint-underline">{keeper.company} {link}</div>
+            <div className="field-value highlight-hint-underline">{keeper.company}{link}</div>
           </div>
           <FieldValueBody desc={scalar.valueMeta.desc} footnotes={footnotes} />
         </div>
       </Highlighter>
     </div>
   )
-
 }
 
 export default GenericScalarField

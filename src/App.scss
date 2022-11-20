@@ -451,6 +451,17 @@ svg.logo {
 	100% { opacity: 1; }
 }
 
+/* Keeper field */
+.field.keeper .field-value span {
+  text-decoration: none;
+  display: inline-block;
+  font-size: .8em;
+  color: var(--field-value-color);
+}
+.field.keeper .field-value span a:hover {
+  cursor: pointer;
+}
+
 /* Animation classes */
 .fade-in {
   animation: fade-in 250ms ease-in;
