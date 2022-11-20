@@ -450,11 +450,6 @@ svg.logo {
 	0% { opacity: 0; }
 	100% { opacity: 1; }
 }
-@keyframes msg-pulse {
-	0% { opacity: 1; }
-	50% { opacity: .5; }
-	100% { opacity: 1; }
-}
 
 /* Animation classes */
 .fade-in {

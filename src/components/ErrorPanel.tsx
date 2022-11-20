@@ -19,7 +19,7 @@ function ErrorPanel({ error }: Props) {
     msg = error.ref.friendlyMessage
 
   return (
-    <div className="error fade-in msg-pulse">
+    <div className="error fade-in">
       <div className="gutter">
         <FontAwesomeIcon icon={faCircleExclamation} />
       </div>

@@ -131,7 +131,7 @@ function App() {
           <CodeBox code={code} onChange={onChange} error={error} />
           <ErrorPanel error={error} />
           <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
-          <div className="keep-typing msg-pulse fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
+          <div className="keep-typing fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
             <FontAwesomeIcon icon={faCircleExclamation} />
             <span>This code is too short. Keep typing!</span>
           </div>
