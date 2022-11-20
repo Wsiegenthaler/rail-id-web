@@ -303,7 +303,7 @@ svg.logo {
 }
 
 .highlight *:hover {
-  cursor: pointer;
+  cursor: default;
 }
 .highlight .field-value-header .field-value {
   animation: highlight-pulse 350ms ease-out 0s 1 normal forwards;
