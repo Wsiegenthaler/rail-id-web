@@ -99,15 +99,19 @@ function App() {
   // Whether to temporarily fade/disable results
   const disableResults = result && error.type !== 'none' ? 'disable' : ''
 
-  // Classes placed at a parent element to enable highlighting select parts of the code
-  const highlightClasses = highlights !== 'clear' ? highlights.source.map(n => `pos-${n}`).join(' ') : ''
+  // CodeBox highlights and warn/valid border classes
+  const codeboxClasses = () => {
+    // Classes placed at a parent element to enable highlighting select parts of the code
+    const hls = highlights !== 'clear' ? highlights.source.map(n => `pos-${n}`) : []
 
-  // CodeBox valid/warn border classes
-  const statusClass = () => {
+    // Code status
+    let status = ''
     if (result && error.type === 'none') {
-      if (result._meta.warnings.length > 0) return 'status-warn'
-      else return 'status-valid'
-    } else return ''
+      if (result._meta.warnings.length > 0) status = 'warn'
+      else status = 'valid'
+    }
+
+    return [ status, ...hls ].join(' ')
   }
 
   // Catch touch events to disable highlight selection
@@ -117,7 +121,7 @@ function App() {
   }), [/* onMount only */])
 
   return (
-    <div className="rail-id">
+    <div id="rail-id">
 
       <FontAwesomeIcon className="logo" icon={faTrainSubway} />
       <h1>Rail ID</h1>
@@ -125,13 +129,13 @@ function App() {
 
       <div ref={scrollRef} id="scroll-target" />
 
-      <div className={`controls columns is-centered ${statusClass()} ${highlightClasses}`}>
-        <div className="controls-blur" />
+      <div className="controls columns is-centered">
+        <div className="mask" />
         <div className="column is-12-mobile is-11-tablet is-11-desktop is-9-widescreen is-8-fullhd">
-          <CodeBox code={code} onChange={onChange} error={error} />
+          <CodeBox code={code} onChange={onChange} error={error} className={codeboxClasses()} />
           <ErrorPanel error={error} />
           <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
-          <div className="keep-typing fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
+          <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
             <FontAwesomeIcon icon={faCircleExclamation} />
             <span>This code is too short. Keep typing!</span>
           </div>

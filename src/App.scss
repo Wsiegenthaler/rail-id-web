@@ -1,358 +1,401 @@
+#rail-id {
 
-svg.logo {
-  width: 9.5rem;
-  height: 100%;
-  margin-top: 5em;
-  color: var(--logo-color);
-}
-
-.rail-id {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.rail-id .logo,
-.rail-id h1,
-.rail-id h3 {
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.rail-id h1 {
-  margin: 0;
-  margin-top: 1rem;
-  line-height: 1em;
-  font-size: 4rem;
-  font-weight: 400;
-  color: var(--h1-color);
-}
-
-.rail-id h3 {
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: var(--h3-color);
-}
-
-#scroll-target {
-  height: 1px;
-  width: 100%;
-}
-
-.results {
-  min-height: 150px;
-  padding-bottom: 3rem;
-}
-
-.results > .field-router {
-  flex-grow: 1 !important;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.results.disable {
-  user-select: none;
-  -webkit-user-select: none;
-  pointer-events: none;
-  opacity: .35;
-}
-
-.controls {
-  width: 100%;
-  margin: 0;
-  top: 0;
-  position: sticky;
-  z-index: 99;
-}
-.controls > .controls-blur {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -6%;
-  margin: 0;
-  z-index: -10;
-}
-.controls > .controls-blur::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 98;
-  background: var(--bg-color);
-  opacity: 0.8;
-  overflow: hidden;
-}
-.controls > * {
-  margin-top: .5rem;
-  margin-bottom: .5rem;
-}
-
-.controls .keep-typing,
-.controls .error,
-.controls .warnings {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
-  padding-bottom: .2rem;
-}
-
-.controls .keep-typing *,
-.controls .error *,
-.controls .warnings * {
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.code-box {
-  font-family: "JetBrains Mono";
-  font-weight: 500;
-  text-align: center;
-  font-size: 2.1rem;
-  margin-right: 0.4rem;
-  margin-left: 0.4rem;
-  padding: .7rem;
-
-  color: var(--codebox-color-text);
-  background: var(--codebox-color-background);
-  outline: 2px solid var(--codebox-color-border);
-}
-.code-box:focus {
-  outline: 2px solid var(--codebox-color-border-focus);
-}
-.status-valid .code-box {
-  outline: 2px solid var(--success-color);
-}
-.status-warn .code-box {
-  outline: 2px solid var(--warn-color);
-}
-.code-box span.pos-error {
-  color: var(--error-color);
-}
-
-.warnings {
-  display: flex;
-  color: var(--warn-color);
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  font-size: 1rem;
-  font-weight: 300;
-}
-.warnings .gutter svg {
-  width: 3.25rem;
-  height: 100%;
-  margin-right: 2rem;
-}
-.warnings ul {
-  list-style-position: outside;
-}
-.warnings li {
-  list-style-type: disc;
-  margin-top: .4em;
-  margin-bottom: .4em;
-}
-
-.keep-typing {
-  color: var(--keep-typing-color);
-  text-align: center;
-  font-size: 1.15rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.keep-typing svg {
-  width: 1.7em;
-  height: 100%;
-  color: var(--keep-typing-icon-color);
-  margin-right: 0.5em;
-}
-
-.error {
-  display: flex;
-  color: var(--error-color);
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  font-size: 1em;
-}
-.error .gutter svg {
-  width: 3.25em;
-  height: 100%;
-  margin-right: 1em;
-}
-
-.field-body {
-  margin-top: 0.75em;
-  flex-direction: column;
-  margin-left: .5em;
-}
-.field-body > * {
-  margin-left: 1.8rem;
-}
-.field-body::before {
-  content: "⟫";
-
-  position: absolute;
-  color: var(--field-decorator-color);
-  font-size: 2em;
-  line-height: 0.85em;
-}
-
-.highlight *:hover {
-  cursor: default;
-}
-.highlight .field-value-header .field-value {
-  animation: highlight-pulse 350ms ease-out 0s 1 normal forwards;
-}
-.highlight .field-body::before {
-  color: var(--highlight-color);
-}
-
-.field {
-  color: var(--field-color);
-  padding-bottom: 1.6em;
-  animation: highlight-pulse 350ms ease-in 0s 1 normal forwards;
-}
-
-.field-name {
-  color: var(--field-name-color);
-  font-size: 1.75em;
-  font-weight: 800;
-}
-
-.field-desc {
-  color: var(--field-text-color);
-  font-size: 1.1rem;
-  font-weight: 300;
-  margin-bottom: .5rem;
-}
-
-.field-value {
-  color: var(--field-value-color);
-  font-size: 1.35rem;
-  font-weight: 400;
-  width: fit-content;
-}
-
-.field-value-body {
-  font-weight: 200;
-  font-size: 1rem;
-}
-
-.field-value-desc {
-  color: var(--field-text-color);
-  font-size: 1rem;
-}
-
-.field-notes * {
-  color: var(--field-text-color);
-}
-.field-notes > *:first-child {
-  margin-top: .4em;
-}
-.field-notes ul {
-  list-style-position: inside;
-}
-.field-notes ul li {
-  list-style-type: disc;
-}
-
-/* Highlights by position */
-@for $i from 0 through 50 {
-  .pos-#{$i} .pos-#{$i} {
-    color: var(--highlight-color);
-    animation: highlight-pulse 350ms ease-out 0ms 1 normal forwards;
+  svg.logo {
+    width: 9.5rem;
+    height: 100%;
+    margin-top: 5em;
+    color: var(--logo-color);
   }
-}
+  
+  .logo, h1, h3 {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  h1 {
+    margin: 0;
+    margin-top: 1rem;
+    line-height: 1em;
+    font-size: 4rem;
+    font-weight: 400;
+    color: var(--h1-color);
+  }
+  
+  h3 {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--h3-color);
+  }
 
-/* Highlight Hint - Underline */
-.highlight-hint-underline {
-  /*TODO fix these, var(--highlight-hint-color) not working for some reason, directly using var(--highlight-color) instead (multiple spots) */
-  xtext-decoration-color: var(--highlight-hint-color);
-  text-decoration-color: var(--highlight-color);
-  text-decoration-line: underline;
-  text-decoration-thickness: 2px;
-  text-decoration-style: dotted;
-}
-.highlight .highlight-hint-underline {
-  text-decoration-color: var(--highlight-hint-alt-color);
-}
+  /* Controls bookmark for scroll/achor */
+  #scroll-target {
+    height: 1px;
+    width: 100%;
+  }
+  
+  /* ------------------------ Controls ------------------------ */
 
-/* Highlight Hint - Dot (pointer) */
-.highlight-hint-dot {
-  font-size: 0.8em;
-  color: var(--highlight-color);
-  margin-left: .55rem;
-}
-.highlight-hint-dot svg {
-  position: absolute;
-  transform: translateY(-1.5rem);
-}
-.highlight-hint-dot .fa-circle {
-  color: var(--highlight-hint-bg-color);
-  transform: scale(1.35) translate(-0.02rem, 0.25rem);
-}
-.highlight-hint-dot .fa-hand-pointer {
-  transform: scale(.95) translate(0, .32rem);
-  z-index: 10;
-}
-.highlight .highlight-hint-dot .fa-circle {
-  color: var(--highlight-color);
-}
-.highlight .highlight-hint-dot .fa-hand-pointer {
-  color: var(--highlight-hint-bg-color);
-}
+  .controls {
+    width: 100%;
+    margin: 0;
+    top: 0;
+    position: sticky;
+    z-index: 99;
 
-/* Vehicle Country field */
-.field.country img {
-  height: 1em;
-  translate: .1em .15em;
-}
-.field.country .long,
-.field.country .short {
-  margin-left: .5em;
-}
-.field.country .short {
-  font-size: .8em;
-  color: var(--field-decorator-color);
-}
+    & > .mask {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: -6%;
+      margin: 0;
+      z-index: -10;
 
-/* Vehicle Notes field */
-.vehicle-notes .field-value-body {
-  padding-top: .2rem;
-}
-.vehicle-notes .field-value-name {
-  color: var(--field-alt-value-color);
-}
-.vehicle-notes .field-value-desc {
-  padding-top: .1rem;
-}
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 98;
+        background: var(--bg-color);
+        opacity: 0.8;
+        overflow: hidden;
+      }
+    }
 
-/* Animation Keyframes */
-@keyframes highlight-pulse {
-  0% { opacity: 0; color: var(--highlight-color); }
-  100% { color: var(--highlight-color); }
-}
-@keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
+    & > * {
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+    }
+  
+    /* CodeBox */
+    .code-box {
+      font-weight: 500;
+      text-align: center;
+      font-size: 2.1rem;
+      margin-right: 0.4rem;
+      margin-left: 0.4rem;
+      padding: .7rem;
+  
+      color: var(--codebox-color-text);
+      background: var(--codebox-color-background);
+      outline: 2px solid var(--codebox-color-border);
 
-/* Keeper field */
-.field.keeper .field-value span {
-  text-decoration: none;
-  display: inline-block;
-  font-size: .8em;
-  color: var(--field-value-color);
-}
-.field.keeper .field-value span a:hover {
-  cursor: pointer;
-}
+      /* Border styles */
+      &:focus { outline: 2px solid var(--codebox-color-border-focus); }
+      &.valid { outline: 2px solid var(--success-color); }
+      &.warn { outline: 2px solid var(--warn-color); }
 
-/* Animation classes */
-.fade-in {
-  animation: fade-in 250ms ease-in;
+      /* Error character highlight */
+      & span.pos-error {
+        color: var(--error-color);
+      }
+
+      /* Highlights by position */
+      @for $i from 0 through 50 {
+        &.pos-#{$i} .pos-#{$i} {
+          color: var(--highlight-color);
+          animation: highlight-pulse 350ms ease-out 0ms 1 normal forwards;
+        }
+      }
+    }
+ 
+    /* Error / Warning / Keep Typing */
+    .keep-typing-msg, .error-msg, .warning-msg {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 1rem;
+      padding-bottom: .2rem;
+  
+      * {
+        user-select: none;
+        -webkit-user-select: none;
+      }
+    }
+
+    /* Error */
+    .error-msg {
+      display: flex;
+      color: var(--error-color);
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      font-size: 1em;
+
+      .error-icon svg {
+        width: 3.25em;
+        height: 100%;
+        margin-right: 1em;
+      }
+    }
+
+    /* Warnings */
+    .warning-msg {
+      display: flex;
+      color: var(--warn-color);
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 300;
+
+      .warn-icon svg {
+        width: 3.25rem;
+        height: 100%;
+        margin-right: 2rem;
+      }
+
+      ul {
+        list-style-position: outside;
+
+        li {
+          list-style-type: disc;
+          margin-top: .4em;
+          margin-bottom: .4em;
+        }
+      }
+    }
+
+    /* Keep Typing */
+    .keep-typing-msg {
+      color: var(--keep-typing-color);
+      text-align: center;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 1.7em;
+        height: 100%;
+        color: var(--keep-typing-icon-color);
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  /* ------------------------ Results ------------------------- */
+  
+  .results {
+    min-height: 150px;
+    padding-bottom: 3rem;
+  
+    & > .field-router {
+      flex-grow: 1 !important;
+      margin-top: 1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  
+    &.disable {
+      user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
+      opacity: .35;
+    }
+  }
+
+  /* ------------------------- Fields ------------------------- */
+
+  .field {
+    color: var(--field-color);
+    padding-bottom: 1.6em;
+    animation: highlight-pulse 350ms ease-in 0s 1 normal forwards;
+ 
+    .field-header {
+      .field-name {
+        color: var(--field-name-color);
+        font-size: 1.75em;
+        font-weight: 800;
+      }
+  
+      .field-desc {
+        color: var(--field-text-color);
+        font-size: 1.1rem;
+        font-weight: 300;
+        margin-bottom: .5rem;
+      }
+    }
+ 
+    .field-body {
+      margin-top: 0.75em;
+      flex-direction: column;
+      margin-left: .5em;
+
+      & > * { margin-left: 1.8rem; }
+
+      &::before {
+        content: "⟫";
+        position: absolute;
+        color: var(--field-decorator-color);
+        font-size: 2em;
+        line-height: 0.85em;
+      }
+    }
+
+    .field-value-header {
+      .field-value {
+        color: var(--field-value-color);
+        font-size: 1.35rem;
+        font-weight: 400;
+        width: fit-content;
+      }
+    }
+ 
+    .field-value-body {
+      font-weight: 200;
+      font-size: 1rem;
+ 
+      .field-value-desc {
+        color: var(--field-text-color);
+        font-size: 1rem;
+      }
+
+      .field-notes {
+        * {
+          color: var(--field-text-color);
+        }
+
+        & > *:first-child {
+          margin-top: .4em;
+        }
+
+        ul {
+          list-style-position: inside;
+          li { list-style-type: disc; }
+        }
+      }
+    }
+  }
+ 
+  /* ------------------- Field Highlights --------------------- */
+
+  /* Highlight Fields (active) */
+  .highlight {
+    *:hover { cursor: default; }
+
+    .field-value-header .field-value {
+      animation: highlight-pulse 350ms ease-out 0s 1 normal forwards;
+    }
+    .field-body::before {
+      color: var(--highlight-color);
+    }
+  }
+ 
+  /* -------------- Highlight Hint - Underline ---------------- */
+
+  .highlight-hint-underline {
+    /*TODO fix these, var(--highlight-hint-color) not working for some reason, directly using var(--highlight-color) instead (multiple spots) */
+    xtext-decoration-color: var(--highlight-hint-color);
+    text-decoration-color: var(--highlight-color);
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-style: dotted;
+  }
+
+  /* Highlight Hint - Underline (active) */
+  .highlight .highlight-hint-underline {
+    text-decoration-color: var(--highlight-hint-alt-color);
+  }
+  
+  /* ---------------- Highlight Hint - Dot -------------------- */
+
+  .highlight-hint-dot {
+    font-size: 0.8em;
+    color: var(--highlight-color);
+    margin-left: .55rem;
+
+    svg {
+      position: absolute;
+      transform: translateY(-1.5rem);
+    }
+
+    .fa-circle {
+      color: var(--highlight-hint-bg-color);
+      transform: scale(1.35) translate(-0.02rem, 0.25rem);
+    }
+
+    .fa-hand-pointer {
+      transform: scale(.95) translate(0, .32rem);
+      z-index: 10;
+    }
+  }
+
+  /* Highlight Hint - Dot (active) */
+  .highlight .highlight-hint-dot {
+    .fa-circle { color: var(--highlight-color); }
+    .fa-hand-pointer { color: var(--highlight-hint-bg-color); }
+  }
+  
+  /* -------------------- Custom Fields ----------------------- */
+
+  /* Vehicle Country field */
+  .field.country {
+    img {
+      height: 1em;
+      translate: .1em .15em;
+    }
+
+    .long, .short {
+      margin-left: .5em;
+    }
+
+    .short {
+      font-size: .8em;
+      color: var(--field-decorator-color);
+    }
+  }
+ 
+  
+  /* Vehicle Notes field */
+  .vehicle-notes {
+
+    .field-value-body {
+      padding-top: .2rem;
+    }
+    .field-value-name {
+      color: var(--field-name-color);
+    }
+    .field-value-desc {
+      padding-top: .1rem;
+    }
+  }
+  
+  /* Keeper field */
+  .field.keeper {
+    .field-value {
+      span {
+        text-decoration: none;
+        display: inline-block;
+        font-size: .8em;
+        color: var(--field-value-color);
+
+        a:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  /* ----------------- Animation / Effects -------------------- */
+
+  /* Keyframes */
+  @keyframes highlight-pulse {
+    0% { opacity: 0; color: var(--highlight-color); }
+    100% { color: var(--highlight-color); }
+  }
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+ 
+  /* Classes */
+  .fade-in {
+    animation: fade-in 250ms ease-in;
+  }
 }

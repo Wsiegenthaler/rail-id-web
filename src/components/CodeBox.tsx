@@ -7,6 +7,7 @@ type Props = {
   code: string
   onChange: (code: string) => void
   error: AppError
+  className?: string
 }
 
 export default CodeBox
@@ -50,7 +51,7 @@ const sanitize = (html: string) => sanitizeHtml(html, { disallowedTagsMode: 'dis
       sel!.addRange(range)
   }
 
-function CodeBox({ code, onChange, error }: Props) {
+function CodeBox({ code, onChange, error, className = '' }: Props) {
   const [caret, setCaret] = useState(0)
 
   const innerRef = createRef<HTMLElement>()
@@ -70,7 +71,7 @@ function CodeBox({ code, onChange, error }: Props) {
   return (
     <div className='code-box-wrapper'>
       <ContentEditable
-        className="code-box"
+        className={`code-box ${className}`}
         tagName="pre"
         spellCheck="false"
         placeholder='Enter vehicle marking...'
