@@ -1,4 +1,6 @@
-/*TODO revisit this stuff */
+/* */
+
+/* ----------------------- Root Defs ------------------------ */
 
 :root {
   font-family: JetBrains Mono, Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -33,10 +35,114 @@
   --color-neutral-f: #ffffff;
 }
 
-html, body {
-  font-family: inherit;
+/* ----------------------- Dark Theme ----------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-red: #ff5555;
+    --color-green: #20FF6C;
+    --color-blue: #1789fc;
+    --color-purple: #646cff;
+    --color-yellow: #f5b342;
+
+    /* Semantic colors */
+    --success-color: var(--color-green);
+    --warn-color: var(--color-yellow);
+    --error-color: var(--color-red);
+    --highlight-color: var(--color-purple);
+    --link-color: var(--color-blue);
+
+    /* App general */
+    --bg-color: var(--color-neutral-2);
+    --logo-color: var(--color-neutral-4);
+    --h1-color: var(--color-neutral-d);
+    --h3-color: var(--color-neutral-6);
+
+    /* Keep Typing */
+    --keep-typing-color: var(--color-purple);
+    --keep-typing-icon-color: var(--color-purple);
+
+    /* Codebox */
+    --codebox-color-text: var(--color-neutral-d);
+    --codebox-color-background: var(--color-neutral-3);
+    --codebox-color-border: var(--color-neutral-4);
+    --codebox-color-border-focus: var(--color-neutral-6);
+
+    /* Fields */
+    --field-color: var(--color-neutral-6);
+    --field-alt-color: var(--color-neutral-8);
+    --field-name-color: var(--color-neutral-4);
+    --field-text-color: var(--color-neutral-7);
+    --field-value-color: var(--color-neutral-c);
+    --field-decorator-color: var(--color-neutral-4);
+
+    /* Highlight Hints */
+    --highlight-hint-color: var(--hightlight-color);
+    --highlight-hint-alt-color: var(--color-neutral-e);
+    --highlight-hint-bg-color: var(--color-neutral-4);
+  }
 }
 
+/* ----------------------- Light Theme ---------------------- */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /*TODO improve these for light theme */
+    --color-red: #EB5353;
+    --color-green: #20FF6C;
+    --color-blue: #1789fc;
+    --color-purple: #646cff;
+    --color-yellow: #f5b342;
+
+    /* Semantic colors */
+    --success-color: var(--color-green);
+    --warn-color: var(--color-yellow);
+    --error-color: var(--color-red);
+    --highlight-color: var(--color-purple);
+    --link-color: var(--color-blue);
+
+    /* App general */
+    --bg-color: var(--color-neutral-f);
+    --logo-color: var(--color-neutral-b);
+    --h1-color: var(--color-neutral-5);
+    --h3-color: var(--color-neutral-9);
+
+    /* Keep Typing */
+    --keep-typing-color: var(--color-purple);
+    --keep-typing-icon-color: var(--color-purple);
+
+    /* Codebox */
+    --codebox-color-text: var(--color-neutral-7);
+    --codebox-color-background: var(--color-neutral-d);
+    --codebox-color-border: var(--color-neutral-b);
+    --codebox-color-border-focus: var(--color-neutral-9);
+
+    /* Fields */
+    --field-color: var(--color-neutral-7);
+    --field-alt-color: var(--color-neutral-6);
+    --field-name-color: var(--color-neutral-a);
+    --field-text-color: var(--color-neutral-8);
+    --field-value-color: var(--color-neutral-4);
+    --field-decorator-color: var(--color-neutral-b);
+
+    /* Highlight Hints */
+    --highlight-hint-color: var(--hightlight-color);
+    --highlight-hint-alt-color: var(--color-neutral-4);
+    --highlight-hint-bg-color: var(--color-neutral-a);
+  }
+}
+
+/* ------------------- Other Global Style ------------------- */
+
+html, body {
+  font-family: inherit;
+  background-color: var(--bg-color) !important;
+}
+
+/* Disable browser-added horizonal bounce on overscroll */
+* { overscroll-behavior-x: none; }
+
+/* Links */
 a {
   font-weight: 500;
   color: var(--link-color);
@@ -46,75 +152,29 @@ a:hover {
   color: var(--link-color);
 }
 
-/*button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: var(--color-purple);
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}*/
-
-/*@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: var(--color-neutral-f);
-  }
-  a:hover {
-    color: var(--color-purple)
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}*/
-
-/* Disable browser-added horizonal bounce on overscroll */
-* {
-  overscroll-behavior-x: none;
-}
-
+/* ----------------------- Responsive ----------------------- */
 
 /* Mobile */
 @media only screen and (max-width: 768px) {
-  html {
-    font-size: 13px;
-  }
+  html { font-size: 13px; }
 }
 
 /* Tablet */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
-  html {
-    font-size: 14px;
-  }
+  html { font-size: 14px; }
 }
 
 /* Desktop */
 @media only screen and (min-width: 1025px) and (max-width: 1216px) {
-  html {
-    font-size: 15px;
-  }
+  html { font-size: 15px; }
 }
 
 /* Widescreen */
 @media only screen and (min-width: 1217px) and (max-width: 1408px) {
-  html {
-    font-size: 17px;
-  }
+  html { font-size: 17px; }
 }
 
 /* Full HD */
 @media only screen and (min-width: 1409px) {
-  html {
-    font-size: 18px;
-  }
+  html { font-size: 18px; }
 }
