@@ -338,10 +338,6 @@ svg.logo {
   width: fit-content;
 }
 
-.field-value a {
-  margin-left: 0.2rem;
-}
-
 .field-value-body {
   font-weight: 200;
   font-size: 1rem;
@@ -434,12 +430,12 @@ svg.logo {
 
 /* Animation Keyframes */
 @keyframes highlight-pulse {
-	0% { opacity: 0; color: var(--highlight-color); }
-	100% { color: var(--highlight-color); }
+  0% { opacity: 0; color: var(--highlight-color); }
+  100% { color: var(--highlight-color); }
 }
 @keyframes fade-in {
-	0% { opacity: 0; }
-	100% { opacity: 1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 /* Keeper field */
@@ -456,11 +452,4 @@ svg.logo {
 /* Animation classes */
 .fade-in {
   animation: fade-in 250ms ease-in;
-}
-.msg-pulse {
-  xanimation: msg-pulse 1800ms ease-out infinite;
-}
-.fade-in.msg-pulse {
-  xanimation: fade-in 600ms ease-in, msg-pulse 1800ms ease-out 600ms infinite;
-  animation: fade-in 600ms ease-in;
 }
