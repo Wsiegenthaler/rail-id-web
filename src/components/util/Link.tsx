@@ -1,9 +1,10 @@
 import { some } from 'lodash-es'
+import { ReactNode } from 'react'
 
 type LinkProps = {
   href: string
   className?: string
-  children: JSX.Element[] | JSX.Element
+  children: ReactNode
 }
 
 function Link({ href, className, children }: LinkProps) {

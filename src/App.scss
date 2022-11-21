@@ -317,11 +317,11 @@
 
     .fa-circle {
       color: var(--highlight-hint-bg-color);
-      transform: scale(1.35) translate(-0.02rem, 0.25rem);
+      transform: scale(1.5) translate(-0.02rem, 0.25rem);
     }
 
     .fa-hand-pointer {
-      transform: scale(.95) translate(0, .32rem);
+      transform: scale(1.05) translate(0, .32rem);
       z-index: 10;
     }
   }
