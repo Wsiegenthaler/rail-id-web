@@ -185,11 +185,10 @@
     min-height: 150px;
     padding-bottom: 3rem;
   
-    & > .field-router {
-      flex-grow: 1 !important;
-      margin-top: 1rem;
-      margin-left: 1rem;
-      margin-right: 1rem;
+    .field-router {
+      .field-router-inner {
+        margin: 0 auto;
+      }
     }
   
     &.disable {
@@ -374,8 +373,12 @@
         font-size: .8em;
         color: var(--field-value-color);
 
-        a:hover {
-          cursor: pointer;
+        a {
+          color: var(--field-decorator-color);
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }

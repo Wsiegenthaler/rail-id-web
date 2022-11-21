@@ -82,8 +82,8 @@ function FieldRouter({ result, highlights, setHighlights }: Props) {
     //TODO const metaElems = buildElems(metaFields, MetaFieldMap, setHighlights)
 
     return (
-      <div className="field-router column is-12-mobile is-11-tablet is-11-desktop is-9-widescreen is-8-fullhd">
-        <div className="field-router-inner">
+      <div className="field-router columns" >
+        <div className="field-router-inner column is-12-mobile is-11-tablet is-10-desktop is-9-widescreen is-8-fullhd">
           { vehicleElems }
         </div>
       </div>
