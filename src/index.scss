@@ -200,5 +200,3 @@ html {
   @include r.devices(widescreen) { font-size: 17px; }
   @include r.devices(fullhd)     { font-size: 18px; }
 }
-
-}
