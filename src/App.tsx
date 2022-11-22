@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { createRef, useEffect, useRef, useState } from 'react'
 import { useDelay } from 'react-use-precision-timer'
 import { useDebouncedCallback } from 'use-debounce'
 
@@ -41,9 +41,20 @@ function App({ codeParam }: { codeParam?: string }) {
     if (!isBenign(error) || isBenign(newError)) setErrorDebounce.flush()
   }
 
+  // Ref and effect to allow blurring the CodeBox
+  const boxRef = createRef<HTMLElement>()
+  const [doBlur, setDoBlur] = useState(false)
+  useEffect(() => {
+    boxRef.current?.blur()
+    if (doBlur) setDoBlur(false)
+  }, [ doBlur ])
+
   // Use `codeParam` url parameter if passed
   useEffect(() => {
-    if (codeParam && codeParam.trim().length > 0) onChange(codeParam)
+    if (codeParam && codeParam.trim().length > 0) {
+      onChange(codeParam)
+      setDoBlur(true)
+    }
   }, [/* onMount */])
 
   //DEBUG
@@ -149,7 +160,7 @@ function App({ codeParam }: { codeParam?: string }) {
       <div className="controls columns is-centered">
         <div className="mask" />
         <div className="controls-inner column is-12-mobile is-10-tablet is-8-desktop is-8-widescreen is-7-fullhd">
-          <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} />
+          <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} ref={boxRef} />
           <div className="feedback">
             <ErrorPanel error={error} />
             <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
