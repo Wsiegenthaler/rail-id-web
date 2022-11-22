@@ -37,13 +37,16 @@ const CustomComponents: Map<ComponentFactory> = {
 // Allow control over field ordering
 enum Priority { ExtraHigh, High, MediumHigh, Medium, MediumLow, Low, ExtraLow }
 const FieldPriorities: Map<Priority> = {
-  'type':            Priority.High,
-  'subtype':         Priority.High,
-  'country':         Priority.MediumHigh,
-  'special.type':    Priority.MediumHigh,
-  'special.subtype': Priority.MediumHigh,
-  'serial':          Priority.Low,
-  'notes':           Priority.ExtraLow,
+  'type':              Priority.High,
+  'subtype':           Priority.High,
+  'special.type':      Priority.MediumHigh,
+  'special.subtype':   Priority.MediumHigh,
+  'coach.class':       Priority.MediumHigh,
+  'coach.description': Priority.MediumHigh,
+  'country':           Priority.Medium,
+  'keeper':            Priority.Medium,
+  'serial':            Priority.Low,
+  'notes':             Priority.ExtraLow,
 }
 
 // Creates elements for each field using the lookup map
@@ -54,7 +57,7 @@ const buildElems = (fields: FieldMeta<any>[], elemMap: Map<ComponentFactory>, hi
     .map(({ field, elem }) => React.cloneElement(elem, { key: hashCode(field.path) }))
 
 // Simple method to determine sort order of a field given its start/end positions in the code
-const sortValue = (source: Source, priority: Priority = Priority.Medium) => {
+const sortValue = (source: Source, priority: Priority = Priority.MediumLow) => {
   const [ start, end ] = [ min(source), max(source) ] as [number, number]
   const centerOfMass = start + (end - start) / 2
   return 1000 * priority + centerOfMass
