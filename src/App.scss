@@ -119,12 +119,12 @@
         }
       }
 
-      svg.reset-button {
+      svg.fa-square-xmark {
         position: absolute;
         height: 60%;
         top: 20%;
-        right: .8rem;
-        color: var(--codebox-color-border);
+        right: 1.6%;
+        color: var(--codebox-reset-color);
 
         @include r.devices(mobile) {
           height: 50%;
@@ -133,7 +133,22 @@
         }
 
         &.resetable:hover {
-          color: var(--codebox-color-border-focus);
+          color: var(--codebox-reset-focus-color);
+        }
+      }
+
+      // Reset button bg mask
+      svg.fa-square {
+        position: absolute;
+        height: 70%;
+        top: 15%;
+        right: 1.25%;
+        color: var(--codebox-color-background);
+
+        @include r.devices(mobile) {
+          height: 50%;
+          top: 25%;
+          right: .4rem;
         }
       }
     }

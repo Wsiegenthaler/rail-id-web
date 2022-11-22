@@ -11,7 +11,7 @@ import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 import sanitizeHtml from 'sanitize-html'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSquareXmark } from '@fortawesome/free-solid-svg-icons'
+import { faSquare, faSquareXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { AppError } from '../App'
 
@@ -112,6 +112,7 @@ function CodeBox({ code, onChange, error, onReset, className = '' }: Props) {
         onKeyUp={dismissKeyboardOnEnter}
         innerRef={innerRef} />
 
+      { onReset ? <FontAwesomeIcon icon={faSquare} /> : <></>}
       { onReset ? <FontAwesomeIcon icon={faSquareXmark} className={resetBtnClass} onMouseUp={handleResetClick} onTouchEnd={handleResetTouch} /> : <></>}
     </div>
   )
