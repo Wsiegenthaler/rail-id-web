@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 import { useDelay } from 'react-use-precision-timer'
+import { useDebounce, useDebouncedCallback } from 'use-debounce'
 
 import './App.scss'
 import 'bulma/css/bulma.css'
@@ -27,7 +28,14 @@ function App() {
   const [code, setCode] = useState('')
   const [result, setResult] = useState<RailID | undefined>()
   const [highlights, setHighlights] = useState<HighlightState>('clear')
-  const [error, setError] = useState<AppError>({ type: 'none' })
+  const [error, setErrorImmediate] = useState<AppError>({ type: 'none' })
+  const setErrorDebounce = useDebouncedCallback(setErrorImmediate, 700)
+  const setError = (newError: AppError) => {
+    if (error.type !== 'none' || newError.type === 'none')
+      setErrorImmediate(newError)
+    else
+      setErrorDebounce(newError)
+  }
 
   //DEBUG
   //printState()
@@ -44,7 +52,7 @@ function App() {
 
   // Keep typing prompt
   const [showKeepTyping, setShowKeepTyping] = useState<boolean>(false)
-  const keepTypingTimer = useDelay(1500, () => {
+  const keepTypingTimer = useDelay(1200, () => {
     if (code.length > 0) {
       if (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput) {
         setShowKeepTyping(true)
@@ -59,13 +67,13 @@ function App() {
   // Handle code change and update state
   function onChange(newCode: string) {
     setCode(newCode)
-    setError({ type: 'none' })
     setHighlights('clear') // Always clear highlights when code has changed
     startKeepTyping()
 
     try {
       const result = railID(newCode, { logLevel: 'none' })
       setResult(result)
+      setError({ type: 'none' })
       scrollToCodeBox()
       stopKeepTyping()
     } catch (e) {
@@ -74,7 +82,6 @@ function App() {
         setError({ type: 'parse-error', ref: pe })
         stopKeepTyping()
         if (pe.incompleteInput) {
-
           // If user clears input, reset everything
           if (newCode.trim().length === 0) {
             setCode('')
