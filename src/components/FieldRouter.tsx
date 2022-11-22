@@ -86,7 +86,7 @@ function FieldRouter({ result, highlights, setHighlights }: Props) {
 
     return (
       <div className="field-router columns" >
-        <div className="field-router-inner column is-12-mobile is-12-tablet is-10-desktop is-8-widescreen is-8-fullhd">
+        <div className="field-router-inner column is-12-mobile is-11-tablet is-10-desktop is-8-widescreen is-8-fullhd">
           { vehicleElems }
         </div>
       </div>

@@ -37,7 +37,7 @@ function App({ codeParam }: { codeParam?: string }) {
   const setError = (newError: AppError) => {
     setErrorDebounce(newError)
 
-    // If already in an error state, or if new error is benign, immediately update state
+    // If clearing an error, or if going from one non-benign state to another, immediately update
     if (!isBenign(error) || isBenign(newError)) setErrorDebounce.flush()
   }
 
@@ -61,7 +61,7 @@ function App({ codeParam }: { codeParam?: string }) {
 
   // Keep typing prompt
   const [showKeepTyping, setShowKeepTyping] = useState<boolean>(false)
-  const keepTypingTimer = useDelay(1200, () => {
+  const keepTypingTimer = useDelay(2200, () => {
     if (code.length > 0) {
       if (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput) {
         setShowKeepTyping(true)
