@@ -96,7 +96,6 @@
       /* Border styles */
       &:focus { outline: 2px solid var(--codebox-color-border-focus); }
       &.valid { outline: 2px solid var(--success-color); }
-      &.warn { outline: 2px solid var(--warn-color); }
 
       /* Error character highlight */
       & span.pos-error {
