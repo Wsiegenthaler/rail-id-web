@@ -52,6 +52,11 @@
     --highlight-color: var(--color-purple);
     --link-color: var(--color-blue);
 
+    /* Button */
+    --button-text-color: var(--color-neutral-c);
+    --button-bg-color: #1a1a1a;
+    --button-border-color: var(--color-purple);
+
     /* App general */
     --bg-color: var(--color-neutral-2);
     --logo-color: var(--color-neutral-4);
@@ -103,6 +108,11 @@
     --highlight-color: var(--color-purple);
     --link-color: var(--color-blue);
 
+    /* Button */
+    --button-text-color: var(--color-neutral-2);
+    --button-bg-color: var(--color-neutral-d);
+    --button-border-color: var(--color-purple);
+
     /* App general */
     --bg-color: var(--color-neutral-f);
     --logo-color: var(--color-neutral-b);
@@ -146,18 +156,42 @@ html, body {
 /* Disable browser-added horizonal bounce on overscroll */
 * { overscroll-behavior-x: none; }
 
-/* Links */
+/* ------------------------ Links --------------------------- */
+
 a {
   font-weight: 500;
   color: var(--link-color);
   text-decoration: inherit;
 }
+
 a:hover {
   color: var(--link-color);
 }
 
-/* ----------------------- Responsive ----------------------- */
+/* ----------------------- Button --------------------------- */
 
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: .6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--button-text-color);
+  background-color: var(--button-bg-color);
+  transition: border-color .25s;
+  cursor: pointer;
+  margin: 0 .2rem;
+}
+
+button:hover {
+  border-color: var(--button-border-color);
+}
+
+button:focus, button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* ----------------------- Responsive ----------------------- */
 
 html {
   @include r.devices(mobile)     { font-size: 4vw; }

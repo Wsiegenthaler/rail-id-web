@@ -240,7 +240,6 @@
   .results {
     min-height: 150px;
     padding-top: 1rem;
-    padding-bottom: 3rem;
     padding-left: 1rem;
     padding-right: 1rem;
   
@@ -438,6 +437,36 @@
     }
   }
 
+  /* ---------------------- Shareables ------------------------ */
+
+  .shareables {
+    margin: 3rem 1rem 3rem 1rem;
+    text-align: center;
+
+    .shareables-title {
+      font-size: 1rem;
+      padding-bottom: .4rem;
+    }
+
+    .buttons {
+      display: inline;
+      position: relative;
+
+      button {
+        padding: .4rem 1.5rem;
+        font-size: .85rem;
+      }
+    }
+
+    .msg {
+      color: var(--color-purple);
+      margin: .6rem .6rem 2em .6rem;
+      font-size: .75rem;
+      text-align: center;
+      opacity: 0;
+    }
+  }
+
   /* ----------------- Animation / Effects -------------------- */
 
   /* Keyframes */
@@ -445,13 +474,28 @@
     0% { opacity: 0; color: var(--highlight-color); }
     100% { color: var(--highlight-color); }
   }
+
   @keyframes fade-in {
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
- 
+
+  @keyframes fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
   /* Classes */
+
   .fade-in {
     animation: fade-in 250ms ease-in;
+  }
+
+  .fade-out {
+    animation: fade-out 250ms ease-in;
+  }
+
+  .slow-fade-out {
+    animation: fade-out 1700ms ease-in;
   }
 }

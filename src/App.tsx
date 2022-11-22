@@ -14,6 +14,7 @@ import ErrorPanel from './components/ErrorPanel'
 import { scrollTo, ScrollTarget } from './util'
 import { faCircleExclamation, faTrainSubway } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Share from './components/Share'
 
 
 export type AppError =
@@ -27,7 +28,7 @@ export type SetHighlights = React.Dispatch<React.SetStateAction<HighlightState>>
 // Determines whether an error should be displayed to user (included 'none')
 const isBenign = (error: AppError) => (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput)
 
-function App() {
+function App({ codeParam }: { codeParam?: string }) {
   const [code, setCode] = useState('')
   const [result, setResult] = useState<RailID | undefined>()
   const [highlights, setHighlights] = useState<HighlightState>('clear')
@@ -39,6 +40,11 @@ function App() {
     // If already in an error state, or if new error is benign, immediately update state
     if (!isBenign(error) || isBenign(newError)) setErrorDebounce.flush()
   }
+
+  // Use `codeParam` url parameter if passed
+  useEffect(() => {
+    if (codeParam && codeParam.trim().length > 0) onChange(codeParam)
+  }, [/* onMount */])
 
   //DEBUG
   //printState()
@@ -63,6 +69,7 @@ function App() {
       }
     }
   })
+  useEffect(() => keepTypingTimer.stop(), []) // Prevent timer from starting on mount
   const startKeepTyping = () => { keepTypingTimer.start(); setShowKeepTyping(false) }
   const stopKeepTyping = () => { keepTypingTimer.stop(); setShowKeepTyping(false) }
 
@@ -156,7 +163,9 @@ function App() {
 
       <div className={`results ${disableResults}`} >
         <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
+        { result && isBenign(error) ? <Share code={code} /> : <></> }
       </div>
+
     </div>
   )
 }

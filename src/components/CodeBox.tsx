@@ -47,28 +47,21 @@ function getCaretCharacterOffsetWithin(el: Node) {
       preCaretRange.setEnd(range.endContainer, range.endOffset)
       caretOffset = preCaretRange.toString().length
     }
-  //} else if ((sel = doc.selection) && sel.type != 'Control') {
-  //  var textRange = sel.createRange()
-  //  var preCaretTextRange = doc.body.createTextRange()
-  //  preCaretTextRange.moveToElementText(el)
-  //  preCaretTextRange.setEndPoint('EndToEnd', textRange)
-  //  caretOffset = preCaretTextRange.text.length
   }
   return caretOffset
 }
 
-
 function setCaretPos(el: Node, pos: number) {
-    var range = document.createRange()
-    var sel = window.getSelection()
-   
-    if (pos <= (el.textContent ?? '').length) {
-      range.setStart(el, pos)
-      range.collapse(true)
-    
-      sel!.removeAllRanges()
-      sel!.addRange(range)
-    }
+  var range = document.createRange()
+  var sel = window.getSelection()
+ 
+  if (pos <= (el.textContent ?? '').length) {
+    range.setStart(el, pos)
+    range.collapse(true)
+  
+    sel!.removeAllRanges()
+    sel!.addRange(range)
+  }
 }
 
 function CodeBox({ code, onChange, error, onReset, className = '' }: Props) {
