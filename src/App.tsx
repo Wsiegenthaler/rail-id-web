@@ -131,13 +131,15 @@ function App() {
 
       <div className="controls columns is-centered">
         <div className="mask" />
-        <div className="column is-12-mobile is-11-tablet is-11-desktop is-9-widescreen is-8-fullhd">
+        <div className="controls-inner column is-12-mobile is-10-tablet is-8-desktop is-8-widescreen is-7-fullhd">
           <CodeBox code={code} onChange={onChange} error={error} className={codeboxClasses()} />
-          <ErrorPanel error={error} />
-          <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
-          <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
-            <FontAwesomeIcon icon={faCircleExclamation} />
-            <span>This code is too short. Keep typing!</span>
+          <div className="feedback">
+            <ErrorPanel error={error} />
+            <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
+            <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
+              <FontAwesomeIcon icon={faCircleExclamation} />
+              <span>This code is too short. Keep typing!</span>
+            </div>
           </div>
         </div>
       </div>

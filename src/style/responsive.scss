@@ -1,0 +1,29 @@
+@mixin devices($breakpoint) {
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  @else if $breakpoint == tablet {
+    @media only screen and (min-width: 769px) and (max-width: 1024px) {
+      @content;
+    }
+  }
+  @else if $breakpoint == desktop {
+    @media only screen and (min-width: 1025px) and (max-width: 1216px) {
+      @content;
+    }
+  }
+  @else if $breakpoint == widescreen {
+    @media only screen and (min-width: 1217px) and (max-width: 1408px) {
+      @content;
+    }
+  }
+  @else if $breakpoint == fullhd {
+    @media only screen and (min-width: 1409px) {
+      @content;
+    }
+  }
+  @else { @error "'#{$breakpoint}' must be either mobile, tablet, desktop, widescreen, or fullhd."; }
+}
+  

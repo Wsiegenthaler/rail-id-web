@@ -1,3 +1,5 @@
+@use "./style/responsive" as r;
+
 /* ----------------------- Root Defs ------------------------ */
 
 :root {
@@ -152,27 +154,13 @@ a:hover {
 
 /* ----------------------- Responsive ----------------------- */
 
-/* Mobile */
-@media only screen and (max-width: 768px) {
-  html { font-size: 13px; }
+
+html {
+  @include r.devices(mobile)     { font-size: 4vw; }
+  @include r.devices(tablet)     { font-size: 14px; }
+  @include r.devices(desktop)    { font-size: 15px; }
+  @include r.devices(widescreen) { font-size: 17px; }
+  @include r.devices(fullhd)     { font-size: 18px; }
 }
 
-/* Tablet */
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-  html { font-size: 14px; }
-}
-
-/* Desktop */
-@media only screen and (min-width: 1025px) and (max-width: 1216px) {
-  html { font-size: 15px; }
-}
-
-/* Widescreen */
-@media only screen and (min-width: 1217px) and (max-width: 1408px) {
-  html { font-size: 17px; }
-}
-
-/* Full HD */
-@media only screen and (min-width: 1409px) {
-  html { font-size: 18px; }
 }

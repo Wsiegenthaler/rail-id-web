@@ -1,4 +1,4 @@
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useEffect, useState, KeyboardEvent } from 'react'
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 import sanitizeHtml from 'sanitize-html'
 import { AppError } from '../App'
@@ -15,41 +15,46 @@ export default CodeBox
 
 const sanitize = (html: string) => sanitizeHtml(html, { disallowedTagsMode: 'discard', allowedTags: [], allowedAttributes: {} })
 
-  function getCaretCharacterOffsetWithin(el: Node) {
-    var caretOffset = 0
-    var doc = el.ownerDocument!
-    var win = doc.defaultView!
-    var sel
-    if (typeof win.getSelection != 'undefined') {
-      sel = win.getSelection()
-      if (sel!.rangeCount > 0) {
-        var range = win.getSelection()!.getRangeAt(0)
-        var preCaretRange = range.cloneRange()
-        preCaretRange.selectNodeContents(el)
-        preCaretRange.setEnd(range.endContainer, range.endOffset)
-        caretOffset = preCaretRange.toString().length
-      }
-    //} else if ((sel = doc.selection) && sel.type != 'Control') {
-    //  var textRange = sel.createRange()
-    //  var preCaretTextRange = doc.body.createTextRange()
-    //  preCaretTextRange.moveToElementText(el)
-    //  preCaretTextRange.setEndPoint('EndToEnd', textRange)
-    //  caretOffset = preCaretTextRange.text.length
-    }
-    return caretOffset
-  }
+function dismissKeyboardOnEnter(ev: KeyboardEvent<HTMLElement>) {
+  const key = ev.code ?? ev.keyCode.toString()
+  if (key === 'Enter' || key === '13') ev.currentTarget.blur()
+}
 
-  
-  function setCaretPos(el: Node, pos: number) {
-      var range = document.createRange()
-      var sel = window.getSelection()
-      
-      range.setStart(el, pos)
-      range.collapse(true)
-      
-      sel!.removeAllRanges()
-      sel!.addRange(range)
+function getCaretCharacterOffsetWithin(el: Node) {
+  var caretOffset = 0
+  var doc = el.ownerDocument!
+  var win = doc.defaultView!
+  var sel
+  if (typeof win.getSelection != 'undefined') {
+    sel = win.getSelection()
+    if (sel!.rangeCount > 0) {
+      var range = win.getSelection()!.getRangeAt(0)
+      var preCaretRange = range.cloneRange()
+      preCaretRange.selectNodeContents(el)
+      preCaretRange.setEnd(range.endContainer, range.endOffset)
+      caretOffset = preCaretRange.toString().length
+    }
+  //} else if ((sel = doc.selection) && sel.type != 'Control') {
+  //  var textRange = sel.createRange()
+  //  var preCaretTextRange = doc.body.createTextRange()
+  //  preCaretTextRange.moveToElementText(el)
+  //  preCaretTextRange.setEndPoint('EndToEnd', textRange)
+  //  caretOffset = preCaretTextRange.text.length
   }
+  return caretOffset
+}
+
+
+function setCaretPos(el: Node, pos: number) {
+    var range = document.createRange()
+    var sel = window.getSelection()
+    
+    range.setStart(el, pos)
+    range.collapse(true)
+    
+    sel!.removeAllRanges()
+    sel!.addRange(range)
+}
 
 function CodeBox({ code, onChange, error, className = '' }: Props) {
   const [caret, setCaret] = useState(0)
@@ -77,6 +82,7 @@ function CodeBox({ code, onChange, error, className = '' }: Props) {
         placeholder='Enter vehicle marking...'
         html={html} // innerHTML of the editable div
         onChange={handleChange} // handle innerHTML change
+        onKeyUp={dismissKeyboardOnEnter}
         innerRef={innerRef} />
     </div>
   )
