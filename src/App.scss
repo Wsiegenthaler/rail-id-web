@@ -367,11 +367,9 @@
     .field-value-body {
       padding-top: .2rem;
     }
-    .field-value-name {
-      color: var(--field-name-color);
-    }
     .field-value-desc {
       padding-top: .1rem;
+      color: var(--field-value-color);
     }
   }
   
