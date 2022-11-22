@@ -24,6 +24,9 @@ export type AppError =
 export type HighlightState = 'clear' | { origin: string, source: number[]  }
 export type SetHighlights = React.Dispatch<React.SetStateAction<HighlightState>>
 
+// Determines whether an error should be displayed to user (included 'none')
+const isBenign = (error: AppError) => (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput)
+
 function App() {
   const [code, setCode] = useState('')
   const [result, setResult] = useState<RailID | undefined>()
@@ -31,10 +34,10 @@ function App() {
   const [error, setErrorImmediate] = useState<AppError>({ type: 'none' })
   const setErrorDebounce = useDebouncedCallback(setErrorImmediate, 700)
   const setError = (newError: AppError) => {
-    if (error.type !== 'none' || newError.type === 'none')
-      setErrorImmediate(newError)
-    else
-      setErrorDebounce(newError)
+    setErrorDebounce(newError)
+
+    // If already in an error state, or if new error is benign, immediately update state
+    if (!isBenign(error) || isBenign(newError)) setErrorDebounce.flush()
   }
 
   //DEBUG

@@ -70,7 +70,7 @@ function CodeBox({ code, onChange, error, className = '' }: Props) {
 
   useEffect(() => setCaretPos(innerRef.current!, caret))
 
-  const errorPos = (error.type === 'parse-error') ? error.ref.position : -1
+  const errorPos = (error.type === 'parse-error' && !error.ref.incompleteInput) ? error.ref.position : -1
   const html = code.split('').map((c, i) => `<span class="pos-${i} ${errorPos === i ? 'pos-error' : ''}">${c}</span>`).join('')
 
   return (
