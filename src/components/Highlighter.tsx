@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { MouseEvent, TouchEvent, useState } from 'react'
 import { nanoid } from 'nanoid'
 
 import { ValueMeta } from 'rail-id'
@@ -17,9 +17,9 @@ function Highlighter({ values, highlights, setHighlights, children }: Props) {
 
   const active = highlights !== 'clear' && highlights.origin === uid
 
-  const onMouseEnter = (ev: React.MouseEvent<HTMLSpanElement>) => set(true)
-  const onMouseLeave = (ev: React.MouseEvent<HTMLSpanElement>) => set(false)
-  const toggleTouch = (ev: React.TouchEvent<HTMLSpanElement>) => {
+  const onMouseEnter = (ev: MouseEvent<HTMLSpanElement>) => set(true)
+  const onMouseLeave = (ev: MouseEvent<HTMLSpanElement>) => set(false)
+  const toggleTouch = (ev: TouchEvent<HTMLSpanElement>) => {
     ev.stopPropagation()
     set(!active)
   }

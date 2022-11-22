@@ -202,10 +202,13 @@
       .keep-typing-msg {
         color: var(--keep-typing-color);
         text-align: center;
-        font-size: .8rem;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @include r.devices(mobile) {
+          font-size: .8rem;
+        }
 
         svg {
           width: 1.7em;
