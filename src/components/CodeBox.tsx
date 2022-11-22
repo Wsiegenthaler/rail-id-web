@@ -1,6 +1,18 @@
-import { createRef, useEffect, useState, KeyboardEvent } from 'react'
+import {
+  createRef,
+  useEffect,
+  useState,
+  KeyboardEvent,
+  MouseEvent,
+  TouchEvent
+} from 'react'
+
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 import sanitizeHtml from 'sanitize-html'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSquareXmark } from '@fortawesome/free-solid-svg-icons'
+
 import { AppError } from '../App'
 
 type Props = {
@@ -8,6 +20,7 @@ type Props = {
   onChange: (code: string) => void
   error: AppError
   className?: string
+  onReset?: () => void
 }
 
 export default CodeBox
@@ -48,19 +61,22 @@ function getCaretCharacterOffsetWithin(el: Node) {
 function setCaretPos(el: Node, pos: number) {
     var range = document.createRange()
     var sel = window.getSelection()
+   
+    if (pos <= (el.textContent ?? '').length) {
+      range.setStart(el, pos)
+      range.collapse(true)
     
-    range.setStart(el, pos)
-    range.collapse(true)
-    
-    sel!.removeAllRanges()
-    sel!.addRange(range)
+      sel!.removeAllRanges()
+      sel!.addRange(range)
+    }
 }
 
-function CodeBox({ code, onChange, error, className = '' }: Props) {
+function CodeBox({ code, onChange, error, onReset, className = '' }: Props) {
   const [caret, setCaret] = useState(0)
 
   const innerRef = createRef<HTMLElement>()
 
+  // Handle content changes
   const handleChange = (ev: ContentEditableEvent) => {
     const newCaret = getCaretCharacterOffsetWithin(innerRef.current!)
     setCaret(newCaret)
@@ -68,6 +84,17 @@ function CodeBox({ code, onChange, error, className = '' }: Props) {
     onChange(sanitize(ev.target.value))
   }
 
+  // Reset button
+  const resetable = onReset && code.trim().length > 0
+  const resetBtnClass = `reset-button ${resetable ? 'resetable' : ''}`
+  const doReset = () => {
+    innerRef?.current?.focus()
+    onReset && onReset()
+  }
+  const handleResetClick = (ev: MouseEvent<SVGSVGElement>) => doReset()
+  const handleResetTouch = (ev: TouchEvent<SVGSVGElement>) => doReset()
+
+  // Restore caret position after re-render
   useEffect(() => setCaretPos(innerRef.current!, caret))
 
   const errorPos = (error.type === 'parse-error' && !error.ref.incompleteInput) ? error.ref.position : -1
@@ -84,6 +111,8 @@ function CodeBox({ code, onChange, error, className = '' }: Props) {
         onChange={handleChange} // handle innerHTML change
         onKeyUp={dismissKeyboardOnEnter}
         innerRef={innerRef} />
+
+      { onReset ? <FontAwesomeIcon icon={faSquareXmark} className={resetBtnClass} onMouseUp={handleResetClick} onTouchEnd={handleResetTouch} /> : <></>}
     </div>
   )
 }

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import { useDelay } from 'react-use-precision-timer'
+import { useDebouncedCallback } from 'use-debounce'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
-import { useDelay } from 'react-use-precision-timer'
-import { useDebounce, useDebouncedCallback } from 'use-debounce'
 
 import './App.scss'
 import 'bulma/css/bulma.css'
@@ -99,7 +99,7 @@ function App() {
       }
     }
   }
-
+  
   // Auto-scrolling
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollTarget, setScrollTarget] = useState<ScrollTarget>('none')
@@ -142,7 +142,7 @@ function App() {
       <div className="controls columns is-centered">
         <div className="mask" />
         <div className="controls-inner column is-12-mobile is-10-tablet is-8-desktop is-8-widescreen is-7-fullhd">
-          <CodeBox code={code} onChange={onChange} error={error} className={codeboxClasses()} />
+          <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} />
           <div className="feedback">
             <ErrorPanel error={error} />
             <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
@@ -154,7 +154,7 @@ function App() {
         </div>
       </div>
 
-      <div className={"results " + disableResults} >
+      <div className={`results ${disableResults}`} >
         <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
       </div>
     </div>

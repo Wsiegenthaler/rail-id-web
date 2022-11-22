@@ -84,34 +84,56 @@
     }
   
     /* CodeBox */
-    .code-box {
-      font-size: 1.8rem;
-      font-weight: 500;
-      text-align: center;
-      padding: .7rem;
+    .code-box-wrapper {
+      position: relative;
+
+      .code-box {
+        font-size: 1.8rem;
+        font-weight: 500;
+        text-align: center;
+        padding: .7rem;
  
-      @include r.devices(mobile) {
-        font-size: 1.1rem;
-      }
+        @include r.devices(mobile) {
+          font-size: 1.1rem;
+        }
  
-      color: var(--codebox-color-text);
-      background: var(--codebox-color-background);
-      outline: 2px solid var(--codebox-color-border);
+        color: var(--codebox-color-text);
+        background: var(--codebox-color-background);
+        outline: 2px solid var(--codebox-color-border);
 
-      /* Border styles */
-      &:focus { outline: 2px solid var(--codebox-color-border-focus); }
-      &.valid { outline: 2px solid var(--success-color); }
+        /* Border styles */
+        &:focus { outline: 2px solid var(--codebox-color-border-focus); }
+        &.valid { outline: 2px solid var(--success-color); }
 
-      /* Error character highlight */
-      & span.pos-error {
-        color: var(--error-color);
+        /* Error character highlight */
+        & span.pos-error {
+          color: var(--error-color);
+        }
+
+        /* Highlights by position */
+        @for $i from 0 through 50 {
+          &.pos-#{$i} .pos-#{$i} {
+            color: var(--highlight-color);
+            animation: highlight-pulse 350ms ease-out 0ms 1 normal forwards;
+          }
+        }
       }
 
-      /* Highlights by position */
-      @for $i from 0 through 50 {
-        &.pos-#{$i} .pos-#{$i} {
-          color: var(--highlight-color);
-          animation: highlight-pulse 350ms ease-out 0ms 1 normal forwards;
+      svg.reset-button {
+        position: absolute;
+        height: 60%;
+        top: 20%;
+        right: .8rem;
+        color: var(--codebox-color-border);
+
+        @include r.devices(mobile) {
+          height: 50%;
+          top: 25%;
+          right: .4rem;
+        }
+
+        &.resetable:hover {
+          color: var(--codebox-color-border-focus);
         }
       }
     }
