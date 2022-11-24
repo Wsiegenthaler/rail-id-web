@@ -446,7 +446,14 @@
 
     .shareables-title {
       font-size: 1rem;
-      padding-bottom: .4rem;
+      padding-bottom: .3rem;
+      color: var(--color-purple);
+    }
+    
+    .shareables-code {
+      font-size: .8rem;
+      color: var(--field-name-color);
+      padding-bottom: .5rem;
     }
 
     .buttons {
@@ -454,13 +461,13 @@
       position: relative;
 
       button {
-        padding: .4rem 1.5rem;
-        font-size: .85rem;
+        padding: .3rem 1.3rem;
+        font-size: .8rem;
       }
     }
 
     .msg {
-      color: var(--color-purple);
+      color: var(--success-color);
       margin: .6rem .6rem 2em .6rem;
       font-size: .75rem;
       text-align: center;

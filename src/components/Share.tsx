@@ -1,5 +1,9 @@
 import { useState, MouseEvent, TouchEvent } from "react"
+
 import { empty, urlEncodeCode } from "../util"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCopy } from '@fortawesome/free-solid-svg-icons'
 
 type LinkProps = {
   code: string
@@ -22,23 +26,37 @@ function Share({ code }: LinkProps) {
   }
   const canShare = ('canShare' in navigator) && navigator.canShare(shareData)
 
-  const doCopy = (text: string) => {
+  const doCopy = (text: string, btn: HTMLButtonElement) => {
     setMsg('')
     if ('clipboard' in navigator) {
       navigator.clipboard.writeText(text)
-        .then(() => setMsg('Copied to clipboard!'))
+        .then(() => {
+          setMsg('Copied to clipboard!')
+          btn.blur()
+      })
     }
   }
 
-  const doShare = () => ('share' in navigator) && navigator.share(shareData)
+  const doShare = (btn: HTMLButtonElement) => {
+    if ('share' in navigator) {
+      navigator.share(shareData)
+        .then(() => {
+          setMsg('Success!')
+          btn.blur()
+        })
+    }
+  }
 
-  const onMouseCopy = (ev: MouseEvent<HTMLButtonElement>) => doCopy(href)
-  const onTouchCopy = (ev: TouchEvent<HTMLButtonElement>) => doCopy(href)
-  const onMouseShare = (ev: MouseEvent<HTMLButtonElement>) => doShare()
-  const onTouchShare = (ev: TouchEvent<HTMLButtonElement>) => doShare()
+  const onMouseCopy = (ev: MouseEvent<HTMLButtonElement>) => doCopy(href, ev.currentTarget)
+  const onTouchCopy = (ev: TouchEvent<HTMLButtonElement>) => doCopy(href, ev.currentTarget)
+  const onMouseShare = (ev: MouseEvent<HTMLButtonElement>) => doShare(ev.currentTarget)
+  const onTouchShare = (ev: TouchEvent<HTMLButtonElement>) => doShare(ev.currentTarget)
 
-  const copyButton = !empty(clean) ?
-    (<button className="copy-url" onMouseUp={onMouseCopy} onTouchEnd={onTouchCopy}>Copy link</button>) : (<></>)
+  const copyButton = !empty(clean) ? (
+    <button className="copy-url" onMouseUp={onMouseCopy} onTouchEnd={onTouchCopy}>
+      <FontAwesomeIcon icon={faCopy} />
+      Copy link
+     </button>) : (<></>)
 
   const shareButton = !empty(clean) && canShare ?
     (<button className="share" onMouseUp={onMouseShare} onTouchEnd={onTouchShare}>Share</button>) : (<></>)
@@ -46,6 +64,7 @@ function Share({ code }: LinkProps) {
   const shareables = !empty(clean) ?
     (<div className="shareables">
       <div className="shareables-title">Share this code</div>
+      <div className="shareables-code">{clean}</div>
       <div className="buttons">
         { shareButton }
         { copyButton }

@@ -55,7 +55,8 @@
     /* Button */
     --button-text-color: var(--color-neutral-c);
     --button-bg-color: #1a1a1a;
-    --button-border-color: var(--color-purple);
+    --button-icon-color: var(--color-neutral-4);
+    --button-focus-color: var(--color-purple);
 
     /* App general */
     --bg-color: var(--color-neutral-2);
@@ -111,7 +112,8 @@
     /* Button */
     --button-text-color: var(--color-neutral-2);
     --button-bg-color: var(--color-neutral-d);
-    --button-border-color: var(--color-purple);
+    --button-icon-color: var(--color-neutral-a);
+    --button-focus-color: var(--color-purple);
 
     /* App general */
     --bg-color: var(--color-neutral-f);
@@ -171,6 +173,7 @@ a:hover {
 /* ----------------------- Button --------------------------- */
 
 button {
+  font-family: var(--font-family);
   border-radius: 8px;
   border: 1px solid transparent;
   padding: .6rem 1.2rem;
@@ -181,15 +184,20 @@ button {
   transition: border-color .25s;
   cursor: pointer;
   margin: 0 .2rem;
+
+  &:hover, &:focus, &:focus-visible {
+    border-color: var(--button-focus-color);
+
+    svg { color: var(--button-focus-color); }
+  }
+
+  svg {
+    color: var(--button-icon-color);
+    margin-right: .5rem;
+  }
 }
 
-button:hover {
-  border-color: var(--button-border-color);
-}
 
-button:focus, button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 /* ----------------------- Responsive ----------------------- */
 
