@@ -108,7 +108,6 @@ function App({ codeParam }: { codeParam?: string }) {
             setCode('')
             setResult(undefined)
             setError({ type: 'none' })
-            if (!showKeepTyping) scrollTo('top')
           } else startKeepTyping()
         }
       } else {
