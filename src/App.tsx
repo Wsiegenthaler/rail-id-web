@@ -11,7 +11,7 @@ import FieldRouter from './components/FieldRouter'
 import CodeBox from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
-import { scrollTo, ScrollTarget } from './util'
+import { scrollTo, ScrollTarget, empty } from './util'
 import { faCircleExclamation, faTrainSubway } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Share from './components/Share'
@@ -51,7 +51,7 @@ function App({ codeParam }: { codeParam?: string }) {
 
   // Use `codeParam` url parameter if passed
   useEffect(() => {
-    if (codeParam && codeParam.trim().length > 0) {
+    if (codeParam && !empty(codeParam)) {
       onChange(codeParam)
       setDoBlur(true)
     }
@@ -104,7 +104,7 @@ function App({ codeParam }: { codeParam?: string }) {
         stopKeepTyping()
         if (pe.incompleteInput) {
           // If user clears input, reset everything
-          if (newCode.trim().length === 0) {
+          if (empty(newCode)) {
             setCode('')
             setResult(undefined)
             setError({ type: 'none' })

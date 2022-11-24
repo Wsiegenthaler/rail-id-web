@@ -8,6 +8,8 @@ import FieldValueBody from './FieldValueBody'
 
 import Highlighter from '../../components/Highlighter'
 
+import { empty } from '../../util'
+
 type Props = {
   field: ScalarFieldMeta<any>
   highlights: HighlightState
@@ -26,7 +28,7 @@ function ScalarField({ field, highlights, setHighlights }: Props) {
     <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
-        { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }
+        { !empty(field.desc) ? <div className="field-desc">{field.desc}</div> : <></> }
       </div>
       <Highlighter values={[ field.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
         <div className="field-body">

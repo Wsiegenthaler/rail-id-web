@@ -5,6 +5,7 @@ import { SetFieldMeta, ValueMeta } from 'rail-id'
 import { HighlightState, SetHighlights } from '../../App'
 
 import Highlighter from '../../components/Highlighter'
+import { empty } from '../../util'
 import FieldValueBody from './FieldValueBody'
 
 type Props = {
@@ -36,7 +37,7 @@ function SetField({ field, highlights, setHighlights }: Props) {
     <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
-        { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }
+        { !empty(field.desc) ? <div className="field-desc">{field.desc}</div> : <></> }
         { fieldValues }
       </div>
     </div>

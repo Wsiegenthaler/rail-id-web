@@ -6,6 +6,8 @@ import { FieldElementProps } from '../../components/FieldRouter'
 import Highlighter from '../../components/Highlighter'
 import HighlightHintDot from '../../components/util/HighlightHintDot'
 
+import { empty } from '../../util'
+
 
 function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps) {
 
@@ -28,7 +30,7 @@ function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps
     <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
-        { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }
+        { !empty(field.desc) ? <div className="field-desc">{field.desc}</div> : <></> }
       </div>
       { listItems }
     </div>)

@@ -1,4 +1,5 @@
 import { useState, MouseEvent, TouchEvent } from "react"
+import { empty, urlEncodeCode } from "../util"
 
 type LinkProps = {
   code: string
@@ -12,7 +13,7 @@ function Share({ code }: LinkProps) {
 
   const loc = window.location
   const clean = (code ?? '').replaceAll(/\s+/g, ' ').trim()
-  const href = loc.origin + loc.pathname + `?code=${encodeURIComponent(clean)}`
+  const href = loc.origin + loc.pathname + `?c=${urlEncodeCode(clean)}`
 
   const shareData = {
     title: `Rail ID`,
@@ -36,20 +37,20 @@ function Share({ code }: LinkProps) {
   const onMouseShare = (ev: MouseEvent<HTMLButtonElement>) => doShare()
   const onTouchShare = (ev: TouchEvent<HTMLButtonElement>) => doShare()
 
-  const copyButton = clean.length > 0 ?
+  const copyButton = !empty(clean) ?
     (<button className="copy-url" onMouseUp={onMouseCopy} onTouchEnd={onTouchCopy}>Copy link</button>) : (<></>)
 
-  const shareButton = clean.length > 0 && canShare ?
+  const shareButton = !empty(clean) && canShare ?
     (<button className="share" onMouseUp={onMouseShare} onTouchEnd={onTouchShare}>Share</button>) : (<></>)
 
-  const shareables = clean.length > 0 ?
+  const shareables = !empty(clean) ?
     (<div className="shareables">
       <div className="shareables-title">Share this code</div>
       <div className="buttons">
         { shareButton }
         { copyButton }
       </div>
-      { msg.length > 0 ? <div className="msg slow-fade-out">{msg}</div> : <></> }
+      { !empty(msg) ? <div className="msg slow-fade-out">{msg}</div> : <></> }
     </div>) : (<></>)
 
   return shareables

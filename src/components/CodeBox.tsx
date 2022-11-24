@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare, faSquareXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { AppError } from '../App'
+import { empty } from '../util'
 
 type Props = {
   code: string
@@ -79,7 +80,7 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
   }
 
   // Reset button
-  const resetable = onReset && code.trim().length > 0
+  const resetable = onReset && !empty(code)
   const resetBtnClass = `reset-button ${resetable ? 'resetable' : ''}`
   const doReset = () => {
     localRef?.current?.focus()

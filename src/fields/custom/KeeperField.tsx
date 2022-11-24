@@ -7,6 +7,8 @@ import { FieldElementProps } from '../../components/FieldRouter'
 import Highlighter from '../../components/Highlighter'
 import Link from '../../components/util/Link'
 
+import { empty } from '../../util'
+
 
 function GenericScalarField({ field, highlights, setHighlights }: FieldElementProps) {
 
@@ -26,7 +28,7 @@ function GenericScalarField({ field, highlights, setHighlights }: FieldElementPr
     <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
-        { field.desc && field.desc.length > 0 ? <div className="field-desc">{field.desc}</div> : <></> }
+        { !empty(field.desc) ? <div className="field-desc">{field.desc}</div> : <></> }
       </div>
       <Highlighter values={[ scalar.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
         <div className="field-body">

@@ -5,7 +5,7 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 import { RailID, ParseWarning, ParseWarnings, SetFieldMeta, ValueMeta } from 'rail-id'
 
-import { hashCode } from '../util'
+import { empty, hashCode } from '../util'
 
 import { AppError, HighlightState, SetHighlights } from '../App'
 
@@ -31,7 +31,7 @@ function WarningPanel({ result, error, highlights, setHighlights }: Props) {
     <li key={hashCode(w.readableValue)} className="fade-in">
       <span>{w.readableValue}</span>
       <Highlighter highlights={highlights} setHighlights={setHighlights} values={[ w ]}>
-        { w.source.length > 0 ? <HighlightHintDot /> : <></> }
+        { !empty(w.source) ? <HighlightHintDot /> : <></> }
       </Highlighter>
     </li>)
 
