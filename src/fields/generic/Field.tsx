@@ -12,7 +12,7 @@ function Field({ field, highlights, setHighlights }: FieldElementProps) {
   if (field.type === 'scalar') {
     const scalar = field as ScalarFieldMeta<any>
     const ft = typeof scalar.valueMeta.value
-    if (ft !== 'object' || !empty(scalar.valueMeta.readableValue)) {
+    if (ft !== 'object' || !empty(scalar.valueMeta.displayValue)) {
       return (<ScalarField field={field} highlights={highlights} setHighlights={setHighlights} />)
     } else {
       console.warn(`Could not render '${scalar.name}' field with value of type '${ft}':`, field)
@@ -21,7 +21,7 @@ function Field({ field, highlights, setHighlights }: FieldElementProps) {
   } else {
     const set = field as SetFieldMeta<any>
     const ft = typeof set.valueMetas[0].value
-    if (ft !== 'object' || some(set.valueMetas, vm => !empty(vm.readableValue))) {
+    if (ft !== 'object' || some(set.valueMetas, vm => !empty(vm.displayValue))) {
       return (<SetField field={field} highlights={highlights} setHighlights={setHighlights} />)
     } else {
       console.warn(`Could not render '${set.name}' field with value of type '${ft}':`, field)

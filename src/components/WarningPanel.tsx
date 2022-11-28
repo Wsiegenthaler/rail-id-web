@@ -28,8 +28,8 @@ function WarningPanel({ result, error, highlights, setHighlights }: Props) {
   if (!warningField) return (<></>)
 
   const warning = (w: ValueMeta<ParseWarning>) => (
-    <li key={hashCode(w.readableValue)} className="fade-in">
-      <span>{w.readableValue}</span>
+    <li key={hashCode(w.displayValue)} className="fade-in">
+      <span>{w.displayValue}</span>
       <Highlighter highlights={highlights} setHighlights={setHighlights} values={[ w ]}>
         { !empty(w.source) ? <HighlightHintDot /> : <></> }
       </Highlighter>

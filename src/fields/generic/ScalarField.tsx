@@ -21,7 +21,7 @@ function ScalarField({ field, highlights, setHighlights }: Props) {
   const friendlyValue = (vm: ValueMeta<any>) => {
     const tpe = typeof vm.value
     if (tpe === 'number' || tpe === 'string') return vm.value
-    else return vm.readableValue
+    else return vm.displayValue
   }
 
   return (
