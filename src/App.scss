@@ -11,6 +11,9 @@
     height: 100%;
     margin-top: 5em;
     color: var(--logo-color);
+
+    animation: fade-in 350ms 200ms ease-in forwards;
+    opacity: 0;
   }
   
   .logo, h1, h3 {
@@ -25,6 +28,8 @@
     font-size: 4rem;
     font-weight: 400;
     color: var(--h1-color);
+    animation: fade-in 350ms 500ms ease-in forwards;
+    opacity: 0;
   }
   
   h3 {
@@ -33,6 +38,9 @@
     font-size: 1.4rem;
     font-weight: 300;
     color: var(--h3-color);
+
+    animation: fade-in 350ms 800ms ease-in forwards;
+    opacity: 0;
   }
 
   /* Controls bookmark for scroll/achor */
@@ -49,6 +57,9 @@
     top: 0;
     position: sticky;
     z-index: 99;
+
+    animation: fade-in 350ms 1250ms ease-in forwards;
+    opacity: 0;
 
     .controls-inner {
       @include r.devices(mobile) {
@@ -244,7 +255,10 @@
     padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-  
+ 
+    animation: fade-in 350ms 1650ms ease-in forwards;
+    opacity: 0;
+
     .field-router {
       .field-router-inner {
         margin: 0 auto;
