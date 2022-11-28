@@ -33,7 +33,7 @@ function App({ codeParam }: { codeParam?: string }) {
   const [result, setResult] = useState<RailID | undefined>()
   const [highlights, setHighlights] = useState<HighlightState>('clear')
   const [error, setErrorImmediate] = useState<AppError>({ type: 'none' })
-  const setErrorDebounce = useDebouncedCallback(setErrorImmediate, 700)
+  const setErrorDebounce = useDebouncedCallback(setErrorImmediate, 900)
   const setError = (newError: AppError) => {
     setErrorDebounce(newError)
 
