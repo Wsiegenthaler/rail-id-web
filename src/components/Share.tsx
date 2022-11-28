@@ -3,7 +3,7 @@ import { useState, MouseEvent, TouchEvent } from "react"
 import { empty, urlEncodeCode } from "../util"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faShare } from '@fortawesome/free-solid-svg-icons'
 
 type LinkProps = {
   code: string
@@ -58,8 +58,11 @@ function Share({ code }: LinkProps) {
       Copy link
      </button>) : (<></>)
 
-  const shareButton = !empty(clean) && canShare ?
-    (<button className="share" onMouseUp={onMouseShare} onTouchEnd={onTouchShare}>Share</button>) : (<></>)
+  const shareButton = !empty(clean) && canShare ? (
+    <button className="share" onMouseUp={onMouseShare} onTouchEnd={onTouchShare}>
+      <FontAwesomeIcon icon={faShare} />
+      Share
+    </button>) : (<></>)
 
   const shareables = !empty(clean) ?
     (<div className="shareables">
