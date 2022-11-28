@@ -6,7 +6,7 @@ import { FieldElementProps } from '../../components/FieldRouter'
 import Highlighter from '../../components/Highlighter'
 import HighlightHintDot from '../../components/util/HighlightHintDot'
 
-import { empty } from '../../util'
+import { empty, hashCode } from '../../util'
 
 
 function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps) {
@@ -14,7 +14,7 @@ function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps
   const noteField = field as SetFieldMeta<string>
 
   const listItems = noteField.valueMetas.map(vm => (
-      <div className="field-body">
+      <div key={hashCode(vm.displayValue)} className="field-body">
         <div className="field-value-body">
           <div className="field-value-desc">
               { vm.value }
