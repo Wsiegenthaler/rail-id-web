@@ -23,7 +23,7 @@ function SetField({ field, highlights, setHighlights }: Props) {
   }
 
   const fieldValues = field.valueMetas.map((vm, i) => (
-    <Highlighter values={field.valueMetas} highlights={highlights} setHighlights={setHighlights} key={i}>
+    <Highlighter values={ [ vm ] } highlights={highlights} setHighlights={setHighlights} key={i}>
       <div className="field-body">
         <div className="field-value-header">
           <div className="field-value highlight-hint-underline">{friendlyValue(vm)}</div>
