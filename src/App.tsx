@@ -11,8 +11,8 @@ import FieldRouter from './components/FieldRouter'
 import CodeBox from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
-import { scrollTo, ScrollTarget, empty } from './util'
 import { faCircleExclamation, faTrainSubway } from '@fortawesome/free-solid-svg-icons'
+import { scrollTo, ScrollTarget, empty, isBenign } from './util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Share from './components/Share'
 
@@ -25,8 +25,6 @@ export type AppError =
 export type HighlightState = 'clear' | { origin: string, source: number[]  }
 export type SetHighlights = React.Dispatch<React.SetStateAction<HighlightState>>
 
-// Determines whether an error should be displayed to user (included 'none')
-const isBenign = (error: AppError) => (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput)
 
 function App({ codeParam }: { codeParam?: string }) {
   const [code, setCode] = useState('')

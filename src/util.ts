@@ -1,4 +1,5 @@
 import { isArray, isString, some } from "lodash-es"
+import { AppError } from "./App"
 
 export const hashCode = (str: string) =>
   str.split('').reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0)
@@ -36,3 +37,6 @@ export const urlEncodeCode = (code: string) =>
 // Url decoding which reverses `urlEncodeCode`
 export const urlDecodeCode = (escaped: string) =>
   decodeURIComponent(escaped).replaceAll(/_/g, ' ')
+
+// Determines whether an error should be displayed to user (included 'none')
+export const isBenign = (error: AppError) => (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput)
