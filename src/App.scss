@@ -12,7 +12,7 @@
     margin-top: 5em;
     color: var(--logo-color);
 
-    animation: fade-in 350ms 200ms ease-in forwards;
+    animation: fade-in 350ms 150ms ease-in forwards;
     opacity: 0;
   }
   
@@ -28,7 +28,7 @@
     font-size: 4rem;
     font-weight: 400;
     color: var(--h1-color);
-    animation: fade-in 350ms 500ms ease-in forwards;
+    animation: fade-in 350ms 200ms ease-in forwards;
     opacity: 0;
   }
   
@@ -39,7 +39,7 @@
     font-weight: 300;
     color: var(--h3-color);
 
-    animation: fade-in 350ms 800ms ease-in forwards;
+    animation: fade-in 350ms 300ms ease-in forwards;
     opacity: 0;
   }
 
@@ -58,7 +58,7 @@
     position: sticky;
     z-index: 99;
 
-    animation: fade-in 350ms 1250ms ease-in forwards;
+    animation: fade-in 350ms 650ms ease-in forwards;
     opacity: 0;
 
     .controls-inner {
