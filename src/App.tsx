@@ -31,7 +31,7 @@ function App({ codeParam }: { codeParam?: string }) {
   const [result, setResult] = useState<RailID | undefined>()
   const [highlights, setHighlights] = useState<HighlightState>('clear')
   const [error, setErrorImmediate] = useState<AppError>({ type: 'none' })
-  const setErrorDebounce = useDebouncedCallback(setErrorImmediate, 900)
+  const setErrorDebounce = useDebouncedCallback(setErrorImmediate, 800)
   const setError = (newError: AppError) => {
     setErrorDebounce(newError)
 
@@ -72,7 +72,7 @@ function App({ codeParam }: { codeParam?: string }) {
 
   // Keep typing prompt
   const [showKeepTyping, setShowKeepTyping] = useState<boolean>(false)
-  const keepTypingTimer = useDelay(2200, () => {
+  const keepTypingTimer = useDelay(2000, () => {
     if (code.length > 0) {
       if (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput) {
         setShowKeepTyping(true)
