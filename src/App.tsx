@@ -11,8 +11,8 @@ import FieldRouter from './components/FieldRouter'
 import CodeBox from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
-import { faCircleExclamation, faTrainSubway } from '@fortawesome/free-solid-svg-icons'
-import { scrollTo, ScrollTarget, empty, isBenign } from './util'
+import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
+import { faCircleExclamation, faCircleInfo, faTrainSubway } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Share from './components/Share'
 
@@ -67,6 +67,8 @@ function App({ codeParam }: { codeParam?: string }) {
   //  console.log('--------------------------------')
   //}
 
+  const showWelcome = !result && isBenign(error)
+  const demo = () => onChange(randomDemoCode())
 
   // Keep typing prompt
   const [showKeepTyping, setShowKeepTyping] = useState<boolean>(false)
@@ -161,6 +163,10 @@ function App({ codeParam }: { codeParam?: string }) {
           <div className="feedback">
             <ErrorPanel error={error} />
             <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
+            <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
+              <FontAwesomeIcon icon={faCircleInfo} />
+              <span>Enter a UIC code to learn about that vehicle, or try a <a onClick={e => demo()}>random</a> one!</span>
+            </div>
             <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
               <FontAwesomeIcon icon={faCircleExclamation} />
               <span>This code is too short. Keep typing!</span>

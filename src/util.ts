@@ -40,3 +40,12 @@ export const urlDecodeCode = (escaped: string) =>
 
 // Determines whether an error should be displayed to user (included 'none')
 export const isBenign = (error: AppError) => (error.type === 'none' || error.type === 'parse-error' && error.ref.incompleteInput)
+
+export const demoCodes = [
+  '91 85 4605 205-4 CH-BLS',
+  'CH-BOB 73 85 5432 123-7',
+  'CH-BLS 99859432.123-9',
+  'AT-OBB 9181 1116 079-5'
+]
+
+export const randomDemoCode = () => demoCodes[Math.round(Math.random()*demoCodes.length)]

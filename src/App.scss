@@ -43,6 +43,16 @@
     opacity: 0;
   }
 
+  .welcome {
+    text-align: center;
+    color: var(--welcome-color);
+    
+    svg {
+      margin-right: .7rem;
+      transform: scale(1.4);
+    }
+  }
+
   /* Controls bookmark for scroll/achor */
   #scroll-target {
     height: 1px;
