@@ -1,5 +1,5 @@
 import React from 'react'
-import { max, min, partition, sortBy, values } from 'lodash-es'
+import { keys, max, min, partition, sortBy, values } from 'lodash-es'
 
 import { RailID, Source, FieldMeta, ScalarFieldMeta, SetFieldMeta } from 'rail-id'
 
@@ -39,15 +39,21 @@ enum Priority { ExtraHigh, High, MediumHigh, Medium, MediumLow, Low, ExtraLow }
 const FieldPriorities: Map<Priority> = {
   'type':              Priority.High,
   'subtype':           Priority.High,
-  'special.type':      Priority.MediumHigh,
-  'special.subtype':   Priority.MediumHigh,
-  'coach.class':       Priority.MediumHigh,
-  'coach.description': Priority.MediumHigh,
+  'special':           Priority.MediumHigh,
+  'coach':             Priority.MediumHigh,
   'country':           Priority.Medium,
   'keeper':            Priority.Medium,
   'serial':            Priority.Low,
   'notes':             Priority.ExtraLow,
 }
+
+// Lookup field priority by finding the longest matching path prefix in the priority map
+const fieldPriority = (f: FieldMeta<any>) => keys(FieldPriorities)
+  .filter(prefix => f.path.startsWith(prefix))
+  .sort((a, b) => b.length - a.length)
+  .slice(0, 1)
+  .map(key => FieldPriorities[key])
+  .pop() ?? Priority.MediumLow
 
 // Creates elements for each field using the lookup map
 const buildElems = (fields: FieldMeta<any>[], elemMap: Map<ComponentFactory>, highlights: HighlightState, setHighlights: SetHighlights) =>
@@ -70,10 +76,10 @@ function FieldRouter({ result, highlights, setHighlights }: Props) {
     const fields = sortBy(values(result._meta.fields), (f: FieldMeta<any>) => {
       if (f.type === 'set') {
         const set = f as SetFieldMeta<any>
-        return sortValue(set.valueMetas.flatMap(m => m.source), FieldPriorities[f.path])
+        return sortValue(set.valueMetas.flatMap(m => m.source), fieldPriority(f))
       } else {
         const scalar = f as ScalarFieldMeta<any>
-        return sortValue(f.valueMeta.source, FieldPriorities[f.path])
+        return sortValue(f.valueMeta.source, fieldPriority(f))
       }
     })
 
