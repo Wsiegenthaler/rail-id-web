@@ -189,6 +189,7 @@ button {
 
   &:hover, &:focus, &:focus-visible {
     border-color: var(--button-focus-color);
+    outline: none;
 
     svg { color: var(--button-focus-color); }
   }
