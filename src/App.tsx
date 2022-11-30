@@ -67,9 +67,6 @@ function App({ codeParam }: { codeParam?: string }) {
   //  console.log('--------------------------------')
   //}
 
-  const showWelcome = !result && isBenign(error)
-  const demo = () => onChange(randomDemoCode())
-
   // Keep typing prompt
   const [showKeepTyping, setShowKeepTyping] = useState<boolean>(false)
   const keepTypingTimer = useDelay(2000, () => {
@@ -84,6 +81,10 @@ function App({ codeParam }: { codeParam?: string }) {
   const startKeepTyping = () => { keepTypingTimer.start(); setShowKeepTyping(false) }
   const stopKeepTyping = () => { keepTypingTimer.stop(); setShowKeepTyping(false) }
 
+
+  // Welcome message
+  const showWelcome = !result && isBenign(error) && !showKeepTyping
+  const demo = () => onChange(randomDemoCode())
 
   // Handle code change and update state
   function onChange(newCode: string) {
