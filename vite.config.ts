@@ -13,6 +13,7 @@ const browserlist = 'last 3 versions, >= 95% in US'
 export default defineConfig({
   build: {
     minify: 'terser',
+    sourcemap: true,
   },
   plugins: [
     react(),
