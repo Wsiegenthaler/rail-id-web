@@ -44,12 +44,20 @@
   }
 
   .welcome {
-    text-align: center;
     color: var(--welcome-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
+    @include r.devices(mobile) {
+      font-size: .8rem;
+      span { text-align: left; }
+    }
+
     svg {
       margin-right: .7rem;
-      transform: scale(1.4);
+      width: 1.7em;
+      height: 100%;
     }
   }
 
@@ -240,7 +248,6 @@
       /* Keep Typing */
       .keep-typing-msg {
         color: var(--keep-typing-color);
-        text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
