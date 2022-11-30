@@ -27,9 +27,13 @@ export type SetHighlights = React.Dispatch<React.SetStateAction<HighlightState>>
 
 
 function App({ codeParam }: { codeParam?: string }) {
+
+  // App state
   const [code, setCode] = useState('')
   const [result, setResult] = useState<RailID | undefined>()
   const [highlights, setHighlights] = useState<HighlightState>('clear')
+
+  // Error state
   const [error, setErrorImmediate] = useState<AppError>({ type: 'none' })
   const setErrorDebounce = useDebouncedCallback(setErrorImmediate, 800)
   const setError = (newError: AppError) => {
@@ -39,6 +43,7 @@ function App({ codeParam }: { codeParam?: string }) {
     if (!isBenign(error) || isBenign(newError)) setErrorDebounce.flush()
   }
 
+
   // Ref and effect to allow blurring the CodeBox
   const boxRef = createRef<HTMLElement>()
   const [doBlur, setDoBlur] = useState(false)
@@ -46,6 +51,7 @@ function App({ codeParam }: { codeParam?: string }) {
     boxRef.current?.blur()
     if (doBlur) setDoBlur(false)
   }, [ doBlur ])
+
 
   // Use `codeParam` url parameter if passed
   useEffect(() => {
@@ -55,17 +61,6 @@ function App({ codeParam }: { codeParam?: string }) {
     }
   }, [/* onMount */])
 
-  //DEBUG
-  //printState()
-  //
-  //function printState() {
-  //  console.log('--------------------------------')
-  //  console.log(`code ==> '${code}'`)
-  //  console.log(`highlights ==> ${highlights.join(', ')}`)
-  //  console.log('result ==>', result)
-  //  console.log('error ==>', error)
-  //  console.log('--------------------------------')
-  //}
 
   // Keep typing prompt
   const [showKeepTyping, setShowKeepTyping] = useState<boolean>(false)
@@ -85,6 +80,7 @@ function App({ codeParam }: { codeParam?: string }) {
   // Welcome message
   const showWelcome = !result && isBenign(error) && !showKeepTyping
   const demo = () => onChange(randomDemoCode())
+
 
   // Handle code change and update state
   function onChange(newCode: string) {
@@ -180,7 +176,6 @@ function App({ codeParam }: { codeParam?: string }) {
         <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
         { result && isBenign(error) ? <Share code={code} /> : <></> }
       </div>
-
     </div>
   )
 }
