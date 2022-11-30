@@ -14,6 +14,12 @@ export default defineConfig({
   build: {
     minify: 'terser',
     sourcemap: true,
+    rollupOptions: {
+      manualChunks: {
+        'rail-id': [ 'rail-id' ],
+        'flags': [ 'react-world-flags' ]
+      }
+    }
   },
   plugins: [
     react(),
