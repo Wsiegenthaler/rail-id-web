@@ -48,4 +48,4 @@ export const demoCodes = [
   'AT-OBB 9181 1116 079-5'
 ]
 
-export const randomDemoCode = () => demoCodes[Math.round(Math.random()*demoCodes.length)]
+export const randomDemoCode = () => demoCodes[Math.floor(Math.random()*demoCodes.length)]
