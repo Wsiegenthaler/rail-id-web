@@ -13,8 +13,6 @@ import {
 
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 
-import sanitizeHtml from 'sanitize-html'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare, faSquareXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -28,8 +26,6 @@ type Props = {
   className?: string
   onReset?: () => void
 }
-
-const sanitize = (html: string) => sanitizeHtml(html, { disallowedTagsMode: 'discard', allowedTags: [], allowedAttributes: {} })
 
 function dismissKeyboardOnEnter(ev: KeyboardEvent<HTMLElement>) {
   const key = ev.code ?? ev.keyCode.toString()
@@ -102,7 +98,13 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
   // Forward content changes to `onChange` handler and sync caret position/selection state
   const handleChange = (ev: ContentEditableEvent) => {
     syncCaretState()
-    onChange(sanitize(ev.target.value))
+
+    // Sanitize contenteditable innerText by removing newlines (which sometimes occur when field
+    // is empty) and "<" / ">" (which could allow HTML to be injected into page by user).
+    const text = ev.currentTarget.innerText.replaceAll(/[<>\n]/g, '')
+
+    // Invoke handler
+    onChange(text)
   }
 
   // Reset button
