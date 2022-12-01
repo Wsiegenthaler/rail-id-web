@@ -7,7 +7,7 @@ import compress from 'vite-plugin-compression'
 import analyze from 'rollup-plugin-analyzer'
 
 
-const browserlist = 'last 3 versions, >= 95% in US'
+const browserslist = 'last 3 versions, >= 95% in US'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,7 +23,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    lightningcss({ browserlist }),
+    lightningcss({ browserslist }),
     faviconsPlugin({
       xpath: './src/assets/favicon.svg',
       icons: {
