@@ -42,7 +42,7 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
 
 
   // Updates component state to reflect the current caret position/selection
-  const syncCaretState = () => setCaretState(detectCaretState)
+  const syncCaretState = () => setCaretState(detectCaretState())
 
   // Whether our contenteditable is the currently active element
   const isFocused = () => localRef.current && document.activeElement === localRef.current
