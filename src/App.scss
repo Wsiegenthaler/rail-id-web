@@ -50,7 +50,7 @@
     justify-content: center;
     
     @include r.devices(mobile) {
-      font-size: .8rem;
+      font-size: 1rem;
       span { text-align: left; }
     }
 
@@ -117,9 +117,11 @@
       position: relative;
 
       .code-box {
-        font-size: 1.8rem;
+        font-size: 2rem;
         font-weight: 500;
+        font-family: var(--font-family);
         text-align: center;
+        letter-spacing: 0.025rem;
         padding: .7rem;
         border-radius: .6rem;
  
@@ -129,11 +131,15 @@
  
         color: var(--codebox-color-text);
         background: var(--codebox-color-background);
-        outline: 1px solid var(--codebox-color-border);
+        border: 1px solid var(--codebox-color-border);
+        outline: none; // prevent browser-added style
 
         /* Border styles */
-        &:focus { outline: 1px solid var(--codebox-color-border-focus); }
-        &.valid { outline: 1px solid var(--success-color); }
+        &:focus {
+          border: 1px solid var(--codebox-color-border-focus);
+          outline: none;
+        }
+        &.valid { border: 1px solid var(--success-color); }
 
         /* Error character highlight */
         & span.pos-error {
@@ -175,6 +181,7 @@
         top: 15%;
         right: 1.25%;
         color: var(--codebox-color-background);
+        opacity: .75;
 
         @include r.devices(mobile) {
           height: 50%;
@@ -270,7 +277,7 @@
   
   .results {
     min-height: 150px;
-    padding-top: 3rem;
+    padding-top: 2rem;
     padding-left: 1rem;
     padding-right: 1rem;
  
