@@ -45,7 +45,9 @@ export const demoCodes = [
   '91 85 4605 205-4 CH-BLS',
   'CH-BOB 73 85 5432 123-7',
   'CH-BLS 99859432.123-9',
-  'AT-OBB 9181 1116 079-5'
+  'AT-OBB 9181 1116 079-5',
+  '73 CH-SBB 857 89 0 987 - 6',
+  'H-START 94 55 3815 019-0'
 ]
 
 export const randomDemoCode = () => demoCodes[Math.floor(Math.random()*demoCodes.length)]
