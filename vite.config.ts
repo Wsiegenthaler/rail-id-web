@@ -17,8 +17,8 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       manualChunks: {
-        'rail-id': [ 'rail-id' ],
-        'flags': [ 'react-world-flags' ]
+        'parser': [ 'rail-id' ],
+        'world-flags': [ 'react-world-flags' ]
       }
     }
   },
