@@ -4,6 +4,7 @@ import { VitePluginFonts } from 'vite-plugin-fonts'
 import faviconsPlugin from '@darkobits/vite-plugin-favicons'
 import lightningcss from 'vite-plugin-lightningcss'
 import compress from 'vite-plugin-compression'
+import { VitePWA } from 'vite-plugin-pwa'
 import analyze from 'rollup-plugin-analyzer'
 
 
@@ -21,7 +22,32 @@ export default defineConfig({
       }
     }
   },
+  publicDir: './src/assets',
   plugins: [
+    VitePWA({
+      mode: 'development',
+      base: '/',
+      includeAssets: ['logo.svg', 'splash.png'],
+      manifest: {
+        name: 'Rail ID',
+        short_name: 'Rail ID',
+        theme_color: '#646cff',
+        icons: [
+          {
+            src: 'logo.svg',
+            sizes: 'any',
+            type: 'image/svg+xml',
+            purpose: 'any maskable',
+          },
+          {
+            src: "splash.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: 'any'
+          }
+        ]
+      }
+    }),
     react(),
     lightningcss({ browserslist }),
     faviconsPlugin({
