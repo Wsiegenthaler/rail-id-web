@@ -51,7 +51,11 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
   const detectCaretState = (): CaretState => {
     const sel = window.getSelection()
     const r = (sel?.rangeCount ?? 0) > 0 ? sel?.getRangeAt(0) : undefined
-    if (r && isFocused()) {
+    if (!r && isFocused()) {
+      // Sometimes the Chrome/Safari `Selection` api doesn't return any ranges upon
+      // first focus after page load. We catch it here so it's not treated as a blur.
+      return { kind: 'caret', pos: 0 }
+    } else if (r && isFocused()) {
       const node = localRef.current as Node
       if (r.collapsed) {
         const r1 = r.cloneRange()
@@ -144,7 +148,7 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
         onTouchEnd={syncCaretState}
         onMouseUp={syncCaretState}
         onBlur={syncCaretState}
-         />
+      />
 
       { onReset ? <FontAwesomeIcon icon={faSquare} /> : <></>}
       { onReset ? <FontAwesomeIcon icon={faSquareXmark} className={resetBtnClass} onMouseUp={handleResetClick} onTouchEnd={handleResetTouch} /> : <></>}
