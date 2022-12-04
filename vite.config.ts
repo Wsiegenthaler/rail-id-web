@@ -18,7 +18,7 @@ export default defineConfig({
     rollupOptions: {
       manualChunks: {
         'parser': [ 'rail-id' ],
-        'world-flags': [ 'react-world-flags' ]
+        'world-flags': [ '@weston/react-world-flags' ]
       }
     }
   },

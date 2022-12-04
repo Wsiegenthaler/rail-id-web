@@ -1,4 +1,4 @@
-import Flag from 'react-world-flags'
+import { Flag64 as Flag } from '@weston/react-world-flags'
 import { kebabCase } from 'lodash-es'
 
 import { Country, ScalarFieldMeta } from 'rail-id'
