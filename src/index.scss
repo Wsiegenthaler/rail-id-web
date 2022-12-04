@@ -19,20 +19,20 @@
 
   /* Neutral color palette */
   --color-neutral-0: #000000;
-  --color-neutral-1: #111111;
-  --color-neutral-2: #222222;
-  --color-neutral-3: #333333;
-  --color-neutral-4: #444444;
-  --color-neutral-5: #555555;
-  --color-neutral-6: #666666;
-  --color-neutral-7: #777777;
-  --color-neutral-8: #888888;
-  --color-neutral-9: #999999;
-  --color-neutral-a: #aaaaaa;
-  --color-neutral-b: #bbbbbb;
-  --color-neutral-c: #cccccc;
-  --color-neutral-d: #dddddd;
-  --color-neutral-e: #eeeeee;
+  --color-neutral-1: #101014;
+  --color-neutral-2: #202024;
+  --color-neutral-3: #303034;
+  --color-neutral-4: #404044;
+  --color-neutral-5: #505054;
+  --color-neutral-6: #606064;
+  --color-neutral-7: #707074;
+  --color-neutral-8: #808084;
+  --color-neutral-9: #909094;
+  --color-neutral-a: #a0a0a4;
+  --color-neutral-b: #b0b0b4;
+  --color-neutral-c: #c0c0c4;
+  --color-neutral-d: #d0d0d4;
+  --color-neutral-e: #e0e0e4;
   --color-neutral-f: #ffffff;
 }
 
@@ -73,8 +73,8 @@
     /* Codebox */
     --codebox-color-text: var(--color-neutral-d);
     --codebox-color-background: var(--color-neutral-3);
-    --codebox-reset-color: #3e3e3e;
-    --codebox-reset-focus-color: #4e4e4e;
+    --codebox-reset-color: var(--color-neutral-4);
+    --codebox-reset-focus-color: var(--color-neutral-5);
     --codebox-color-border: var(--color-neutral-4);
     --codebox-color-border-focus: var(--color-neutral-6);
 
@@ -131,8 +131,8 @@
     /* Codebox */
     --codebox-color-text: var(--color-neutral-7);
     --codebox-color-background: var(--color-neutral-d);
-    --codebox-reset-color: #bebebe;
-    --codebox-reset-focus-color: #aeaeae;
+    --codebox-reset-color: var(--color-neutral-b);
+    --codebox-reset-focus-color: var(--color-neutral-a);
     --codebox-color-border: var(--color-neutral-b);
     --codebox-color-border-focus: var(--color-neutral-9);
 
