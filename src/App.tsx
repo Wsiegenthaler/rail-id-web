@@ -162,7 +162,7 @@ function App({ codeParam }: { codeParam?: string }) {
             <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
             <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
               <FontAwesomeIcon icon={faCircleInfo} />
-              <span>Enter a UIC code to learn about that vehicle, or try a <a onClick={e => demo()}>random</a> one!</span>
+              <span>Enter a UIC code to learn about a vehicle or try a <a onClick={e => demo()}>random</a> one!</span>
             </div>
             <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
               <FontAwesomeIcon icon={faCircleExclamation} />
