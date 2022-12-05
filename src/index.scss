@@ -55,7 +55,7 @@
     /* Button */
     --button-text-color: var(--color-neutral-c);
     --button-bg-color: #1a1a1a;
-    --button-icon-color: var(--color-neutral-4);
+    --button-icon-color: var(--color-neutral-8);
     --button-focus-color: var(--color-purple);
 
     /* App general */
@@ -85,6 +85,10 @@
     --field-text-color: var(--color-neutral-7);
     --field-value-color: var(--color-neutral-c);
     --field-decorator-color: var(--color-neutral-4);
+
+    /* Share */
+    --share-color: var(--color-neutral-d);
+    --share-alt-color: var(--color-neutral-8);
 
     /* Highlights */
     --highlight-color: var(--color-purple);
@@ -118,7 +122,7 @@
     /* Button */
     --button-text-color: var(--color-neutral-2);
     --button-bg-color: var(--color-neutral-d);
-    --button-icon-color: var(--color-neutral-a);
+    --button-icon-color: var(--color-neutral-7);
     --button-focus-color: var(--color-purple);
 
     /* App general */
@@ -148,6 +152,10 @@
     --field-text-color: var(--color-neutral-8);
     --field-value-color: var(--color-neutral-4);
     --field-decorator-color: var(--color-neutral-b);
+
+    /* Share */
+    --share-color: var(--color-neutral-3);
+    --share-alt-color: var(--color-neutral-9);
 
     /* Highlights */
     --highlight-color: var(--color-purple);
@@ -199,15 +207,19 @@ button {
   font-weight: 500;
   color: var(--button-text-color);
   background-color: var(--button-bg-color);
-  transition: border-color .25s;
   cursor: pointer;
   margin: 0 .2rem;
+  outline: none;
 
   &:hover, &:focus, &:focus-visible {
     border-color: var(--button-focus-color);
-    outline: none;
+    color: var(--button-focus-color);
+    transition: all .25s;
 
-    svg { color: var(--button-focus-color); }
+    svg {
+      transition: all .25s;
+      color: var(--button-focus-color);
+    }
   }
 
   svg {

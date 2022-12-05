@@ -66,7 +66,7 @@ function Share({ code }: LinkProps) {
 
   const shareables = !empty(clean) ?
     (<div className="shareables">
-      <div className="shareables-title">Share this code</div>
+      <div className="shareables-title">Share this code:</div>
       <div className="shareables-code">{clean}</div>
       <div className="buttons">
         { shareButton }
