@@ -521,8 +521,10 @@
     margin-bottom: .2rem;
     display: flex;
     justify-content: center;
-    
     color: var(--footer-color);
+
+    position: relative;
+    z-index: 999;
 
     & > *:not(:last-child)::after {
       content: '•';
