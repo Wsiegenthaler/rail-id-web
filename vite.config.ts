@@ -7,6 +7,7 @@ import compress from 'vite-plugin-compression'
 import { VitePWA } from 'vite-plugin-pwa'
 import analyze from 'rollup-plugin-analyzer'
 
+import pkg from './package.json' assert { type: "json" }
 
 const browserslist = 'last 3 versions, >= 95% in US'
 
@@ -23,6 +24,13 @@ export default defineConfig({
     }
   },
   publicDir: './src/assets',
+  define: {
+    '__PKG_NAME__':    JSON.stringify(pkg.name),
+    '__DESCRIPTION__': JSON.stringify(pkg.description),
+    '__VERSION__':     JSON.stringify(pkg.version),
+    '__REPOSITORY__':  JSON.stringify(pkg.repository),
+    '__LICENSE__':     JSON.stringify(pkg.license)
+  },
   plugins: [
     VitePWA({
       mode: 'development',
