@@ -50,7 +50,6 @@
     --success-color: var(--color-green);
     --warn-color: var(--color-yellow);
     --error-color: var(--color-red);
-    --highlight-color: var(--color-purple);
     --link-color: var(--color-purple);
 
     /* Button */
@@ -86,10 +85,10 @@
     --field-value-color: var(--color-neutral-c);
     --field-decorator-color: var(--color-neutral-4);
 
-    /* Highlight Hints */
-    --highlight-hint-color: var(--hightlight-color);
-    --highlight-hint-alt-color: var(--color-neutral-e);
-    --highlight-hint-bg-color: var(--color-neutral-4);
+    /* Highlights */
+    --highlight-color: var(--color-purple);
+    --highlight-alt-color: var(--color-yellow);
+    --highlight-dot-bg-color: var(--color-neutral-4);
   }
 }
 
@@ -108,7 +107,6 @@
     --success-color: var(--color-green);
     --warn-color: var(--color-yellow);
     --error-color: var(--color-red);
-    --highlight-color: var(--color-purple);
     --link-color: var(--color-purple);
 
     /* Button */
@@ -138,16 +136,16 @@
 
     /* Fields */
     --field-color: var(--color-neutral-7);
-    --field-alt-color: var(--color-neutral-6);
+    --field-alt-color: var(--color-yellow);
     --field-name-color: var(--color-neutral-a);
     --field-text-color: var(--color-neutral-8);
     --field-value-color: var(--color-neutral-4);
     --field-decorator-color: var(--color-neutral-b);
 
-    /* Highlight Hints */
-    --highlight-hint-color: var(--hightlight-color);
-    --highlight-hint-alt-color: var(--color-neutral-4);
-    --highlight-hint-bg-color: var(--color-neutral-d);
+    /* Highlights */
+    --highlight-color: var(--color-purple);
+    --highlight-alt-color: var(--color-yellow);
+    --highlight-dot-bg-color: var(--color-neutral-d);
   }
 }
 

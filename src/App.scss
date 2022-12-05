@@ -149,8 +149,8 @@
         /* Highlights by position */
         @for $i from 0 through 50 {
           &.pos-#{$i} .pos-#{$i} {
-            color: var(--highlight-color);
-            animation: highlight-pulse 350ms ease-out 0ms 1 normal forwards;
+            color: var(--highlight-alt-color);
+            background: var(--highlight-color);
           }
         }
       }
@@ -302,7 +302,6 @@
   .field {
     color: var(--field-color);
     padding-bottom: 1.6em;
-    animation: highlight-pulse 350ms ease-in 0s 1 normal forwards;
  
     .field-header {
       .field-name {
@@ -314,25 +313,22 @@
       .field-desc {
         color: var(--field-text-color);
         font-weight: 300;
+        margin-top: 0.5rem;
         margin-bottom: .5rem;
       }
     }
  
     .field-body {
-      margin-top: 1rem;
+      margin-top: .8rem;
       flex-direction: column;
       margin-left: .5em;
       font-size: .95rem;
+      padding-top: .3rem;
+      padding-bottom: .5rem;
 
-      & > * { margin-left: 1.8rem; }
+      & > * { margin-left: 1.2rem; }
 
-      &::before {
-        content: "⟫";
-        position: absolute;
-        color: var(--field-decorator-color);
-        font-size: 2em;
-        line-height: 0.85em;
-      }
+      border-left: .5rem solid var(--field-name-color);
     }
 
     .field-value-header {
@@ -346,6 +342,7 @@
  
     .field-value-body {
       font-weight: 200;
+      margin-top: .75em;
  
       .field-value-desc {
         color: var(--field-text-color);
@@ -354,10 +351,6 @@
       .field-notes {
         * {
           color: var(--field-text-color);
-        }
-
-        & > *:first-child {
-          margin-top: .4em;
         }
 
         ul {
@@ -375,18 +368,18 @@
     *:hover { cursor: default; }
 
     .field-value-header .field-value {
-      animation: highlight-pulse 350ms ease-out 0s 1 normal forwards;
-    }
-    .field-body::before {
       color: var(--highlight-color);
+    }
+
+    .field-body {
+      color: var(--highlight-color);
+      border-color: var(--highlight-color);
     }
   }
  
   /* -------------- Highlight Hint - Underline ---------------- */
 
   .highlight-hint-underline {
-    /*TODO fix these, var(--highlight-hint-color) not working for some reason, directly using var(--highlight-color) instead (multiple spots) */
-    xtext-decoration-color: var(--highlight-hint-color);
     text-decoration-color: var(--highlight-color);
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
@@ -395,7 +388,7 @@
 
   /* Highlight Hint - Underline (active) */
   .highlight .highlight-hint-underline {
-    text-decoration-color: var(--highlight-hint-alt-color);
+    text-decoration-color: var(--highlight-alt-color);
   }
   
   /* ---------------- Highlight Hint - Dot -------------------- */
@@ -411,7 +404,7 @@
     }
 
     .fa-circle {
-      color: var(--highlight-hint-bg-color);
+      color: var(--highlight-dot-bg-color);
       transform: scale(1.5) translate(-0.02rem, 0.25rem);
     }
 
@@ -424,7 +417,7 @@
   /* Highlight Hint - Dot (active) */
   .highlight .highlight-hint-dot {
     .fa-circle { color: var(--highlight-color); }
-    .fa-hand-pointer { color: var(--highlight-hint-bg-color); }
+    .fa-hand-pointer { color: var(--color-yellow); }
   }
   
   /* -------------------- Custom Fields ----------------------- */
@@ -451,6 +444,7 @@
 
     .field-value-body {
       padding-top: .2rem;
+      margin-top: 0;
     }
     .field-value-desc {
       padding-top: .1rem;
@@ -516,12 +510,6 @@
   }
 
   /* ----------------- Animation / Effects -------------------- */
-
-  /* Keyframes */
-  @keyframes highlight-pulse {
-    0% { opacity: 0; color: var(--highlight-color); }
-    100% { color: var(--highlight-color); }
-  }
 
   @keyframes fade-in {
     0% { opacity: 0; }
