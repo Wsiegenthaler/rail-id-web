@@ -20,7 +20,7 @@
     "bulma": "^0.9.4",
     "lodash-es": "^4.17.21",
     "nanoid": "^4.0.0",
-    "rail-id": "file:../rail-id",
+    "rail-id": "^0.0.1",
     "react": "^18.2.0",
     "react-contenteditable": "^3.3.6",
     "react-dom": "^18.2.0",
