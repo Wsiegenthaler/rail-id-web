@@ -129,7 +129,7 @@
         text-align: center;
         letter-spacing: 0.025rem;
         padding: .7rem;
-        border-radius: .4rem;
+        border-radius: .5rem;
  
         @include r.devices(mobile) {
           font-size: 1.1rem;
@@ -162,37 +162,36 @@
       }
 
       // Reset button
-      svg.fa-square-xmark {
+      svg.fa-circle-xmark {
         position: absolute;
-        height: 60%;
-        top: 20%;
-        right: 1.6%;
+        height: 46%;
+        top: 27%;
+        right: 1.8%;
         color: var(--codebox-reset-color);
 
         @include r.devices(mobile) {
           height: 50%;
           top: 25%;
-          right: 3%;
+          right: 1.75%;
         }
 
-        &.resetable:hover {
+        &:hover {
           color: var(--codebox-reset-focus-color);
         }
       }
 
       // Reset button bg mask
-      svg.fa-square {
+      svg.fa-circle {
         position: absolute;
-        height: 70%;
-        top: 15%;
+        height: 56%;
+        top: 22%;
         right: 1.25%;
         color: var(--codebox-color-background);
-        opacity: .75;
 
         @include r.devices(mobile) {
           height: 50%;
           top: 25%;
-          right: 3%;
+          right: 1.7%;
           transform: scale(1.1);
         }
       }

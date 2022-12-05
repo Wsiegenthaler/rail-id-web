@@ -14,7 +14,7 @@ import {
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSquare, faSquareXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { AppError } from '../App'
 import { empty } from '../util'
@@ -113,7 +113,6 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
 
   // Reset button
   const resetable = onReset && !empty(code)
-  const resetBtnClass = `reset-button ${resetable ? 'resetable' : ''}`
   const doReset = () => {
     setCaretState({ kind: 'caret', pos: 0 })
     onReset && onReset()
@@ -150,8 +149,8 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
         onBlur={syncCaretState}
       />
 
-      { onReset ? <FontAwesomeIcon icon={faSquare} /> : <></>}
-      { onReset ? <FontAwesomeIcon icon={faSquareXmark} className={resetBtnClass} onMouseUp={handleResetClick} onTouchEnd={handleResetTouch} /> : <></>}
+      { onReset ? <FontAwesomeIcon icon={faCircle} /> : <></>}
+      { onReset ? <FontAwesomeIcon icon={faCircleXmark} className="reset-button" onMouseUp={handleResetClick} onTouchEnd={handleResetTouch} /> : <></>}
     </div>
   )
 })
