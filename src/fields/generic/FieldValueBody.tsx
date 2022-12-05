@@ -6,12 +6,15 @@ type Props = {
 }
 
 function FieldValueBody({ desc, footnotes }: Props) {
-
+  const hasDesc = desc.trim()
+  const notes = footnotes.map(n => n.trim()).filter(n => n.length > 0)
   return (
-    <div className="field-value-body">
-      <div className="field-value-desc">{desc}</div>
-      <FieldNotes footnotes={footnotes} />
-    </div>
+    (hasDesc || notes.length > 0) ?
+      <div className="field-value-body">
+        { hasDesc ? <div className="field-value-desc">{desc}</div> : <></> }
+        <FieldNotes footnotes={notes} />
+      </div> :
+      <></>
   )
 
 }

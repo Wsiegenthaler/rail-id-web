@@ -5,15 +5,15 @@ type Props = {
 }
 
 function FieldNotes({ footnotes }: Props) {
-  if (footnotes.length > 0) {
-    return (
+  const notes = footnotes.map(n => n.trim()).filter(n => n.length > 0)
+  return (
+    (notes.length > 0) ?
       <div className="field-notes">
-        <div>Notes:</div>
         <ul>
-          { footnotes.map(f => <li className="field-note" key={hashCode(f)}>{f}</li>) }
+          { notes.map(f => <li className="field-note" key={hashCode(f)}>{f}</li>) }
         </ul>
-      </div>)
-  } else return <div />
+      </div> :
+      <></>)
 }
 
 export default FieldNotes
