@@ -12,7 +12,7 @@ import CodeBox from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
 import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
-import { faCircleExclamation, faCircleInfo, faTrainSubway } from '@fortawesome/free-solid-svg-icons'
+import { faCircleExclamation, faCircleInfo, faTrainSubway, faCode } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Share from './components/Share'
 
@@ -25,8 +25,21 @@ export type AppError =
 export type HighlightState = 'clear' | { origin: string, source: number[]  }
 export type SetHighlights = React.Dispatch<React.SetStateAction<HighlightState>>
 
+type AppInfo = {
+  pkgName: string
+  name: string
+  description: string
+  version: string
+  license: string
+  repository: string
+}
 
-function App({ codeParam }: { codeParam?: string }) {
+type AppProps = {
+  appInfo: AppInfo
+  codeParam?: string
+}
+
+function App({ codeParam, appInfo }: AppProps) {
 
   // App state
   const [code, setCode] = useState('')
@@ -146,36 +159,51 @@ function App({ codeParam }: { codeParam?: string }) {
 
   return (
     <div id="rail-id">
+      <div className="body">
 
-      <FontAwesomeIcon className="logo" icon={faTrainSubway} />
-      <h1>Rail ID</h1>
-      <h3>The European rolling stock code reader</h3>
+        <FontAwesomeIcon className="logo" icon={faTrainSubway} />
+        <h1>{appInfo.name}</h1>
+        <h3>{appInfo.description}</h3>
 
-      <div ref={scrollRef} id="scroll-target" />
+        <div ref={scrollRef} id="scroll-target" />
 
-      <div className="controls columns is-centered">
-        <div className="mask" />
-        <div className="controls-inner column is-12-mobile is-10-tablet is-8-desktop is-8-widescreen is-7-fullhd">
-          <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} ref={boxRef} />
-          <div className="feedback">
-            <ErrorPanel error={error} />
-            <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
-            <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
-              <FontAwesomeIcon icon={faCircleInfo} />
-              <span>Enter a UIC code to learn about a vehicle or try a <a onClick={e => demo()}>random</a> one!</span>
-            </div>
-            <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
-              <FontAwesomeIcon icon={faCircleExclamation} />
-              <span>This code is too short. Keep typing!</span>
+        <div className="controls columns is-centered">
+          <div className="mask" />
+          <div className="controls-inner column is-12-mobile is-10-tablet is-8-desktop is-8-widescreen is-7-fullhd">
+            <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} ref={boxRef} />
+            <div className="feedback">
+              <ErrorPanel error={error} />
+              <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
+              <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
+                <FontAwesomeIcon icon={faCircleInfo} />
+                <span>Enter a UIC code to learn about a vehicle or try a <a onClick={e => demo()}>random</a> one!</span>
+              </div>
+              <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
+                <FontAwesomeIcon icon={faCircleExclamation} />
+                <span>This code is too short. Keep typing!</span>
+              </div>
             </div>
           </div>
         </div>
+
+        <div className={`results ${disableResults}`} >
+          <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
+          { result && isBenign(error) ? <Share code={code} /> : <></> }
+        </div>
+
       </div>
 
-      <div className={`results ${disableResults}`} >
-        <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
-        { result && isBenign(error) ? <Share code={code} /> : <></> }
-      </div>
+        <div className="foot">
+          <span className="repo">
+            <a href={appInfo.repository} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faCode} />
+              {appInfo.pkgName}
+            </a>
+          </span>
+          <span className="version">v{appInfo.version}</span>
+          <span className="license">{appInfo.license}</span>
+
+        </div>
     </div>
   )
 }

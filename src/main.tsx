@@ -5,6 +5,16 @@ import App from './App'
 import './index.scss'
 import { urlDecodeCode } from './util'
 
+// Package info (injected by vite)
+const appInfo = {
+  name: 'Rail ID',
+  description: __DESCRIPTION__ ?? '',
+  pkgName: __PKG_NAME__ ?? '',
+  version: __VERSION__ ?? '',
+  license: __LICENSE__ ?? '',
+  repository: __REPOSITORY__ ?? ''
+}
+
 // Get url param if one was passed
 const urlParams = new URLSearchParams(window.location.search)
 const escaped = urlParams.get('c') ?? undefined
@@ -21,4 +31,4 @@ if (escaped && escaped.trim().length > 0) {
 // Bind app to dom
 ReactDOM
   .createRoot(document.getElementById('root') as HTMLElement)
-  .render(<StrictMode> <App codeParam={code} /> </StrictMode>)
+  .render(<StrictMode> <App codeParam={code} appInfo={appInfo} /> </StrictMode>)

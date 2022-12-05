@@ -1,10 +1,15 @@
 @use "./style/responsive" as r;
 
 #rail-id {
+  height: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+  }
 
   svg.logo {
     width: 9.5rem;
@@ -55,8 +60,9 @@
     }
 
     svg {
-      margin-right: .7rem;
-      width: 1.7em;
+      color: var(--welcome-alt-color);
+      margin-right: .5rem;
+      width: 1.4em;
       height: 100%;
     }
   }
@@ -276,7 +282,6 @@
   /* ------------------------ Results ------------------------- */
   
   .results {
-    min-height: 150px;
     padding-top: 1.75rem;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -506,6 +511,34 @@
       font-size: .75rem;
       text-align: center;
       opacity: 0;
+    }
+  }
+
+  /* ------------------------ Footer -------------------------- */
+
+  .foot {
+    font-size: .75rem;
+    margin-top: -1.6rem;
+    margin-bottom: .2rem;
+    display: flex;
+    justify-content: center;
+    
+    color: var(--footer-color);
+
+    & > *:not(:last-child)::after {
+      content: '•';
+      font-weight: 900;
+      padding-left: .4rem;
+      padding-right: .4rem;
+      color: var(--footer-sep-color);
+    }
+    
+    .repo, .license, .version {
+      color: var(--footer-alt-color);
+    }
+
+    .repo svg {
+      padding-right: .4rem;
     }
   }
 
