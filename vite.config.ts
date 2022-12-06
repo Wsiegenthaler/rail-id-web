@@ -13,7 +13,9 @@ const browserslist = 'last 3 versions, >= 95% in US'
 
 
 // https://vitejs.dev/config/
-export default ({ mode }) => defineConfig({
+export default ({ mode }) => {
+console.log(`mode = ${mode}`)
+  return defineConfig({
   build: {
     minify: 'terser',
     sourcemap: true,
@@ -80,3 +82,4 @@ export default ({ mode }) => defineConfig({
     analyze({ limit: 20, summaryOnly: true })
   ]
 })
+}
