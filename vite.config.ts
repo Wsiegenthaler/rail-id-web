@@ -23,6 +23,7 @@ export default defineConfig({
       }
     }
   },
+  base: '/rail-id-web/', // github pages
   publicDir: './src/assets',
   define: {
     '__PKG_NAME__':    JSON.stringify(pkg.name),
