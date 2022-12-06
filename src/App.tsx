@@ -57,20 +57,22 @@ function App({ codeParam, appInfo }: AppProps) {
   }
 
 
-  // Ref and effect to allow blurring the CodeBox
+  // Ref and effect to allow CodeBox focus/blur
   const boxRef = createRef<HTMLElement>()
-  const [doBlur, setDoBlur] = useState(false)
+  type BoxAction = 'focus' | 'blur' | 'none'
+  const [boxAction, setBoxAction] = useState<BoxAction>('focus') // focus on mount
   useEffect(() => {
-    boxRef.current?.blur()
-    if (doBlur) setDoBlur(false)
-  }, [ doBlur ])
+    if (boxAction === 'blur') boxRef.current?.blur()
+    if (boxAction === 'focus') boxRef.current?.focus()
+    setBoxAction('none')
+  }, [ boxAction ])
 
 
   // Use `codeParam` url parameter if passed
   useEffect(() => {
     if (codeParam && !empty(codeParam)) {
       onChange(codeParam)
-      setDoBlur(true)
+      setBoxAction('blur')
     }
   }, [/* onMount */])
 
