@@ -2,13 +2,14 @@
   "name": "rail-id-web",
   "description": "The European rolling stock code reader",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "GPL-3",
   "repository": "https://github.com/wsiegenthaler/rail-id-web.git",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --mode production",
+    "build-dev": "tsc && vite build --mode development",
     "preview": "vite preview --port 8000 --host"
   },
   "dependencies": {

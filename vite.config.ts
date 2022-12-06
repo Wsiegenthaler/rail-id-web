@@ -13,9 +13,7 @@ const browserslist = 'last 3 versions, >= 95% in US'
 
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
-console.log(`mode = ${mode}`)
-  return defineConfig({
+export default ({ mode }) => defineConfig({
   build: {
     minify: 'terser',
     sourcemap: true,
@@ -26,7 +24,7 @@ console.log(`mode = ${mode}`)
       }
     }
   },
-  base: mode === 'prod' ? '/rail-id-web/' : '/',
+  base: mode === 'production' ? '/rail-id-web/' : '/',
   publicDir: './src/assets',
   define: {
     '__PKG_NAME__':    JSON.stringify(pkg.name),
@@ -82,4 +80,3 @@ console.log(`mode = ${mode}`)
     analyze({ limit: 20, summaryOnly: true })
   ]
 })
-}
