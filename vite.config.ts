@@ -11,8 +11,9 @@ import pkg from './package.json' assert { type: "json" }
 
 const browserslist = 'last 3 versions, >= 95% in US'
 
+
 // https://vitejs.dev/config/
-export default defineConfig({
+export default ({ mode }) => defineConfig({
   build: {
     minify: 'terser',
     sourcemap: true,
@@ -23,7 +24,7 @@ export default defineConfig({
       }
     }
   },
-  base: '/rail-id-web/', // github pages
+  base: mode === 'prod' ? '/rail-id-web/' : '/',
   publicDir: './src/assets',
   define: {
     '__PKG_NAME__':    JSON.stringify(pkg.name),
