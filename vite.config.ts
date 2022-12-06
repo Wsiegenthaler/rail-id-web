@@ -40,7 +40,7 @@ export default ({ mode }) => defineConfig({
       manifest: {
         name: 'Rail ID',
         short_name: 'Rail ID',
-        theme_color: '#646cff',
+        theme_color: '#202024',
         icons: [
           {
             src: 'logo.svg',
@@ -60,7 +60,6 @@ export default ({ mode }) => defineConfig({
     react(),
     lightningcss({ browserslist }),
     faviconsPlugin({
-      xpath: './src/assets/favicon.svg',
       icons: {
         favicons: {
           source: './src/assets/favicon.svg'
