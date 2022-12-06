@@ -36,7 +36,6 @@ export default ({ mode }) => defineConfig({
   plugins: [
     VitePWA({
       mode: 'development',
-      base: '/',
       includeAssets: ['logo.svg', 'splash.png'],
       manifest: {
         name: 'Rail ID',
