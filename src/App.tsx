@@ -12,7 +12,7 @@ import CodeBox from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
 import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
-import { faCircleExclamation, faCircleInfo, faTrainSubway, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faCircleExclamation, faCircleInfo, faTrainSubway, faFileCode } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Share from './components/Share'
 
@@ -198,7 +198,7 @@ function App({ codeParam, appInfo }: AppProps) {
         <div className="foot">
           <span className="repo">
             <a href={appInfo.repository} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faCode} />
+              <FontAwesomeIcon icon={faFileCode} />
               {appInfo.pkgName}
             </a>
           </span>
