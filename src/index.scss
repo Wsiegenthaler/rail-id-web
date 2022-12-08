@@ -3,8 +3,10 @@
 /* ----------------------- Root Defs ------------------------ */
 
 :root {
-  --font-family: JetBrains Mono, Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-family: var(--font-family);
+  --font-main: Quicksand, Helvetica, Arial, sans-serif;
+  --font-code-box: JetBrains Mono;
+
+  font-family: var(--font-main);
   line-height: 24px;
   font-weight: 400;
 

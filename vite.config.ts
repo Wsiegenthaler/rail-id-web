@@ -70,6 +70,10 @@ export default ({ mode }) => defineConfig({
       google: {
         families: [
           {
+            name: 'Quicksand',
+            styles: 'wght@100;200;400;500;600;700;800;900'
+          },
+          {
             name: 'JetBrains Mono',
             styles: 'wght@100;200;400;500;600;700;800;900'
           },
