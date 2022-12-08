@@ -10,7 +10,7 @@
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
  
   font-synthesis: none;
@@ -19,7 +19,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  /* Neutral color palette */
+  // Neutral color palette
   --color-neutral-0: #000000;
   --color-neutral-1: #101014;
   --color-neutral-2: #202024;
@@ -40,106 +40,106 @@
 
 /* ----------------------- Dark Theme ----------------------- */
 
-@media (prefers-color-scheme: dark) {
+//@media (prefers-color-scheme: dark) {
   :root {
     --color-red: #ff5555;
-    --color-green: #20FF6C;
+    --color-green: #43fa80;
     --color-blue: #1789fc;
     --color-purple: #646cff;
     --color-yellow: #f5b342;
 
-    /* Semantic colors */
+    // Semantic colors
     --success-color: var(--color-green);
     --warn-color: var(--color-yellow);
     --error-color: var(--color-red);
     --link-color: var(--color-purple);
 
-    /* Button */
+    // Button
     --button-text-color: var(--color-neutral-c);
     --button-bg-color: #1a1a1a;
     --button-icon-color: var(--color-neutral-8);
     --button-focus-color: var(--color-purple);
 
-    /* App general */
+    // App general
     --bg-color: var(--color-neutral-2);
     --logo-color: var(--color-neutral-4);
     --h1-color: var(--color-neutral-d);
-    --h3-color: var(--color-neutral-6);
+    --h3-color: var(--color-neutral-7);
     --welcome-color: var(--color-neutral-6);
-    --welcome-alt-color: var(--color-neutral-4);
+    --welcome-alt-color: var(--color-neutral-5);
 
-    /* Keep Typing */
-    --keep-typing-color: var(--color-purple);
-    --keep-typing-icon-color: var(--color-purple);
+    // Keep Typing
+    --keep-typing-color: var(--color-yellow);
+    --keep-typing-icon-color: var(--color-yellow);
 
-    /* Codebox */
+    // Codebox
     --codebox-color-text: var(--color-neutral-d);
     --codebox-color-background: var(--color-neutral-3);
-    --codebox-reset-color: var(--color-neutral-4);
-    --codebox-reset-focus-color: var(--color-neutral-5);
+    --codebox-reset-color: var(--color-neutral-5);
+    --codebox-reset-focus-color: var(--color-neutral-6);
     --codebox-color-border: var(--color-neutral-4);
     --codebox-color-border-focus: var(--color-neutral-6);
 
-    /* Fields */
+    // Fields
     --field-color: var(--color-neutral-6);
     --field-alt-color: var(--color-neutral-8);
-    --field-name-color: var(--color-neutral-4);
+    --field-name-color: var(--color-neutral-5);
     --field-text-color: var(--color-neutral-7);
     --field-value-color: var(--color-neutral-c);
-    --field-decorator-color: var(--color-neutral-4);
+    --field-decorator-color: var(--color-neutral-3);
 
-    /* Share */
+    // Share
     --share-color: var(--color-neutral-d);
     --share-alt-color: var(--color-neutral-8);
 
-    /* Highlights */
+    // Highlights
     --highlight-color: var(--color-purple);
     --highlight-alt-color: var(--color-yellow);
     --highlight-dot-bg-color: var(--color-neutral-4);
     
-    /* Footer */
+    // Footer
     --footer-color: var(--color-neutral-9);
     --footer-alt-color: var(--color-neutral-7);
     --footer-sep-color: var(--color-neutral-5);
   }
-}
+//}
 
 /* ----------------------- Light Theme ---------------------- */
 
-@media (prefers-color-scheme: light) {
+/*@media (prefers-color-scheme: light) {
   :root {
-    /*TODO improve these for light theme */
+    //TODO improve these for light theme 
     --color-red: #EB5353;
     --color-green: #20FF6C;
     --color-blue: #1789fc;
     --color-purple: #646cff;
     --color-yellow: #f5b342;
 
-    /* Semantic colors */
+    // Semantic colors
     --success-color: var(--color-green);
     --warn-color: var(--color-yellow);
     --error-color: var(--color-red);
     --link-color: var(--color-purple);
 
-    /* Button */
+    // Button
     --button-text-color: var(--color-neutral-2);
     --button-bg-color: var(--color-neutral-d);
     --button-icon-color: var(--color-neutral-7);
     --button-focus-color: var(--color-purple);
 
-    /* App general */
-    --bg-color: var(--color-neutral-f);
+    // App general
+    --bg-color: var(--color-neutral-e);
     --logo-color: var(--color-neutral-b);
     --h1-color: var(--color-neutral-5);
     --h3-color: var(--color-neutral-9);
     --welcome-color: var(--color-neutral-6);
     --welcome-alt-color: var(--color-neutral-c);
 
-    /* Keep Typing */
+    // Keep Typing
     --keep-typing-color: var(--color-purple);
     --keep-typing-icon-color: var(--color-purple);
 
-    /* Codebox */
+    // Codebox
     --codebox-color-text: var(--color-neutral-7);
     --codebox-color-background: var(--color-neutral-d);
     --codebox-reset-color: var(--color-neutral-c);
@@ -147,29 +147,29 @@
     --codebox-color-border: var(--color-neutral-b);
     --codebox-color-border-focus: var(--color-neutral-9);
 
-    /* Fields */
+    // Fields
     --field-color: var(--color-neutral-7);
     --field-alt-color: var(--color-yellow);
-    --field-name-color: var(--color-neutral-a);
+    --field-name-color: var(--color-neutral-9);
     --field-text-color: var(--color-neutral-8);
     --field-value-color: var(--color-neutral-4);
-    --field-decorator-color: var(--color-neutral-b);
+    --field-decorator-color: var(--color-neutral-c);
 
-    /* Share */
+    // Share
     --share-color: var(--color-neutral-3);
     --share-alt-color: var(--color-neutral-9);
 
-    /* Highlights */
+    // Highlights
     --highlight-color: var(--color-purple);
     --highlight-alt-color: var(--color-yellow);
     --highlight-dot-bg-color: var(--color-neutral-d);
     
-    /* Footer */
+    // Footer
     --footer-color: var(--color-neutral-7);
     --footer-alt-color: var(--color-neutral-8);
     --footer-sep-color: var(--color-neutral-9);
   }
-}
+}*/
 
 /* ------------------- Other Global Style ------------------- */
 
@@ -235,9 +235,10 @@ button {
 /* ----------------------- Responsive ----------------------- */
 
 html {
-  @include r.devices(mobile)     { font-size: 4vw; }
-  @include r.devices(tablet)     { font-size: 14px; }
-  @include r.devices(desktop)    { font-size: 15px; }
-  @include r.devices(widescreen) { font-size: 17px; }
-  @include r.devices(fullhd)     { font-size: 18px; }
+  //@include r.devices(mobile)     { font-size: 4vw; }
+  @include r.devices(mobile)     { font-size: 16px; }
+  @include r.devices(tablet)     { font-size: 16px; }
+  @include r.devices(desktop)    { font-size: 17px; }
+  @include r.devices(widescreen) { font-size: 19px; }
+  @include r.devices(fullhd)     { font-size: 20px; }
 }

@@ -31,7 +31,7 @@
     margin-top: 1rem;
     line-height: 1em;
     font-size: 4rem;
-    font-weight: 400;
+    font-weight: 600;
     color: var(--h1-color);
     animation: fade-in 350ms 200ms ease-in forwards;
     opacity: 0;
@@ -50,19 +50,24 @@
 
   .welcome {
     color: var(--welcome-color);
+    font-size: 1.1rem;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     
     @include r.devices(mobile) {
-      font-size: 1rem;
-      span { text-align: left; }
+      span {
+        text-align: center;
+        width: 80%;
+      }
+      svg { display: none; }
     }
 
     svg {
       color: var(--welcome-alt-color);
       margin-right: .5rem;
-      width: 1.4em;
+      width: 1.35em;
       height: 100%;
     }
   }
@@ -88,6 +93,8 @@
     .controls-inner {
       @include r.devices(mobile) {
         margin-top: 0;
+        padding-right: 0;
+        padding-left: 0;
       }
     }
 
@@ -127,25 +134,29 @@
         font-weight: 400;
         font-family: var(--font-code-box);
         text-align: center;
-        letter-spacing: 0.025rem;
+        letter-spacing: 0.05rem;
         padding: .7rem;
         border-radius: .5rem;
- 
-        @include r.devices(mobile) {
-          font-size: 1.1rem;
-        }
- 
+  
         color: var(--codebox-color-text);
         background: var(--codebox-color-background);
-        border: 1px solid var(--codebox-color-border);
+        border: 2px solid var(--codebox-color-border);
         outline: none; // prevent browser-added style
+
+        @include r.devices(mobile) {
+          font-size: 1.1rem;
+          border-radius: 0;
+          border-width: 1px !important;
+          border-right: 0 !important;
+          border-left: 0 !important;
+        }
 
         /* Border styles */
         &:focus {
-          border: 1px solid var(--codebox-color-border-focus);
+          border: 2px solid var(--codebox-color-border-focus);
           outline: none;
         }
-        &.valid { border: 1px solid var(--success-color); }
+        &.valid { border: 2px solid var(--success-color); }
 
         /* Error character highlight */
         & span.pos-error {
@@ -166,13 +177,13 @@
         position: absolute;
         height: 46%;
         top: 27%;
-        right: 1.8%;
+        right: 2.35%;
         color: var(--codebox-reset-color);
 
         @include r.devices(mobile) {
-          height: 50%;
-          top: 25%;
-          right: 1.75%;
+          height: 40%;
+          top: 30%;
+          right: 2.75%;
         }
 
         &:hover {
@@ -185,13 +196,13 @@
         position: absolute;
         height: 56%;
         top: 22%;
-        right: 1.25%;
+        right: 1.8%;
         color: var(--codebox-color-background);
 
         @include r.devices(mobile) {
-          height: 50%;
-          top: 25%;
-          right: 1.7%;
+          height: 40%;
+          top: 30%;
+          right: 2.7%;
           transform: scale(1.1);
         }
       }
@@ -200,6 +211,7 @@
     .feedback {
       margin: 0 1.5rem;
       font-size: .9rem;
+      font-weight: 400;
 
       * { user-select: none; }
 
@@ -234,7 +246,6 @@
         align-items: center;
         justify-content: center;
         text-align: left;
-        font-weight: 300;
 
         .warn-icon svg {
           width: 3.25rem;
@@ -260,16 +271,13 @@
       /* Keep Typing */
       .keep-typing-msg {
         color: var(--keep-typing-color);
+        font-size: 1.1rem;
         display: flex;
         align-items: center;
         justify-content: center;
 
-        @include r.devices(mobile) {
-          font-size: .8rem;
-        }
-
         svg {
-          width: 1.7em;
+          width: 1.45em;
           height: 100%;
           color: var(--keep-typing-icon-color);
           margin-right: 0.5em;
@@ -310,43 +318,43 @@
     .field-header {
       .field-name {
         color: var(--field-name-color);
-        font-size: 1.6rem;
-        font-weight: 800;
+        font-size: 1.65rem;
+        font-weight: 700;
       }
   
       .field-desc {
         color: var(--field-text-color);
         font-weight: 300;
-        margin-top: 0.5rem;
+        margin-top: .25rem;
         margin-bottom: .5rem;
       }
     }
  
     .field-body {
-      margin-top: .8rem;
+      margin-top: .5rem;
       flex-direction: column;
       margin-left: .5em;
       font-size: .95rem;
       padding-top: .3rem;
       padding-bottom: .5rem;
 
-      & > * { margin-left: 1.2rem; }
+      & > * { margin-left: 1.15rem; }
 
-      border-left: .5rem solid var(--field-name-color);
+      border-left: .35rem solid var(--field-decorator-color);
     }
 
     .field-value-header {
       .field-value {
         color: var(--field-value-color);
         font-size: 1.35rem;
-        font-weight: 400;
+        font-weight: 600;
         width: fit-content;
       }
     }
  
     .field-value-body {
-      font-weight: 200;
-      margin-top: .75em;
+      font-weight: 300;
+      margin-top: .35em;
  
       .field-value-desc {
         color: var(--field-text-color);
@@ -378,6 +386,10 @@
     .field-body {
       color: var(--highlight-color);
       border-color: var(--highlight-color);
+    
+      .field-value-body * {
+        color: var(--field-value-color);
+      }
     }
   }
  
@@ -439,7 +451,11 @@
 
     .short {
       font-size: .8em;
-      color: var(--field-decorator-color);
+      color: var(--field-name-color);
+    }
+
+    .highlight .short {
+      color: var(--field-value-color);
     }
   }
   
@@ -466,7 +482,7 @@
         color: var(--field-value-color);
 
         a {
-          color: var(--field-decorator-color);
+          color: var(--field-name-color);
 
           &:hover {
             cursor: pointer;
@@ -479,11 +495,12 @@
   /* ---------------------- Shareables ------------------------ */
 
   .shareables {
-    margin: 3rem 1rem 6rem 1rem;
+    margin: 2rem 1rem 5rem 1rem;
     text-align: center;
 
     .shareables-title {
       font-size: 1rem;
+      font-weight: 600;
       padding-bottom: .3rem;
       color: var(--share-color);
     }
@@ -500,7 +517,7 @@
 
       button {
         padding: .6rem 1.4rem;
-        font-size: .8rem;
+        font-size: .9rem;
       }
     }
 
@@ -540,6 +557,7 @@
 
     .repo svg {
       padding-right: .4rem;
+      transform: scale(1.25);
     }
   }
 

@@ -202,7 +202,7 @@ function App({ codeParam, appInfo }: AppProps) {
               {appInfo.pkgName}
             </a>
           </span>
-          <span className="version">v{appInfo.version}</span>
+          <span className="version">{appInfo.version}</span>
           <span className="license">{appInfo.license}</span>
 
         </div>
