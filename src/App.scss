@@ -3,6 +3,9 @@
 #rail-id {
   height: 100%;
 
+  animation: fade-in 350ms 350ms ease-in forwards;
+  opacity: 0;
+
   .body {
     display: flex;
     flex-direction: column;
@@ -17,8 +20,6 @@
     margin-top: 5em;
     color: var(--logo-color);
 
-    animation: fade-in 350ms 150ms ease-in forwards;
-    opacity: 0;
   }
   
   .logo, h1, h3 {
@@ -33,8 +34,6 @@
     font-size: 4rem;
     font-weight: 600;
     color: var(--h1-color);
-    animation: fade-in 350ms 200ms ease-in forwards;
-    opacity: 0;
   }
   
   h3 {
@@ -44,8 +43,6 @@
     font-weight: 300;
     color: var(--h3-color);
 
-    animation: fade-in 350ms 300ms ease-in forwards;
-    opacity: 0;
   }
 
   .welcome {
@@ -87,8 +84,6 @@
     position: sticky;
     z-index: 99;
 
-    animation: fade-in 350ms 650ms ease-in forwards;
-    opacity: 0;
 
     .controls-inner {
       @include r.devices(mobile) {
@@ -293,8 +288,6 @@
     padding-left: 1rem;
     padding-right: 1rem;
  
-    animation: fade-in 350ms 1000ms ease-in forwards;
-    opacity: 0;
 
     .field-router {
       .field-router-inner {
