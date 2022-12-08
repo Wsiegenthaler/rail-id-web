@@ -5,15 +5,9 @@ import App from './App'
 import './index.scss'
 import { urlDecodeCode } from './util'
 
-// Vite-injected values
-declare const __DESCRIPTION__: string
-declare const __PKG_NAME__: string
-declare const __VERSION__: string
-declare const __LICENSE__: string
-declare const __REPOSITORY__: string
 
-// Package info (injected by vite)
-const appInfo = {
+// App/package info
+const info = {
   name: 'Rail ID',
   description: __DESCRIPTION__ ?? '',
   pkgName: __PKG_NAME__ ?? '',
@@ -38,4 +32,4 @@ if (escaped && escaped.trim().length > 0) {
 // Bind app to dom
 ReactDOM
   .createRoot(document.getElementById('root') as HTMLElement)
-  .render(<StrictMode> <App codeParam={code} appInfo={appInfo} /> </StrictMode>)
+  .render(<StrictMode> <App codeParam={code} appInfo={info} /> </StrictMode>)
