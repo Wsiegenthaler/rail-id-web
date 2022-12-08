@@ -73,6 +73,7 @@ function App({ codeParam, appInfo }: AppProps) {
     if (codeParam && !empty(codeParam)) {
       onChange(codeParam)
       setBoxAction('blur')
+      setTimeout(() => scrollToCodeBox(), 800)
     }
   }, [/* onMount */])
 
