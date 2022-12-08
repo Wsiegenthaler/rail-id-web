@@ -324,7 +324,7 @@
   
       .field-desc {
         color: var(--field-text-color);
-        font-weight: 300;
+        font-weight: 500;
         margin-top: .25rem;
         margin-bottom: .5rem;
       }
@@ -353,11 +353,12 @@
     }
  
     .field-value-body {
-      font-weight: 300;
+      font-weight: 500;
       margin-top: .35em;
  
       .field-value-desc {
         color: var(--field-text-color);
+        padding-bottom: .4rem;
       }
 
       .field-notes {
@@ -366,8 +367,12 @@
         }
 
         ul {
-          list-style-position: inside;
-          li { list-style-type: disc; }
+          list-style-position: outside;
+          padding-left: 1rem;
+          li {
+            list-style-type: disc;
+            padding-bottom: .4rem;
+          }
         }
       }
     }
