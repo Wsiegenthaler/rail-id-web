@@ -176,6 +176,7 @@
 html, body {
   font-family: inherit;
   background-color: var(--bg-color) !important;
+  scroll-behavior: smooth;
 }
 
 html, body, #root {
