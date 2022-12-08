@@ -302,7 +302,7 @@
       }
     }
   
-    &.disable {
+    &.disable > * {
       user-select: none;
       pointer-events: none;
       opacity: .3;
