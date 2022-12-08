@@ -93,7 +93,7 @@ function App({ codeParam, appInfo }: AppProps) {
 
 
   // Welcome message
-  const showWelcome = !result && isBenign(error) && !showKeepTyping
+  const showWelcome = !result && isBenign(error) && empty(code) && !showKeepTyping
   const demo = () => onChange(randomDemoCode())
 
 
@@ -190,7 +190,7 @@ function App({ codeParam, appInfo }: AppProps) {
 
         <div className={`results ${disableResults}`} >
           <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
-          { result && isBenign(error) ? <Share code={code} /> : <></> }
+          { result ? <Share code={code} /> : <></> }
         </div>
 
       </div>
