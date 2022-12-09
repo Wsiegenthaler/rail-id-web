@@ -249,7 +249,6 @@ button {
 /* ----------------------- Responsive ----------------------- */
 
 html {
-  //@include r.devices(mobile)     { font-size: 4vw; }
   @include r.devices(mobile)     { font-size: 16px; }
   @include r.devices(tablet)     { font-size: 16px; }
   @include r.devices(desktop)    { font-size: 17px; }
