@@ -8,7 +8,7 @@ import './App.scss'
 import 'bulma/css/bulma.css'
 
 import FieldRouter from './components/FieldRouter'
-import CodeBox from './components/CodeBox'
+import CodeBox, { CodeBoxRef } from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
 import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
@@ -56,23 +56,13 @@ function App({ codeParam, appInfo }: AppProps) {
     if (!isBenign(error) || isBenign(newError)) setErrorDebounce.flush()
   }
 
-
-  // Ref and effect to allow CodeBox focus/blur
-  const boxRef = createRef<HTMLElement>()
-  type BoxAction = 'focus' | 'blur' | 'none'
-  const [boxAction, setBoxAction] = useState<BoxAction>('focus') // focus on mount
-  useEffect(() => {
-    if (boxAction === 'blur') boxRef.current?.blur()
-    if (boxAction === 'focus') boxRef.current?.focus()
-    setBoxAction('none')
-  }, [ boxAction ])
-
+  const boxRef = createRef<CodeBoxRef>()
 
   // Use `codeParam` url parameter if passed
   useEffect(() => {
     if (codeParam && !empty(codeParam)) {
       onChange(codeParam)
-      setBoxAction('blur')
+      boxRef.current?.blur()
       setTimeout(() => scrollToCodeBox(), 800)
     }
   }, [/* onMount */])

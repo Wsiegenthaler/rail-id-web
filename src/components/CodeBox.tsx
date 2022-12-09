@@ -8,7 +8,8 @@ import {
   ForwardedRef,
   useRef,
   Ref,
-  MutableRefObject
+  MutableRefObject,
+  useImperativeHandle
 } from 'react'
 
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
@@ -27,6 +28,11 @@ type Props = {
   onReset?: () => void
 }
 
+export type CodeBoxRef = {
+  focus: () => void,
+  blur: () => void
+}
+
 function dismissKeyboardOnEnter(ev: KeyboardEvent<HTMLElement>) {
   const key = ev.code ?? ev.keyCode.toString()
   if (key === 'Enter' || key === '13') ev.currentTarget.blur()
@@ -34,12 +40,17 @@ function dismissKeyboardOnEnter(ev: KeyboardEvent<HTMLElement>) {
 
 type CaretState = { kind: 'blur' } | { kind: 'caret', pos: number } | { kind: 'selection', start: number, end: number }
 
-const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: Props, forwardRef: ForwardedRef<HTMLElement>) => {
+const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: Props, forwardRef: ForwardedRef<CodeBoxRef>) => {
   
   const [caretState, setCaretState] = useState<CaretState>({ kind: 'blur' })
 
   const localRef = useRef<HTMLElement | null>(null)
 
+  // Exposed imperative functionality for parent components
+  useImperativeHandle(forwardRef, () => ({
+    focus: () => localRef.current?.focus(),
+    blur: () => localRef.current?.blur()
+  }))
 
   // Updates component state to reflect the current caret position/selection
   const syncCaretState = () => setCaretState(detectCaretState())
@@ -133,7 +144,7 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
         tagName="pre"
         spellCheck="false"
         html={html} // innerHTML of the editable element
-        innerRef={assignRefs(localRef, forwardRef)}
+        innerRef={localRef}
 
         // Handle user input
         onChange={handleChange}
@@ -154,19 +165,5 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
     </div>
   )
 })
-
-// Awkward solution to bind both local ref and forwarded ref to same child element ref prop.
-// See: https://stackoverflow.com/questions/62238716/using-ref-current-in-react-forwardref
-const assignRefs = <T extends unknown>(...refs: Ref<T | null>[]) => {
-  return (node: T | null) => {
-    refs.forEach(r => {
-      if (typeof r === "function") {
-        r(node)
-      } else if (r) {
-        (r as MutableRefObject<T | null>).current = node
-      }
-    })
-  }
-}
 
 export default CodeBox
