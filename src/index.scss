@@ -59,6 +59,7 @@
     --button-bg-color: #1a1a1a;
     --button-icon-color: var(--color-neutral-8);
     --button-focus-color: var(--color-purple);
+    --button-disabled-color: var(--color-neutral-5);
 
     // App general
     --bg-color: var(--color-neutral-2);
@@ -222,6 +223,18 @@ button {
     svg {
       transition: all .25s;
       color: var(--button-focus-color);
+    }
+  }
+
+  &:disabled {
+    color: var(--button-text-color);
+    border-color: transparent;
+    cursor: default !important;
+    transition: all .25s;
+
+    svg {
+      transition: all .25s;
+      color: var(--button-disabled-color);
     }
   }
 
