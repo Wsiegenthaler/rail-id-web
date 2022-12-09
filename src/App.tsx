@@ -7,12 +7,14 @@ import railID, { RailID, ParseError, isParseError } from 'rail-id'
 import './App.scss'
 import 'bulma/css/bulma.css'
 
+import Logo from "./assets/logo.svg";
+
 import FieldRouter from './components/FieldRouter'
 import CodeBox, { CodeBoxRef } from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
 import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
-import { faCircleExclamation, faCircleInfo, faTrainSubway, faFileCode } from '@fortawesome/free-solid-svg-icons'
+import { faCircleExclamation, faCircleInfo, faFileCode } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Share from './components/Share'
 
@@ -154,7 +156,7 @@ function App({ codeParam, appInfo }: AppProps) {
     <div id="rail-id">
       <div className="body">
 
-        <FontAwesomeIcon className="logo" icon={faTrainSubway} />
+        <img className="logo" src={Logo} />
         <h1>{appInfo.name}</h1>
         <h3>{appInfo.description}</h3>
 
