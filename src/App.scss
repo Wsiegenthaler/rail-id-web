@@ -42,7 +42,10 @@
     font-size: 1.4rem;
     font-weight: 300;
     color: var(--h3-color);
-
+    
+    @include r.devices(mobile) {
+      width: 85%;
+    }
   }
 
   .welcome {
@@ -56,7 +59,7 @@
     @include r.devices(mobile) {
       span {
         text-align: center;
-        width: 80%;
+        width: 90%;
       }
       svg { display: none; }
     }
