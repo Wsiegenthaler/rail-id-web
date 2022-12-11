@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { VitePluginFonts } from 'vite-plugin-fonts'
-import faviconsPlugin from '@darkobits/vite-plugin-favicons'
+import webfontDownload from 'vite-plugin-webfont-dl'
 import lightningcss from 'vite-plugin-lightningcss'
 import compress from 'vite-plugin-compression'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -115,20 +114,7 @@ export default ({ mode }) => defineConfig({
     }),
     react(),
     lightningcss({ browserslist }),
-    VitePluginFonts({
-      google: {
-        families: [
-          {
-            name: 'Quicksand',
-            styles: 'wght@100;200;400;500;600;700;800;900'
-          },
-          {
-            name: 'JetBrains Mono',
-            styles: 'wght@400'
-          },
-        ]
-      }
-    }),
+    webfontDownload(),
     compress({ algorithm: 'brotliCompress' }),
     analyze({ limit: 20, summaryOnly: true })
   ]
