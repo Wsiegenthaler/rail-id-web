@@ -113,7 +113,6 @@ const genIcons = async (ctx: PluginContext, defs: Def[], inDir: string, outDir: 
           // Determine source image aspect ratio
           const meta = await sharp(inFile).metadata()
           const aspect = meta.width! / meta.height!
-          console.log(`width = ${meta.width}, height = ${meta.height}, aspect = ${aspect}`)//TODO
 
           const width = size.w, height = size.h
           var iconWidth: number, iconHeight: number
@@ -153,7 +152,6 @@ const genIcons = async (ctx: PluginContext, defs: Def[], inDir: string, outDir: 
         if (fmt === 'ico') {
           // Generate ico containing all specified sizes
           const outFile = outFilePath(def, outDir)
-          console.log(`generatirng ${outFile} from ${inFile}...`)//TODO
           const buffer = await svgToIco(inFile, def.sizes)
 
           // Emit file
@@ -162,7 +160,6 @@ const genIcons = async (ctx: PluginContext, defs: Def[], inDir: string, outDir: 
           for (const j in def.sizes) {
             const size = def.sizes[j]
             const outFile = outFilePath(def, outDir, size)
-            console.log(`generatirng ${outFile} from ${inFile}...`)//TODO
 
             // Generate png
             const { data } = await sharp(inFile)
