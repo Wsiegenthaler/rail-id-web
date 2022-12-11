@@ -171,7 +171,7 @@ function App({ codeParam, appInfo }: AppProps) {
               <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
               <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
                 <FontAwesomeIcon icon={faCircleInfo} />
-                <span>Enter a UIC code to learn about a vehicle or try a <a onClick={e => demo()}>random</a> one!</span>
+                <span>Enter a UIC code to learn about a vehicle or try a <a onClick={e => demo()}>random</a> one</span>
               </div>
               <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
                 <FontAwesomeIcon icon={faCircleExclamation} />
