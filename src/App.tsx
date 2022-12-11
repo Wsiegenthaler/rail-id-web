@@ -7,7 +7,7 @@ import railID, { RailID, ParseError, isParseError } from 'rail-id'
 import './App.scss'
 import 'bulma/css/bulma.css'
 
-import Logo from "./assets/logo.svg";
+import Logo from "./logo.svg";
 
 import FieldRouter from './components/FieldRouter'
 import CodeBox, { CodeBoxRef } from './components/CodeBox'

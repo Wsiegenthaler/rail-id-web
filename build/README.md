@@ -1,0 +1,3 @@
+* `plugins/vite-plugin-icons.ts`: Generates rasters of various sizes/formats to be used as favicons, startup screen images, icons, etc in `index.html` and `manifest.webmanifest`
+* `apple-startup-image-defs.ts`: Generates definitions for Apple startup images to be processed by `vite-plugin-icons` during build
+* `apple-fallback-data.json`: Contains device metadata used for generating startup images for Apple devices ([source](https://raw.githubusercontent.com/elegantapp/pwa-asset-generator/master/src/config/apple-fallback-data.json))
