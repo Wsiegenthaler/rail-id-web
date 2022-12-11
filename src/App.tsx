@@ -5,20 +5,22 @@ import { useDebouncedCallback } from 'use-debounce'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 
-import './App.scss'
-import 'bulma/css/bulma.css'
-
-import LogoSrc from "./logo.svg?raw";
+import { faCircleExclamation, faCircleInfo, faFileCode } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import FieldRouter from './components/FieldRouter'
 import CodeBox, { CodeBoxRef } from './components/CodeBox'
 import WarningPanel from './components/WarningPanel'
 import ErrorPanel from './components/ErrorPanel'
-import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
-import { faCircleExclamation, faCircleInfo, faFileCode } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Share from './components/Share'
 import UncachedSvg from './components/util/UncachedSvg'
+
+import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
+
+import './App.scss'
+import 'bulma/css/bulma.css'
+
+import LogoSrc from './logo.svg?raw'
 
 
 export type AppError =
@@ -199,7 +201,6 @@ function App({ codeParam, appInfo }: AppProps) {
           </span>
           <span className="version">{appInfo.version}</span>
           <span className="license">{appInfo.license}</span>
-
         </div>
     </div>
   )
