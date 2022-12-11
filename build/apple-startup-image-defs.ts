@@ -2,27 +2,20 @@ import { groupBy, uniqBy, values } from 'lodash-es'
 
 import devices from './apple-fallback-data.json' assert { type: "json" }
 
+import { AppleStartupDef, Size2D } from './plugins/vite-plugin-icons'
 
 // Types pertaining to `devices` metadata file
 type InputSize = { width: number, height: number }
-type InputDef = {
-  device: string
-  orientation: Orientation
-  scaleFactor: number
-  size: InputSize
-}
 
 // Types for output definitions
-type OutputSize = { w: number, h: number }
 type OutputDef = {
   device: string,
-  size: OutputSize,
+  size: Size2D,
   orientation: Orientation
   scaleFactor: number
 }
 
 type Orientation = 'portrait' | 'landscape'
-
 
 const outSize = (size: InputSize) => ({ w: size.width, h: size.height })
 
@@ -35,12 +28,12 @@ const groups = values(groupBy(outputDefs, d => d.orientation + d.scaleFactor))
   .map(defs => uniqBy(defs, d => `${d.size.w}x${d.size.h}`))
 
 
-export default (iconPercent: number, themeColor: string, sourceIcon: string) =>
+export default (iconPercent: number, themeColor: string, sourceIcon: string): AppleStartupDef[] =>
   groups.map(defs => ({
       type: 'apple',
       purpose: 'startup-image',
       in: sourceIcon,
-      out: s => `assets/apple-startup-${defs[0].orientation}-${defs[0].scaleFactor}px-${s.w}x${s.h}.png`,
+      out: (s: Size2D) => `assets/apple-startup-${defs[0].orientation}-${defs[0].scaleFactor}px-${s.w}x${s.h}.png`,
       sizes: defs.flatMap(d => d.size),
       orientation: defs[0].orientation,
       scaleFactor: defs[0].scaleFactor,

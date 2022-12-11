@@ -13,12 +13,14 @@ import { Plugin } from 'vite'
 // PWA icons/spash images, Apple touch icons, etc
 //
 
-const format = (def: Def, size?: SquareSize | RectSize) => (/[^\.]+$/g.exec(outFilePath(def, '.', size)) ?? ['png']).map(f => f.toLowerCase()).pop() as string
+const format = (def: Def, size?: Size1D | Size2D) => 
+  (/[^\.]+$/g.exec(outFilePath(def, '.', size)) ?? ['png'])
+    .map(f => f.toLowerCase()).pop() as string
 
-const outFilePath = (def: Def, outDir: string, size?: SquareSize | RectSize) =>
+const outFilePath = (def: Def, outDir: string, size?: Size1D | Size2D) => 
   path.join(outDir ?? '.', (typeof def.out === 'string') ? def.out : def.out(size))
 
-async function svgToIco(inFile: string, sizes: SquareSize[]) {
+async function svgToIco(inFile: string, sizes: Size1D[]) {
   const promises = sizes.map(size => new Promise((accept, reject) => 
     sharp(inFile)
       .resize(size, size, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 }})
@@ -37,7 +39,7 @@ const injectHtml = (indexHtml: string, base: string, defs: Def[], outDir: string
 }
 
 const genHtml = (defs: Def[], base: string, outDir: string) => {
-  const filePath = (def: Def, size?: RectSize | SquareSize) => path.join('/', base, outFilePath(def, outDir, size))
+  const filePath = (def: Def, size?: Size2D | Size1D) => path.join('/', base, outFilePath(def, outDir, size))
   const imgCount = (defs: Def[]) => defs.reduce((cnt, def) => cnt + def.sizes.length, 0)
 
   const favicons = defs.filter(def => def.type === 'favicon')
@@ -183,31 +185,31 @@ const genIcons = async (ctx: PluginContext, defs: Def[], inDir: string, outDir: 
   }
 }
 
-type SquareSize = number
-type RectSize = { w: number, h: number }
+export type Size1D = number
+export type Size2D = { w: number, h: number }
 
-type SquareImageFile = string | ((size?: SquareSize) => string)
-type RectImageFile = string | ((size?: RectSize) => string)
+type ImagePath<S extends Size1D | Size2D> = string | ((s: S) => string)
 
-type Def = StandardDef | AppleIconDef | AppleStartupDef
+type Def = FaviconDef | PwaDef | AppleIconDef | AppleStartupDef
 
-type SquareImageDef = {
+type ImageDef1D = {
   in: string
-  sizes: SquareSize[]
-  out: SquareImageFile
+  sizes: Size1D[]
+  out: ImagePath<Size1D>
 }
 
-type RectImageDef = {
+type ImageDef2D = {
   in: string
-  sizes: RectSize[]
-  out: RectImageFile
+  sizes: Size2D[]
+  out: ImagePath<Size2D>
 }
 
-type StandardDef = SquareImageDef & { type: 'favicon' | 'pwa' }
+export type FaviconDef = ImageDef1D & { type: 'favicon' }
+export type PwaDef = ImageDef1D & { type: 'pwa' }
 
-type AppleIconDef = SquareImageDef & { type: 'apple', purpose: 'touch-icon' }
+export type AppleIconDef = ImageDef1D & { type: 'apple', purpose: 'touch-icon' }
 
-type AppleStartupDef = RectImageDef & {
+export type AppleStartupDef = ImageDef2D & {
   type: 'apple'
   purpose: 'startup-image'
   orientation: 'portrait' | 'landscape'
