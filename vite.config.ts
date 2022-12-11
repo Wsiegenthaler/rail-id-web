@@ -14,6 +14,7 @@ import pkg from './package.json' assert { type: "json" }
 // Constants
 const browserslist = 'last 3 versions, >= 95% in US'
 const themeColor = '#202024'
+const pwaIconSizes = [72, 96, 128, 144, 152, 192, 384, 512]
 
 // https://vitejs.dev/config
 export default ({ mode }) => defineConfig({
@@ -42,46 +43,43 @@ export default ({ mode }) => defineConfig({
       defs: [
         {
           type: 'favicon',
-          in: 'icon.svg',
+          in: 'icon-rounded.svg',
           out: `favicon.ico`,
           sizes: [16, 24, 32, 48, 64]
         },
         {
           type: 'favicon',
-          in: 'icon.svg',
+          in: 'icon-rounded.svg',
           out: sz => `assets/favicon-${sz}.png`,
           sizes: [16, 24, 32, 48, 64]
         },
         {
-          type: 'apple',
-          purpose: 'touch-icon',
-          in: 'icon-masked.svg',
-          out: sz => `assets/apple-touch-icon-${sz}.png`,
-          sizes: [120, 152, 167, 180]
+          type: 'favicon',
+          in: 'icon-rounded.svg',
+          out: `assets/favicon.svg`,
+          sizes: []
         },
         {
           type: 'apple',
           purpose: 'touch-icon',
-          in: 'icon-masked.svg',
+          in: 'icon-rounded.svg',
           out: sz => `assets/apple-touch-icon-${sz}.png`,
           sizes: [120, 152, 167, 180]
         },
         {
           type: 'pwa',
-          in: 'icon-masked.svg',
-          out: sz => `assets/pwa-${sz}.png`,
-          sizes: [152, 512]
+          in: 'icon-rounded.svg',
+          out: sz => `assets/pwa-icon-${sz}.png`,
+          sizes: pwaIconSizes
         },
         {
-          type: 'favicon',
-          in: 'icon.svg',
-          out: `assets/icon.svg`,
-          sizes: []
+          type: 'pwa',
+          in: 'icon-rounded.svg',
+          out: sz => `assets/pwa-icon-mask-${sz}.png`,
+          sizes: pwaIconSizes
         },
-
         // Apple Startup images
         ...appleStartupImageDefs(25, themeColor, 'icon.svg')
-
       ]
     }),
     VitePWA({
@@ -91,24 +89,27 @@ export default ({ mode }) => defineConfig({
         short_name: 'Rail ID',
         theme_color: themeColor,
         icons: [
+          // Vector icon
           {
-            src: 'icon.svg',
+            src: 'icon-rounded.svg',
             sizes: 'any',
             type: 'image/svg+xml',
-            purpose: 'any maskable',
+            purpose: 'any',
           },
-          {
-            src: 'assets/pwa-192.png',
-            sizes: '192x192',
+          // Regular icons
+          ...pwaIconSizes.map(sz => ({
+            src: `assets/pwa-icon-${sz}.png`,
+            sizes: `${sz}x${sz}`,
+            type: 'image/png',
+            purpose: 'any'
+          })),
+          // Maskable icons
+          ...pwaIconSizes.map(sz => ({
+            src: `assets/pwa-icon-mask-${sz}.png`,
+            sizes: `${sz}x${sz}`,
             type: 'image/png',
             purpose: 'any maskable'
-          },
-          {
-            src: 'assets/pwa-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable'
-          }
+          }))
         ]
       }
     }),
