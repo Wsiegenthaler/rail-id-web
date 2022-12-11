@@ -5,6 +5,8 @@ import sharp from 'sharp'
 import toIco from 'to-ico'
 
 import { InputOptions, PluginContext } from 'rollup'
+import { Plugin } from 'vite'
+
 
 //
 // This vite plugin converts icons to various formats and sizes necessary for page favicons,
@@ -221,7 +223,7 @@ type PluginOptions = {
   injectHtml: boolean
 }
 
-export default function plugin(options: Partial<PluginOptions>) {
+export default function plugin(options: Partial<PluginOptions>): Plugin {
   let config
 
   const inDir = options.inDir ?? '.'
@@ -242,7 +244,7 @@ export default function plugin(options: Partial<PluginOptions>) {
     },
 
     transformIndexHtml: {
-      order: 'post',
+      enforce: 'post',
       transform(html): string | undefined {
         if (inject) return injectHtml(html, config.base, defs, outDir)
       }
