@@ -7,7 +7,7 @@ import railID, { RailID, ParseError, isParseError } from 'rail-id'
 import './App.scss'
 import 'bulma/css/bulma.css'
 
-import Logo from "./logo.svg";
+import LogoSrc from "./logo.svg?raw";
 
 import FieldRouter from './components/FieldRouter'
 import CodeBox, { CodeBoxRef } from './components/CodeBox'
@@ -17,6 +17,7 @@ import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
 import { faCircleExclamation, faCircleInfo, faFileCode } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Share from './components/Share'
+import UncachedSvg from './components/util/UncachedSvg'
 
 
 export type AppError =
@@ -156,7 +157,7 @@ function App({ codeParam, appInfo }: AppProps) {
     <div id="rail-id">
       <div className="body">
 
-        <img className="logo" src={Logo} />
+        <UncachedSvg className="logo" src={LogoSrc} />
         <h1>{appInfo.name}</h1>
         <h3>{appInfo.description}</h3>
 
