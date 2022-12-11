@@ -231,6 +231,7 @@ export default function plugin(options: Partial<PluginOptions>) {
 
   return {
     name: 'vite-plugin-icons',
+    apply: 'build', // skip dev builds
 
     configResolved(resolvedConfig) {
       config = resolvedConfig
