@@ -154,7 +154,7 @@ function App({ codeParam, appInfo }: AppProps) {
   useEffect(() => document.addEventListener('touchstart', ev => {
     ev.stopPropagation()
     setHighlights('clear')
-  }), [/* onMount only */])
+  }), [/* onMount */])
 
   return (
     <div id="rail-id">
