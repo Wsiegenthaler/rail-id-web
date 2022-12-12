@@ -16,7 +16,7 @@ const browserslist = 'last 3 versions, >= 95% in US'
 const themeColor = '#202024'
 const pwaIconSizes = [72, 96, 128, 144, 152, 192, 384, 512]
 
-// https://vitejs.dev/config
+// Config (https://vitejs.dev/config)
 export default ({ mode }) => defineConfig({
   build: {
     minify: 'terser',
@@ -28,7 +28,7 @@ export default ({ mode }) => defineConfig({
       }
     }
   },
-  base: mode === 'production' ? '/rail-id-web/' : '/',
+  base: process.env.RAIL_ID_BASE ?? '/',
   publicDir: './src/assets',
   define: {
     '__PKG_NAME__':    JSON.stringify(pkg.name),
