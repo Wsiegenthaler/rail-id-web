@@ -2,8 +2,8 @@ import { some } from 'lodash-es'
 
 import { SetFieldMeta, ScalarFieldMeta } from 'rail-id'
 
-import { FieldElementProps } from '../../components/FieldRouter'
-import { empty } from '../../util'
+import { FieldElementProps } from '../../FieldRouter'
+import { empty } from '../../../util'
 import ScalarField from './ScalarField'
 import SetField from './SetField'
 

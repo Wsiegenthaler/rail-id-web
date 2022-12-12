@@ -7,10 +7,10 @@ import { hashCode } from '../util'
 
 import { HighlightState, SetHighlights } from '../App'
 
-import Field from '../fields/generic/Field'
-import CountryField from '../fields/custom/CountryField'
-import KeeperField from '../fields/custom/KeeperField'
-import OtherNotesField from '../fields/custom/OtherNotesField'
+import Field from './fields/generic/Field'
+import CountryField from './fields/custom/CountryField'
+import KeeperField from './fields/custom/KeeperField'
+import OtherNotesField from './fields/custom/OtherNotesField'
 
 type Props = {
   result: RailID | undefined

@@ -3,9 +3,9 @@ import { kebabCase } from 'lodash-es'
 
 import { Country, ScalarFieldMeta } from 'rail-id'
 
-import { FieldElementProps } from '../../components/FieldRouter'
+import { FieldElementProps } from '../../FieldRouter'
 
-import Highlighter from '../../components/util/Highlighter'
+import Highlighter from '../../util/Highlighter'
 import FieldValueBody from '../generic/FieldValueBody'
 
 

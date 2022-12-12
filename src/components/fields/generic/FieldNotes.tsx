@@ -1,4 +1,4 @@
-import { hashCode } from "../../util"
+import { hashCode } from "../../../util"
 
 type Props = {
   footnotes: string[]

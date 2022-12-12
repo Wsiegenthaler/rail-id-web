@@ -2,13 +2,13 @@ import { kebabCase } from 'lodash-es'
 
 import { ScalarFieldMeta, ValueMeta } from 'rail-id'
 
-import { HighlightState, SetHighlights } from '../../App'
+import { HighlightState, SetHighlights } from '../../../App'
 
 import FieldValueBody from './FieldValueBody'
 
-import Highlighter from '../../components/util/Highlighter'
+import Highlighter from '../../../components/util/Highlighter'
 
-import { empty } from '../../util'
+import { empty } from '../../../util'
 
 type Props = {
   field: ScalarFieldMeta<any>

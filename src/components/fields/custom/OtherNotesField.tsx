@@ -2,11 +2,11 @@ import { kebabCase } from 'lodash-es'
 
 import { SetFieldMeta } from 'rail-id'
 
-import { FieldElementProps } from '../../components/FieldRouter'
-import Highlighter from '../../components/util/Highlighter'
-import HighlightHintDot from '../../components/util/HighlightHintDot'
+import { FieldElementProps } from '../../FieldRouter'
+import Highlighter from '../../util/Highlighter'
+import HighlightHintDot from '../../util/HighlightHintDot'
 
-import { empty, hashCode } from '../../util'
+import { empty, hashCode } from '../../../util'
 
 
 function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps) {
@@ -14,17 +14,17 @@ function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps
   const noteField = field as SetFieldMeta<string>
 
   const listItems = noteField.valueMetas.map(vm => (
-      <div key={hashCode(vm.displayValue)} className="field-body">
-        <div className="field-value-body">
-          <div className="field-value-desc">
-              { vm.value }
-              <Highlighter values={[ vm ]} highlights={highlights} setHighlights={setHighlights} key={vm.value}>
-                <HighlightHintDot />
-              </Highlighter>
-          </div>
+    <div key={hashCode(vm.displayValue)} className="field-body">
+      <div className="field-value-body">
+        <div className="field-value-desc">
+            { vm.value }
+            <Highlighter values={[ vm ]} highlights={highlights} setHighlights={setHighlights} key={vm.value}>
+              <HighlightHintDot />
+            </Highlighter>
         </div>
       </div>
-    ))
+    </div>
+  ))
 
   return (
     <div className={`field ${kebabCase(field.path)}`}>
