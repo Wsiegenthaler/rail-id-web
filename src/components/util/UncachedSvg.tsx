@@ -1,11 +1,11 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import svgToMiniDataUri from 'mini-svg-data-uri'
 import { nanoid } from "nanoid"
 
 type Props = { src: string, className?: string }
 
-// Component to prevent caching of svgs. Useful for animated svgs where browser
-// will skip animation upon reload from cache.
+// Component which prevents caching of svgs by the browser which sometimes
+// results in failure to execute any embedded animations.
 function UncachedSvg({ src, className }: Props) {
   const [uid, setUid] = useState<string>(nanoid())
 
