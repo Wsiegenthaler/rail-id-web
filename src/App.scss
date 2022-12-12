@@ -86,7 +86,6 @@
     position: sticky;
     z-index: 99;
 
-
     .controls-inner {
       @include r.devices(mobile) {
         margin-top: 0;
@@ -247,7 +246,7 @@
         .warn-icon svg {
           width: 3.25rem;
           height: 100%;
-          margin-right: 2rem;
+          margin-right: 1.25rem;
 
           @include r.devices(mobile) {
             display: none;
@@ -261,6 +260,12 @@
             list-style-type: disc;
             margin-top: .4em;
             margin-bottom: .4em;
+            margin-left: 1rem;
+
+            &:only-child {
+              list-style: none;
+              margin-left: 0;
+            }
           }
         }
       }
