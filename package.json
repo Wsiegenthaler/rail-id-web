@@ -2,7 +2,7 @@
   "name": "rail-id-web",
   "description": "The European rolling stock code reader",
   "private": true,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "GPL-3",
   "repository": "https://github.com/wsiegenthaler/rail-id-web.git",
   "type": "module",
