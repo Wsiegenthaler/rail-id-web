@@ -135,7 +135,10 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
   useEffect(() => reflectCaretState(caretState))
 
   const errorPos = (error.type === 'parse-error' && !error.ref.incompleteInput) ? error.ref.position : -1
-  const html = code.split('').map((c, i) => `<span class="pos-${i} ${errorPos === i ? 'pos-error' : ''}">${c}</span>`).join('')
+  const codeHtml = code.split('').map((c, i) => `<span class="pos-${i} ${errorPos === i ? 'pos-error' : ''}">${c}</span>`).join('')
+
+  // Workaround for cursor placement oddity in Firefox - introduce empty span if no other content (i.e. `code.length` is zero)
+  const html = empty(codeHtml) ? '<span></span>' : codeHtml
 
   return (
     <div className='code-box-wrapper'>
