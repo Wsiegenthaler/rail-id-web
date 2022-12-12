@@ -5,7 +5,7 @@ import { Country, ScalarFieldMeta } from 'rail-id'
 
 import { FieldElementProps } from '../../components/FieldRouter'
 
-import Highlighter from '../../components/Highlighter'
+import Highlighter from '../../components/util/Highlighter'
 import FieldValueBody from '../generic/FieldValueBody'
 
 

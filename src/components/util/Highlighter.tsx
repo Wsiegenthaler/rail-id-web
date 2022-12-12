@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 
 import { ValueMeta } from 'rail-id'
 
-import { HighlightState, SetHighlights } from '../App'
+import { HighlightState, SetHighlights } from '../../App'
 
 type Props = {
   values: ValueMeta<any>[]

@@ -9,7 +9,7 @@ import { empty, hashCode, isBenign } from '../util'
 
 import { AppError, HighlightState, SetHighlights } from '../App'
 
-import Highlighter from './Highlighter'
+import Highlighter from './util/Highlighter'
 import HighlightHintDot from './util/HighlightHintDot'
 
 type Props = {

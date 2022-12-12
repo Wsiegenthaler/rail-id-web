@@ -6,7 +6,7 @@ import { HighlightState, SetHighlights } from '../../App'
 
 import FieldValueBody from './FieldValueBody'
 
-import Highlighter from '../../components/Highlighter'
+import Highlighter from '../../components/util/Highlighter'
 
 import { empty } from '../../util'
 

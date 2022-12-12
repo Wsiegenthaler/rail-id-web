@@ -3,7 +3,7 @@ import { kebabCase } from 'lodash-es'
 import { SetFieldMeta } from 'rail-id'
 
 import { FieldElementProps } from '../../components/FieldRouter'
-import Highlighter from '../../components/Highlighter'
+import Highlighter from '../../components/util/Highlighter'
 import HighlightHintDot from '../../components/util/HighlightHintDot'
 
 import { empty, hashCode } from '../../util'

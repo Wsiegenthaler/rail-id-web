@@ -4,7 +4,7 @@ import { SetFieldMeta, ValueMeta } from 'rail-id'
 
 import { HighlightState, SetHighlights } from '../../App'
 
-import Highlighter from '../../components/Highlighter'
+import Highlighter from '../../components/util/Highlighter'
 import { empty } from '../../util'
 import FieldValueBody from './FieldValueBody'
 
