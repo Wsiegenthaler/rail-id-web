@@ -53,6 +53,7 @@
     --warn-color: var(--color-yellow);
     --error-color: var(--color-red);
     --link-color: var(--color-purple);
+    --link-accent-color: var(--color-neutral-f);
 
     // Button
     --button-text-color: var(--color-neutral-c);
@@ -195,8 +196,12 @@ a {
   color: var(--link-color);
 }
 
-a:hover {
+a:hover, a:focus, a:active {
   color: var(--link-color);
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--link-accent-color);
 }
 
 /* ----------------------- Button --------------------------- */
