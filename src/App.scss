@@ -294,7 +294,6 @@
     padding-top: 1.75rem;
     padding-left: 1rem;
     padding-right: 1rem;
- 
 
     .field-router {
       .field-router-inner {
@@ -336,7 +335,7 @@
       margin-left: .5em;
       font-size: .95rem;
       padding-top: .3rem;
-      padding-bottom: .5rem;
+      padding-bottom: .35rem;
 
       & > * { margin-left: 1.15rem; }
 
@@ -441,6 +440,30 @@
     .fa-hand-pointer { color: var(--color-yellow); }
   }
   
+  /* ------------------- Markdown Styles ---------------------- */
+
+  // Quicksand doesn't have italics so use bold instead
+  em { font-weight: bolder; }
+
+  // Links appearing as part of a field description or note
+  .markdown-link {
+    * {
+      color: var(--link-color) !important;
+      font-weight: 500;
+      cursor: pointer !important;
+    }
+    svg {
+      width: .8rem;
+      margin-left: .25rem;
+      * { color: var(--field-color) !important; }
+    }
+  }
+
+  // Links which are part of a field value should be muted until the mouse is over the field
+  .field-value-body .markdown-link { opacity: .7; }
+  .highlight .field-value-body .markdown-link { opacity: 1; }
+
+
   /* -------------------- Custom Fields ----------------------- */
 
   /* Country Field */
@@ -475,6 +498,9 @@
       padding-top: .1rem;
       color: var(--field-value-color);
     }
+
+    // Markdown rendering wraps note in `p` which forces highlight hint onto next line
+    p { display: inline-block; }
   }
   
   /* Keeper field */

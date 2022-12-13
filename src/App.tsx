@@ -103,7 +103,7 @@ function App({ codeParam, appInfo }: AppProps) {
     startKeepTyping()
 
     try {
-      const result = railID(newCode, { logLevel: 'none' })
+      const result = railID(newCode, { metadata: true, markdown: true, logLevel: 'none' })
       setResult(result)
       setError({ type: 'none' })
       scrollToCodeBox()

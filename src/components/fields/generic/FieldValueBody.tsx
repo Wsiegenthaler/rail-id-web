@@ -1,3 +1,4 @@
+import Markdown from '../../util/Markdown'
 import FieldNotes from './FieldNotes'
 
 type Props = {
@@ -11,7 +12,12 @@ function FieldValueBody({ desc, footnotes }: Props) {
   return (
     (hasDesc || notes.length > 0) ?
       <div className="field-value-body">
-        { hasDesc ? <div className="field-value-desc">{desc}</div> : <></> }
+        { hasDesc ?
+          <div className="field-value-desc">
+            <Markdown md={desc} />
+          </div> :
+          <></>
+        }
         <FieldNotes footnotes={notes} />
       </div> :
       <></>

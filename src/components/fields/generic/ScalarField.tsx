@@ -9,6 +9,7 @@ import FieldValueBody from './FieldValueBody'
 import Highlighter from '../../../components/util/Highlighter'
 
 import { empty } from '../../../util'
+import Markdown from '../../util/Markdown'
 
 type Props = {
   field: ScalarFieldMeta<any>
@@ -28,7 +29,7 @@ function ScalarField({ field, highlights, setHighlights }: Props) {
     <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
-        { !empty(field.desc) ? <div className="field-desc">{field.desc}</div> : <></> }
+        { !empty(field.desc) ? <div className="field-desc"><Markdown md={field.desc} /></div> : <></> }
       </div>
       <Highlighter values={[ field.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
         <div className="field-body">

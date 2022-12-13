@@ -7,6 +7,7 @@ import { HighlightState, SetHighlights } from '../../../App'
 import Highlighter from '../../util/Highlighter'
 import { empty } from '../../../util'
 import FieldValueBody from './FieldValueBody'
+import Markdown from '../../util/Markdown'
 
 type Props = {
   field: SetFieldMeta<any>
@@ -37,7 +38,7 @@ function SetField({ field, highlights, setHighlights }: Props) {
     <div className={`field ${kebabCase(field.path)}`}>
       <div className="field-header">
         <div className="field-name">{field.name}</div>
-        { !empty(field.desc) ? <div className="field-desc">{field.desc}</div> : <></> }
+        { !empty(field.desc) ? <div className="field-desc"><Markdown md={field.desc} /></div> : <></> }
         { fieldValues }
       </div>
     </div>
