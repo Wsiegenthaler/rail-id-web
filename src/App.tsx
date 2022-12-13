@@ -1,5 +1,4 @@
-import React from 'react'
-import { createRef, useEffect, useRef, useState } from 'react'
+import React, { createRef, useEffect, useRef, useState } from 'react'
 import { useDelay } from 'react-use-precision-timer'
 import { useDebouncedCallback } from 'use-debounce'
 
@@ -18,6 +17,8 @@ import UncachedSvg from './components/util/UncachedSvg'
 import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
 
 import './App.scss'
+
+//TODO extract needed styles
 import 'bulma/css/bulma.css'
 
 import LogoSrc from './logo.svg?raw'

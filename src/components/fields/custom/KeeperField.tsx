@@ -14,7 +14,7 @@ import Markdown from '../../util/Markdown'
 function GenericScalarField({ field, highlights, setHighlights }: FieldElementProps) {
 
   let scalar = field as ScalarFieldMeta<KeeperDef>
-  let keeper = scalar.valueMeta.value
+  let keeper: KeeperDef = scalar.valueMeta.value
  
   const footnotes = [
     scalar.valueMeta.footnotes,
