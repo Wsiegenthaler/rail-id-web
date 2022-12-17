@@ -47,13 +47,15 @@
     }
   }
 
-  .welcome {
+  .welcome, .sourcemap-tip {
     color: var(--welcome-color);
     font-size: 1.1rem;
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    user-select: none;
     
     @include r.devices(mobile) {
       span {
@@ -69,6 +71,16 @@
       width: 1.35em;
       height: 100%;
     }
+  }
+
+  .sourcemap-tip {
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+
+    svg { margin-right: .8rem; }
+    strong { margin-right: .15rem; }
+
+    strong { color: var(--welcome-color); } // override bulma
   }
 
   /* Controls bookmark for scroll/achor */

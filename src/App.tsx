@@ -1,10 +1,11 @@
 import React, { createRef, useEffect, useRef, useState } from 'react'
 import { useDelay } from 'react-use-precision-timer'
 import { useDebouncedCallback } from 'use-debounce'
+import { isMobile } from 'detect-touch-device'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 
-import { faCircleExclamation, faCircleInfo, faFileCode } from '@fortawesome/free-solid-svg-icons'
+import { faArrowPointer, faCircleExclamation, faCircleInfo, faFileCode, faHandPointUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import FieldRouter from './components/FieldRouter'
@@ -96,6 +97,9 @@ function App({ codeParam, appInfo }: AppProps) {
   const showWelcome = !result && isBenign(error) && empty(code) && !showKeepTyping
   const demo = () => onChange(randomDemoCode())
 
+  // Sourcemap tip message
+  const showSourcemapTip = result && isBenign(error) && !empty(code) && !showKeepTyping
+
 
   // Handle code change and update state
   function onChange(newCode: string) {
@@ -174,26 +178,38 @@ function App({ codeParam, appInfo }: AppProps) {
           <div className="controls-inner column is-12-mobile is-10-tablet is-8-desktop is-8-widescreen is-7-fullhd">
             <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} ref={boxRef} />
             <div className="feedback">
+
               <ErrorPanel error={error} />
+
               <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
+
               <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
                 <FontAwesomeIcon icon={faCircleInfo} />
-                <span>Enter a UIC code to learn about a vehicle or try a <a onClick={e => demo()}>random</a> one</span>
+                <span>Enter a UIC code to learn about a vehicle or try a <a onClick={e => demo()}>random</a> one.</span>
               </div>
+
               <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
                 <FontAwesomeIcon icon={faCircleExclamation} />
                 <span>This code is too short. Keep typing!</span>
               </div>
+
             </div>
           </div>
         </div>
 
         <div className={`results ${disableResults}`} >
+
+          <div className="sourcemap-tip" style={ showSourcemapTip ? {} : { display: 'none' }}>
+            { isMobile ?
+              <FontAwesomeIcon icon={faHandPointUp} /> :
+              <FontAwesomeIcon icon={faArrowPointer} /> }
+            <span>{ isMobile ? 'Tap' : 'Hover over' } results to see which part of the code they correspond to.</span>
+          </div>
+
           <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
+
           { result ? <Share code={code} /> : <></> }
         </div>
-
-      </div>
 
         <div className="foot">
           <span className="repo">
@@ -205,6 +221,7 @@ function App({ codeParam, appInfo }: AppProps) {
           <span className="version">{appInfo.version}</span>
           <span className="license">{appInfo.license}</span>
         </div>
+      </div>
     </div>
   )
 }
