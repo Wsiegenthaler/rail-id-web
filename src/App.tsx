@@ -185,7 +185,7 @@ function App({ codeParam, appInfo }: AppProps) {
 
               <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
                 <FontAwesomeIcon icon={faCircleInfo} />
-                <span>Enter a UIC code to learn about a vehicle or try a <a onClick={e => demo()}>random</a> one.</span>
+                <span>Enter a UIC code to learn about a vehicle or see an <a onClick={e => demo()}>example</a></span>
               </div>
 
               <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
@@ -203,24 +203,24 @@ function App({ codeParam, appInfo }: AppProps) {
             { isMobile ?
               <FontAwesomeIcon icon={faHandPointUp} /> :
               <FontAwesomeIcon icon={faArrowPointer} /> }
-            <span>{ isMobile ? 'Tap' : 'Hover over' } results to see which part of the code they correspond to.</span>
+            <span>{ isMobile ? 'Tap' : 'Hover over' } results to see which part of the code they correspond to</span>
           </div>
 
           <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
 
           { result ? <Share code={code} /> : <></> }
         </div>
+      </div>
 
-        <div className="foot">
-          <span className="repo">
-            <a href={appInfo.repository} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faFileCode} />
-              {appInfo.pkgName}
-            </a>
-          </span>
-          <span className="version">{appInfo.version}</span>
-          <span className="license">{appInfo.license}</span>
-        </div>
+      <div className="foot">
+        <span className="repo">
+          <a href={appInfo.repository} target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faFileCode} />
+            {appInfo.pkgName}
+          </a>
+        </span>
+        <span className="version">{appInfo.version}</span>
+        <span className="license">{appInfo.license}</span>
       </div>
     </div>
   )
