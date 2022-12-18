@@ -28,6 +28,7 @@
     "react-contenteditable": "^3.3.6",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.4",
+    "react-shared-storage": "^2.0.4",
     "react-use-precision-timer": "^2.0.4",
     "use-debounce": "^8.0.4"
   },

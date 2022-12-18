@@ -1,7 +1,8 @@
-import React, { createRef, useEffect, useRef, useState } from 'react'
+import React, { createRef, MouseEventHandler, useEffect, useRef, useState } from 'react'
 import { useDelay } from 'react-use-precision-timer'
 import { useDebouncedCallback } from 'use-debounce'
 import { isMobile } from 'detect-touch-device'
+import { usePersistentState } from 'react-shared-storage'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 
@@ -98,7 +99,9 @@ function App({ codeParam, appInfo }: AppProps) {
   const demo = () => onChange(randomDemoCode())
 
   // Sourcemap tip message
-  const showSourcemapTip = result && isBenign(error) && !empty(code) && !showKeepTyping
+  const [ didDismissTip, setDidDismissTip ] = usePersistentState('didDismissTip', false)
+  const showSourcemapTip = !didDismissTip && result && isBenign(error) && !empty(code) && !showKeepTyping
+  const dismissTip: MouseEventHandler<HTMLButtonElement> = ev => setDidDismissTip(true)
 
 
   // Handle code change and update state
@@ -203,7 +206,8 @@ function App({ codeParam, appInfo }: AppProps) {
             { isMobile ?
               <FontAwesomeIcon icon={faHandPointUp} /> :
               <FontAwesomeIcon icon={faArrowPointer} /> }
-            <span>{ isMobile ? 'Tap' : 'Hover over' } results to see which part of the code they correspond to</span>
+              <span>{ isMobile ? 'Tap' : 'Hover over' } results to see which part of the code they correspond to.</span>
+              <button onClick={dismissTip}>Dismiss</button>
           </div>
 
           <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />

@@ -79,6 +79,15 @@
 
     svg { margin-right: .8rem; }
     strong { margin-right: .15rem; }
+
+    button, button:hover, button:active, button:focus {
+      font-size: .9rem;
+      color: var(--welcome-color);
+      border: var(--welcome-color) 1px solid;
+      background: var(--bg-color);
+      padding: .2rem .7rem .2rem .7rem;
+      margin-left: 1rem;
+    }
   }
 
   /* Controls bookmark for scroll/achor */
