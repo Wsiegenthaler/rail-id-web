@@ -8,6 +8,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
 
+  <defs>
+    <!-- headlight glow -->
+    <filter id="headlight-glow" x="-400%" y="-400%" width="900%" height="900%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9" />
+    </filter>
+  </defs>
+  
   <!-- window color -->
   <rect fill="#808080" width="69" height="36" x="15" y="18" />
 
@@ -19,4 +26,8 @@
   <!-- headlights -->
   <circle cx="26.631578" cy="69.210518" fill="#f5b342" r="6.3898025" />
   <circle cx="73.368416" cy="69.210518" fill="#f5b342" r="6.3898025" />
+  
+  <!-- headlight glow -->
+  <circle cx="26.631578" cy="69.210518" fill="#f5b342" r="6.3898025" filter="url(#headlight-glow)" />
+  <circle cx="73.368416" cy="69.210518" fill="#f5b342" r="6.3898025" filter="url(#headlight-glow)" />
 </svg>
