@@ -5,7 +5,6 @@ import { KeeperDef, ScalarFieldMeta } from 'rail-id'
 import FieldValueBody from '../generic/FieldValueBody'
 import { FieldElementProps } from '../../FieldRouter'
 import Highlighter from '../../util/Highlighter'
-import Link from '../../util/Link'
 
 import { empty } from '../../../util'
 import Markdown from '../../util/Markdown'
@@ -22,9 +21,6 @@ function GenericScalarField({ field, highlights, setHighlights }: FieldElementPr
     keeper.status === 'blocked' || keeper.status === 'revoked' ? [`This keeper marking is listed as "${keeper.status}" by the International Union of Railways`] : [],
     keeper.website ? [`Website: [${keeper.company}](${keeper.website})`] : []
   ].flat()
-
-  const link = !keeper.website ? (<></>) :
-    (<span>&nbsp;[<Link href={keeper.website} className="external">web</Link>]</span>)
 
   return (
     <div className={`field ${kebabCase(field.path)}`}>
