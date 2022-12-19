@@ -1,5 +1,5 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
-<svg class="svg-inline--fa fa-train-subway logo" xmlns="http://www.w3.org/2000/svg" viewBox="-42 -10 532 532">
+<svg class="svg-inline--fa fa-train-subway logo" xmlns="http://www.w3.org/2000/svg" viewBox="-92 -10 632 532">
 
   <defs>
     <!-- left window clip -->
@@ -13,8 +13,21 @@
     </clipPath>
 
     <!-- headlight glow -->
-    <filter id="headlight-glow" x="-400%" y="-400%" width="900%" height="900%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="60" />
+    <filter id="headlight-glow" x="-950%" y="-950%" width="2000%" height="2000%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="50" />
+    </filter>
+
+    <!-- headlight halo glow -->
+    <filter id="headlight-halo-glow" x="-950%" y="-950%" width="2000%" height="2000%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="30">
+        <animate
+          attributeName="stdDeviation"
+          from="55" to="60"
+          keySplines="0.2 0.55 0.6 .95; 0.2 0.55 0.6 .95"
+          dur="700ms"
+          begin="775ms"
+          fill="freeze" />
+      </feGaussianBlur>
     </filter>
   </defs>
 
@@ -26,7 +39,7 @@
         type="translate"
         from="0 0"
         to="500 0"
-        begin="1200ms"
+        begin="1600ms"
         dur="800ms"
       />
     </path>
@@ -40,7 +53,7 @@
         type="translate"
         from="0 0"
         to="1000 0"
-        begin="1200ms"
+        begin="1600ms"
         dur="1750ms"
       />
     </path>
@@ -54,8 +67,8 @@
     <animate
       attributeName="opacity"
       from="0" to="1"
-      dur="160ms"
-      begin="800ms"
+      dur="1ms"
+      begin="1100ms"
       fill="freeze" />
   </circle>
 
@@ -64,18 +77,52 @@
     <animate
       attributeName="opacity"
       from="0" to="1"
-      dur="160ms"
-      begin="875ms"
+      dur="1ms"
+      begin="1100ms"
       fill="freeze" />
   </circle>
 
-  <!-- headlight left -->
+  <!-- headlight halo left -->
+  <circle cx="96" cy="352" r="135" opacity="0" stroke="#f5b342" fill="none" stroke-width="15" filter="url(#headlight-halo-glow)">
+    <animate
+      attributeName="opacity"
+      from="0" to="1"
+      dur="100ms"
+      begin="1100ms"
+      fill="freeze" />
+    <animate
+      attributeName="r"
+      from="100" to="0"
+      keySplines="0.2 0.55 0.6 .95; 0.2 0.55 0.6 .95"
+      dur="1200ms"
+      begin="1100ms"
+      fill="freeze" />
+ </circle>
+
+  <!-- headlight halo right -->
+  <circle cx="352" cy="352" r="135" opacity="0" stroke="#f5b342" fill="none" stroke-width="15" filter="url(#headlight-halo-glow)">
+    <animate
+      attributeName="opacity"
+      from="0" to="1"
+      dur="100ms"
+      begin="1100ms"
+      fill="freeze" />
+    <animate
+      attributeName="r"
+      from="100" to="0"
+      keySplines="0.2 0.55 0.6 .95; 0.2 0.55 0.6 .95"
+      dur="1200ms"
+      begin="1100ms"
+      fill="freeze" />
+ </circle>
+
+ <!-- headlight left -->
   <circle cx="96" cy="352" r="35" opacity="0" fill="#f5b342">
     <animate
       attributeName="opacity"
       from="0" to="1"
       dur="160ms"
-      begin="800ms"
+      begin="1100ms"
       fill="freeze" />
   </circle>
 
@@ -85,7 +132,7 @@
       attributeName="opacity"
       from="0" to="1"
       dur="160ms"
-      begin="875ms"
+      begin="1100ms"
       fill="freeze" />
   </circle>
 
