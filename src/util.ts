@@ -48,13 +48,23 @@ export const isBenign = (error: AppError) => (error.type === 'none' || error.typ
 
 export const demoCodes = [
   '91 85 4605 205-4 CH-BLS',
-  'CH-BOB 73 85 5432 123-7',
-  'CH-BLS 99859432.123-9',
   'AT-OBB 9181 1116 079-5',
-  '73 CH-SBB 857 89 0 987 - 6',
-  'H-START 94 55 3815 019-0',
+  'CH-BOB 73 85 5432 123-7',
+  '93 83 3400 128-7 I-TI',
   'CZ-EARTH 99 54 9616 003-8',
-  'FR-EEX 99 87 9975 013-3'
+  'CH-BLS 99859432.123-9',
+  '73 CH-SBB 857 89 0 987-6',
+  '94 51 2 140 849-2 PL-KD',
+  'NL-NS 61 84 29-70 494-2',
+  'H-START 94 55 3815 019-0',
+  'SE-SJ 50 74 22-73 355-4',
+  '93 75 3601 184-7 TR-TCDD',
+  'FR-EEX 99 87 9975 013-3',
+  '94 84 4915141-4',
+  'PL-PKPIC 50 51 84-78 081-3',
+  'D-TAL 51 80 84-95 024-6' // 'Bmmdz' (TODO letters)
 ]
 
-export const randomDemoCode = () => demoCodes[Math.floor(Math.random()*demoCodes.length)]
+var randomDemoCodeIdx = Math.floor(Math.random()*demoCodes.length)
+
+export const randomDemoCode = () => demoCodes[++randomDemoCodeIdx%demoCodes.length]
