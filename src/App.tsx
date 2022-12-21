@@ -3,6 +3,7 @@ import { useDelay } from 'react-use-precision-timer'
 import { useDebouncedCallback } from 'use-debounce'
 import { isMobile } from 'detect-touch-device'
 import { usePersistentState } from 'react-shared-storage'
+import { useIsVisible } from 'react-is-visible'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 
@@ -103,6 +104,12 @@ function App({ codeParam, appInfo }: AppProps) {
   const showSourcemapTip = !didDismissTip && result && isBenign(error) && !empty(code) && !showKeepTyping
   const dismissTip: MouseEventHandler<HTMLButtonElement> = ev => setDidDismissTip(true)
 
+  // Auto-scrolling
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [scrollTarget, setScrollTarget] = useState<ScrollTarget>('none')
+  const isScrollTargetVisible = useIsVisible(scrollRef)
+  const scrollToCodeBox = () => setScrollTarget({ type: 'element', element: scrollRef.current })
+  useEffect(() => { scrollTo(scrollTarget); setScrollTarget('none') })
 
   // Handle code change and update state
   function onChange(newCode: string) {
@@ -114,8 +121,13 @@ function App({ codeParam, appInfo }: AppProps) {
       const result = railID(newCode, { metadata: true, markdown: true, logLevel: 'none' })
       setResult(result)
       setError({ type: 'none' })
-      scrollToCodeBox()
+
+      // Scroll to code box 
+      if (isScrollTargetVisible) scrollToCodeBox()
+      
+      // Hide keep typing message
       stopKeepTyping()
+
     } catch (e) {
       if (isParseError(e)) {
         const pe = e as ParseError
@@ -135,13 +147,7 @@ function App({ codeParam, appInfo }: AppProps) {
       }
     }
   }
-  
-  // Auto-scrolling
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [scrollTarget, setScrollTarget] = useState<ScrollTarget>('none')
-  const scrollToCodeBox = () => setScrollTarget({ type: 'element', element: scrollRef.current })
-  useEffect(() => { scrollTo(scrollTarget); setScrollTarget('none') })
-
+ 
   // Whether to temporarily fade/disable results
   const disableResults = result && error.type !== 'none' ? 'disable' : ''
 
