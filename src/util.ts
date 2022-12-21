@@ -1,9 +1,8 @@
-import { isArray, isString, some } from "lodash-es"
-import { AppError } from "./App"
+import { isArray, isString } from 'lodash-es'
+import { AppError } from './App'
 
 export const hashCode = (str: string) =>
   str.split('').reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0)
-
 
 export type ScrollTarget =
   'none' |
@@ -23,12 +22,18 @@ export const scrollTo = (target: ScrollTarget) => {
   }
 }
 
-// Whether a string is undefined or empty after trimming, or whether an array
-// is undefined or empty after removing null and undefined values
+// Returns `true` when a string is blank after trimming whitespace, `false` otherwise
+export const emptyString = (v: string) => (v as string).trim().length === 0
+
+// Returns `true` when an array is blank after removing `null` and `undefined` values, `false` otherwise
+export const emptyArray = (v: any[]) => v.filter(ve => ve !== undefined && ve != null).length === 0
+
+// Returns `true` when value `v` is any of the following:
+// * `undefined`
+// * A string and is blank after trimming whitespace
+// * An array and is blank after removing `null` and `undefined` values
 export const empty = (v?: string | any[]) =>
-  !v || (
-    (isString(v) && (v as string).trim().length === 0) ||
-    (isArray(v) && v.filter(ve => ve !== undefined && ve != null).length === 0))
+  !v || (isString(v) && emptyString(v)) || (isArray(v) && emptyArray(v))
 
 // Url encoding which first cleans code and replaces spaces with '_' to improve url readability
 export const urlEncodeCode = (code: string) =>
