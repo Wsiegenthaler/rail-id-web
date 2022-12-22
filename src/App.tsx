@@ -118,7 +118,13 @@ function App({ codeParam, appInfo }: AppProps) {
     startKeepTyping()
 
     try {
+      // Parse
       const result = railID(newCode, { metadata: true, markdown: true, logLevel: 'none' })
+      
+      // Update code to reflect version cleaned by parser
+      setCode(result._meta.input.cleanInput)
+
+      // Set result and clear error
       setResult(result)
       setError({ type: 'none' })
 
@@ -140,6 +146,9 @@ function App({ codeParam, appInfo }: AppProps) {
             setResult(undefined)
             setError({ type: 'none' })
           } else startKeepTyping()
+        } else {
+          // Update code to reflect version cleaned by parser
+          setCode(pe.input)
         }
       } else {
         setError({ type: 'internal', ref: e })
