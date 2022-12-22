@@ -39,6 +39,7 @@ enum Priority { ExtraHigh, High, MediumHigh, Medium, MediumLow, Low, ExtraLow }
 const FieldPriorities: Map<Priority> = {
   'type':              Priority.High,
   'subtype':           Priority.High,
+  'coach.class':       Priority.High,
   'special':           Priority.MediumHigh,
   'coach':             Priority.MediumHigh,
   'country':           Priority.Medium,
