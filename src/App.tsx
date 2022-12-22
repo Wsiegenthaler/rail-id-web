@@ -147,7 +147,7 @@ function App({ codeParam, appInfo }: AppProps) {
           } else startKeepTyping()
         } else {
           // Update code to reflect version cleaned by parser
-          setCode(pe.input)
+          setCode(pe.cleanInput)
         }
       } else {
         setError({ type: 'internal', ref: e })
