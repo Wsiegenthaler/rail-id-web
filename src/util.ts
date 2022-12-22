@@ -1,6 +1,9 @@
 import { isArray, isString } from 'lodash-es'
 import { AppError } from './App'
 
+import { RefObject, useEffect, useState } from 'react'
+
+
 export const hashCode = (str: string) =>
   str.split('').reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0)
 
@@ -65,6 +68,24 @@ export const demoCodes = [
   'D-TAL 51 80 84-95 024-6' // 'Bmmdz' (TODO letters)
 ]
 
+// Selects random demo code
 var randomDemoCodeIdx = Math.floor(Math.random()*demoCodes.length)
-
 export const randomDemoCode = () => demoCodes[++randomDemoCodeIdx%demoCodes.length]
+
+// Detects whether element is within visible portion of browser window
+export const useOnScreen =  <E extends Element>(ref: RefObject<E>, rootMargin = "0px") => {
+  // State and setter for storing whether element is visible
+  const [isIntersecting, setIntersecting] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([ entry ]) => setIntersecting(entry.isIntersecting),
+      { rootMargin }
+    )
+
+    if (ref.current) observer.observe(ref.current)
+    return () => { ref.current && observer.unobserve(ref.current) }
+  }, [ /* onMount */ ])
+
+  return isIntersecting
+}

@@ -3,7 +3,6 @@ import { useDelay } from 'react-use-precision-timer'
 import { useDebouncedCallback } from 'use-debounce'
 import { isMobile } from 'detect-touch-device'
 import { usePersistentState } from 'react-shared-storage'
-import { useIsVisible } from 'react-is-visible'
 
 import railID, { RailID, ParseError, isParseError } from 'rail-id'
 
@@ -17,7 +16,7 @@ import ErrorPanel from './components/ErrorPanel'
 import Share from './components/Share'
 import UncachedSvg from './components/util/UncachedSvg'
 
-import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode } from './util'
+import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode, useOnScreen } from './util'
 
 import './App.scss'
 
@@ -107,7 +106,7 @@ function App({ codeParam, appInfo }: AppProps) {
   // Auto-scrolling
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollTarget, setScrollTarget] = useState<ScrollTarget>('none')
-  const isScrollTargetVisible = useIsVisible(scrollRef)
+  const isScrollTargetVisible = useOnScreen(scrollRef)
   const scrollToCodeBox = () => setScrollTarget({ type: 'element', element: scrollRef.current })
   useEffect(() => { scrollTo(scrollTarget); setScrollTarget('none') })
 
