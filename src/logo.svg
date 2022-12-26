@@ -1,5 +1,5 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
-<svg class="svg-inline--fa fa-train-subway logo" xmlns="http://www.w3.org/2000/svg" viewBox="-92 -10 632 532">
+<svg class="svg-inline--fa fa-train-subway logo" xmlns="http://www.w3.org/2000/svg" viewBox="-192 -10 832 732">
 
   <defs>
     <!-- left window clip -->
@@ -93,7 +93,7 @@
       fill="freeze" />
     <animate
       attributeName="r"
-      from="100" to="0"
+      from="130" to="0"
       keySplines="0.2 0.55 0.6 .95; 0.2 0.55 0.6 .95"
       dur="1200ms"
       begin="1100ms"
@@ -110,7 +110,7 @@
       fill="freeze" />
     <animate
       attributeName="r"
-      from="100" to="0"
+      from="130" to="0"
       keySplines="0.2 0.55 0.6 .95; 0.2 0.55 0.6 .95"
       dur="1200ms"
       begin="1100ms"
