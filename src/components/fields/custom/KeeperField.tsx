@@ -29,7 +29,7 @@ function GenericScalarField({ field, highlights, setHighlights }: FieldElementPr
         { !empty(field.desc) ? <div className="field-desc"><Markdown md={field.desc} /></div> : <></> }
       </div>
       <Highlighter values={[ scalar.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
-        <div className="field-body">
+        <div className="field-content">
           <div className="field-value-header">
             <div className="field-value highlight-hint-underline">{keeper.company}</div>
           </div>

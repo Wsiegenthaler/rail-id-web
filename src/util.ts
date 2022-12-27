@@ -52,10 +52,12 @@ export const isBenign = (error: AppError) => (error.type === 'none' || error.typ
 export const demoCodes = [
   '91 85 4605 205-4 CH-BLS',
   'AT-OBB 9181 1116 079-5',
+  '95 71 3 524 077-9',
   'CH-BOB 73 85 5432 123-7',
   '93 83 3400 128-7 I-TI',
   'CZ-EARTH 99 54 9616 003-8',
   'CH-BLS 99859432.123-9',
+  '91 79 1 541 001-8',
   '73 CH-SBB 857 89 0 987-6',
   '94 51 2 140 849-2 PL-KD',
   'NL-NS 61 84 29-70 494-2',

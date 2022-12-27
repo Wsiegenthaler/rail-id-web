@@ -15,7 +15,7 @@ function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps
   const noteField = field as SetFieldMeta<string>
 
   const listItems = noteField.valueMetas.map(vm => (
-    <div key={hashCode(vm.displayValue)} className="field-body">
+    <div key={hashCode(vm.displayValue)} className="field-content">
       <div className="field-value-body">
         <div className="field-value-desc">
             <Markdown md={ vm.value } />

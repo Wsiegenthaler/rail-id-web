@@ -32,7 +32,7 @@ function ScalarField({ field, highlights, setHighlights }: Props) {
         { !empty(field.desc) ? <div className="field-desc"><Markdown md={field.desc} /></div> : <></> }
       </div>
       <Highlighter values={[ field.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
-        <div className="field-body">
+        <div className="field-content">
           <div className="field-value-header">
             <div className="field-value highlight-hint-underline">{friendlyValue(field.valueMeta)}</div>
           </div>

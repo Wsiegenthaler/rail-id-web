@@ -19,7 +19,7 @@ function CountryField({ field, highlights, setHighlights }: FieldElementProps) {
         <div className="field-name">{field.name}</div>
       </div>
       <Highlighter values={[ scalar.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
-        <div className="field-body">
+        <div className="field-content">
           <div className="field-value-header">
             <div className="field-value">
               <Flag code={country.short} />

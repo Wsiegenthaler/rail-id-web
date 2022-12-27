@@ -311,6 +311,7 @@
   /* ------------------------ Results ------------------------- */
   
   .results {
+    width: 100%;
     padding-top: 1.75rem;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -349,7 +350,7 @@
       }
     }
  
-    .field-body {
+    .field-content {
       margin-top: .5rem;
       flex-direction: column;
       margin-left: .5em;
@@ -407,7 +408,7 @@
       color: var(--highlight-color);
     }
 
-    .field-body {
+    .field-content {
       color: var(--highlight-color);
       border-color: var(--highlight-color);
     
