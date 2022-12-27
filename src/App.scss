@@ -106,6 +106,9 @@
     position: sticky;
     z-index: 99;
 
+    display: flex;
+    justify-content: center;
+
     .controls-inner {
       @include r.devices(mobile) {
         margin-top: 0;
