@@ -21,7 +21,7 @@ import { scrollTo, ScrollTarget, empty, isBenign, randomDemoCode, useOnScreen } 
 import './App.scss'
 
 //TODO extract needed styles
-import 'bulma/css/bulma.css'
+import './style/layout.scss'
 
 import LogoSrc from './logo.svg?raw'
 
@@ -192,7 +192,7 @@ function App({ codeParam, appInfo }: AppProps) {
 
         <div className="controls columns is-centered">
           <div className="mask" />
-          <div className="controls-inner column is-12-mobile is-10-tablet is-8-desktop is-8-widescreen is-7-fullhd">
+          <div className="controls-inner column is-11-mobile is-11-tablet is-9-desktop is-9-widescreen is-8-fullhd">
             <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} ref={boxRef} />
             <div className="feedback">
 

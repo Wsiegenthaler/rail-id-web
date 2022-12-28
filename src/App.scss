@@ -156,18 +156,18 @@
         letter-spacing: 0.05rem;
         padding: .7rem;
         border-radius: .5rem;
-  
+
         color: var(--codebox-color-text);
         background: var(--codebox-color-background);
         border: 2px solid var(--codebox-color-border);
         outline: none; // prevent browser-added style
 
         @include r.devices(mobile) {
-          font-size: 1.1rem;
-          border-radius: 0;
-          border-width: 1px !important;
-          border-right: 0 !important;
-          border-left: 0 !important;
+          font-size: 1.3rem;
+          line-height: 2.25rem;
+          border-radius: .25rem;
+          margin-left: -.5rem;
+          margin-right: -.5rem;
         }
 
         /* Border styles */
@@ -315,11 +315,16 @@
   
   .results {
     width: 100%;
-    padding-top: 1.75rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-top: .5rem;
+    box-sizing: border-box;
+
 
     .field-router {
+      @include r.devices(mobile) {
+        padding-left: .35rem;
+        padding-right: .35rem;
+      }
+
       .field-router-inner {
         margin: 0 auto;
       }
@@ -336,7 +341,7 @@
 
   .field {
     color: var(--field-color);
-    padding-bottom: 1.6em;
+    padding-bottom: 2rem;
  
     .field-header {
       .field-name {
@@ -555,7 +560,7 @@
 
     .shareables-title {
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 500;
       padding-bottom: .3rem;
       color: var(--share-color);
     }

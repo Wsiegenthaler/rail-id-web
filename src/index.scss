@@ -178,11 +178,18 @@ html, body {
   font-family: inherit;
   background-color: var(--bg-color) !important;
   scroll-behavior: smooth;
+  line-height: 1.5;
 }
 
 html, body, #root {
   min-height: 100%;
   height: 100%;
+}
+
+html, body, p, ol, ul, li, dl, dt, dd, blockquote, textarea, pre, hr, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Disable browser-added horizonal bounce on overscroll */
@@ -193,14 +200,16 @@ html, body, #root {
 a {
   font-weight: 500;
   color: var(--link-color);
+  text-decoration: none;
 }
 
 a:hover, a:focus, a:active {
   color: var(--link-color);
   text-decoration-line: underline;
-  text-decoration-thickness: 1px;
+  text-decoration-thickness: .06em;
   text-decoration-style: solid;
-  text-decoration-color: var(--link-color);
+  text-decoration-color: var(--link-color) !important;
+  cursor: pointer;
 }
 
 /* ----------------------- Button --------------------------- */
