@@ -320,13 +320,10 @@
 
 
     .field-router {
-      @include r.devices(mobile) {
-        padding-left: .35rem;
-        padding-right: .35rem;
-      }
 
       .field-router-inner {
         margin: 0 auto;
+        box-sizing: border-box;
       }
     }
   
@@ -557,7 +554,7 @@
   /* ---------------------- Shareables ------------------------ */
 
   .shareables {
-    margin: 2rem 1rem 5rem 1rem;
+    margin: 0 1rem 5rem 1rem;
     text-align: center;
 
     .shareables-title {
