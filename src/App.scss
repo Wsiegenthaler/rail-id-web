@@ -519,17 +519,19 @@
   /* Other Notes Field */
   .field.notes {
 
-    .field-value-body {
-      padding-top: .2rem;
+    .field-content {
       margin-top: 0;
-    }
-    .field-value-desc {
-      padding-top: .1rem;
-      color: var(--field-value-color);
-    }
+      padding-top: 0;
+      padding-bottom: 0;
 
-    // Markdown rendering wraps note in `p` which forces highlight hint onto next line
-    p { display: inline-block; }
+      .field-value-desc {
+        padding-top: .2rem;
+        color: var(--field-text-color);
+      }
+
+      // Markdown rendering wraps note in `p` which forces highlight hint onto next line
+      p { display: inline-block; }
+    }
   }
   
   /* Keeper field */
