@@ -418,8 +418,10 @@
       color: var(--highlight-color);
       border-color: var(--highlight-color);
     
-      .field-value-body * {
-        color: var(--field-value-color);
+      .field-value-body {
+        div, span, p, li {
+          color: var(--field-value-color);
+        }
       }
     }
   }
@@ -523,7 +525,7 @@
       padding-bottom: 0;
 
       .field-value-desc {
-        padding-top: .2rem;
+        padding-top: .25rem;
         color: var(--field-text-color);
       }
 
