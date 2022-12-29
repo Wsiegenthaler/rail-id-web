@@ -1,6 +1,6 @@
 import { MouseEvent, TouchEvent, useContext } from 'react'
 
-import { HighlightContext } from '../../App'
+import { HighlightContext } from '../../../App'
 import { HighlightMarkerContext } from './HighlightMarker'
 
 type Props = {

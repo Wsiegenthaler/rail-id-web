@@ -9,8 +9,8 @@ import { empty, hashCode, isBenign } from '../util'
 
 import { AppError } from '../App'
 
-import HighlightHintDot from './util/HighlightHintDot'
-import HighlightMarker from './util/HighlightMarker'
+import HighlightHintDot from './util/highlight/HighlightHintDot'
+import HighlightMarker from './util/highlight/HighlightMarker'
 
 type Props = {
   result?: RailID

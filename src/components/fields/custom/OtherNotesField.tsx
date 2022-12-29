@@ -3,11 +3,11 @@ import { kebabCase } from 'lodash-es'
 import { SetFieldMeta } from 'rail-id'
 
 import { FieldElementProps } from '../../FieldRouter'
-import HighlightHintDot from '../../util/HighlightHintDot'
+import HighlightHintDot from '../../util/highlight/HighlightHintDot'
 
 import { empty, hashCode } from '../../../util'
 import Markdown from '../../util/Markdown'
-import HighlightMarker from '../../util/HighlightMarker'
+import HighlightMarker from '../../util/highlight/HighlightMarker'
 
 
 function OtherNotesField({ field }: FieldElementProps) {

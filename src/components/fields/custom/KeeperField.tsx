@@ -4,7 +4,7 @@ import { KeeperDef, ScalarFieldMeta } from 'rail-id'
 
 import FieldValueBody from '../generic/FieldValueBody'
 import { FieldElementProps } from '../../FieldRouter'
-import Highlighter from '../../util/Highlighter'
+import Highlighter from '../../util/highlight/Highlighter'
 
 import { empty } from '../../../util'
 import Markdown from '../../util/Markdown'

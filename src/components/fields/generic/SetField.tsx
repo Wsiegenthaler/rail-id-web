@@ -2,7 +2,7 @@ import { kebabCase } from 'lodash-es'
 
 import { SetFieldMeta, ValueMeta } from 'rail-id'
 
-import Highlighter from '../../util/Highlighter'
+import Highlighter from '../../util/highlight/Highlighter'
 import { empty } from '../../../util'
 import FieldValueBody from './FieldValueBody'
 import Markdown from '../../util/Markdown'

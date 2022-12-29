@@ -4,7 +4,7 @@ import { ScalarFieldMeta, ValueMeta } from 'rail-id'
 
 import FieldValueBody from './FieldValueBody'
 
-import Highlighter from '../../../components/util/Highlighter'
+import Highlighter from '../../util/highlight/Highlighter'
 
 import { empty } from '../../../util'
 import Markdown from '../../util/Markdown'

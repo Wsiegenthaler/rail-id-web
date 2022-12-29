@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 
 import { ValueMeta } from 'rail-id'
 
-import { HighlightContext } from '../../App'
+import { HighlightContext } from '../../../App'
 
 type Props = {
   values: ValueMeta<any>[]
