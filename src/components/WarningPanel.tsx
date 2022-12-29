@@ -9,8 +9,8 @@ import { empty, hashCode, isBenign } from '../util'
 
 import { AppError } from '../App'
 
-import Highlighter from './util/Highlighter'
 import HighlightHintDot from './util/HighlightHintDot'
+import HighlightMarker from './util/HighlightMarker'
 
 type Props = {
   result?: RailID
@@ -27,10 +27,10 @@ function WarningPanel({ result, error }: Props) {
 
   const warning = (w: ValueMeta<ParseWarning>) => (
     <li key={hashCode(w.displayValue)} className="fade-in">
-      <span>{w.displayValue}</span>
-      <Highlighter values={[ w ]}>
+      <HighlightMarker values={[ w ]}>
+        <span>{w.displayValue}</span>
         { !empty(w.source) ? <HighlightHintDot /> : <></> }
-      </Highlighter>
+      </HighlightMarker>
     </li>)
 
   const warnings = (vms: ValueMeta<ParseWarning>[]) => vms.map(warning)

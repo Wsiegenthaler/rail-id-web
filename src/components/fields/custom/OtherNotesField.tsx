@@ -3,11 +3,11 @@ import { kebabCase } from 'lodash-es'
 import { SetFieldMeta } from 'rail-id'
 
 import { FieldElementProps } from '../../FieldRouter'
-import Highlighter from '../../util/Highlighter'
 import HighlightHintDot from '../../util/HighlightHintDot'
 
 import { empty, hashCode } from '../../../util'
 import Markdown from '../../util/Markdown'
+import HighlightMarker from '../../util/HighlightMarker'
 
 
 function OtherNotesField({ field }: FieldElementProps) {
@@ -15,16 +15,16 @@ function OtherNotesField({ field }: FieldElementProps) {
   const noteField = field as SetFieldMeta<string>
 
   const listItems = noteField.valueMetas.map(vm => (
-    <div key={hashCode(vm.displayValue)} className="field-content">
-      <div className="field-value-body">
-        <div className="field-value-desc">
+    <HighlightMarker values={[ vm ]} key={hashCode(vm.displayValue)}>
+      <div className="field-content">
+        <div className="field-value-body">
+          <div className="field-value-desc">
             <Markdown md={ vm.value } />
-            <Highlighter values={[ vm ]} key={vm.value}>
-              <HighlightHintDot />
-            </Highlighter>
+            <HighlightHintDot />
+          </div>
         </div>
       </div>
-    </div>
+    </HighlightMarker>
   ))
 
   return (
