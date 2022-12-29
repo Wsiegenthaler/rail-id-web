@@ -2,8 +2,6 @@ import { kebabCase } from 'lodash-es'
 
 import { ScalarFieldMeta, ValueMeta } from 'rail-id'
 
-import { HighlightState, SetHighlights } from '../../../App'
-
 import FieldValueBody from './FieldValueBody'
 
 import Highlighter from '../../../components/util/Highlighter'
@@ -13,11 +11,9 @@ import Markdown from '../../util/Markdown'
 
 type Props = {
   field: ScalarFieldMeta<any>
-  highlights: HighlightState
-  setHighlights: SetHighlights
 }
 
-function ScalarField({ field, highlights, setHighlights }: Props) {
+function ScalarField({ field }: Props) {
 
   const friendlyValue = (vm: ValueMeta<any>) => {
     const tpe = typeof vm.value
@@ -31,7 +27,7 @@ function ScalarField({ field, highlights, setHighlights }: Props) {
         <div className="field-name">{field.name}</div>
         { !empty(field.desc) ? <div className="field-desc"><Markdown md={field.desc} /></div> : <></> }
       </div>
-      <Highlighter values={[ field.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
+      <Highlighter values={[ field.valueMeta ]}>
         <div className="field-content">
           <div className="field-value-header">
             <div className="field-value highlight-hint-underline">{friendlyValue(field.valueMeta)}</div>

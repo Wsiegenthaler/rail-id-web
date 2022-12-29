@@ -10,7 +10,7 @@ import { empty } from '../../../util'
 import Markdown from '../../util/Markdown'
 
 
-function GenericScalarField({ field, highlights, setHighlights }: FieldElementProps) {
+function GenericScalarField({ field }: FieldElementProps) {
 
   let scalar = field as ScalarFieldMeta<KeeperDef>
   let keeper: KeeperDef = scalar.valueMeta.value
@@ -28,7 +28,7 @@ function GenericScalarField({ field, highlights, setHighlights }: FieldElementPr
         <div className="field-name">{field.name}</div>
         { !empty(field.desc) ? <div className="field-desc"><Markdown md={field.desc} /></div> : <></> }
       </div>
-      <Highlighter values={[ scalar.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
+      <Highlighter values={[ scalar.valueMeta ]}>
         <div className="field-content">
           <div className="field-value-header">
             <div className="field-value highlight-hint-underline">{keeper.company}</div>

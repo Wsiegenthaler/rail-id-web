@@ -2,8 +2,6 @@ import { kebabCase } from 'lodash-es'
 
 import { SetFieldMeta, ValueMeta } from 'rail-id'
 
-import { HighlightState, SetHighlights } from '../../../App'
-
 import Highlighter from '../../util/Highlighter'
 import { empty } from '../../../util'
 import FieldValueBody from './FieldValueBody'
@@ -11,11 +9,9 @@ import Markdown from '../../util/Markdown'
 
 type Props = {
   field: SetFieldMeta<any>
-  highlights: HighlightState
-  setHighlights: SetHighlights
 }
 
-function SetField({ field, highlights, setHighlights }: Props) {
+function SetField({ field }: Props) {
 
   const friendlyValue = (vm: ValueMeta<any>) => {
     const tpe = typeof vm.value
@@ -24,7 +20,7 @@ function SetField({ field, highlights, setHighlights }: Props) {
   }
 
   const fieldValues = field.valueMetas.map((vm, i) => (
-    <Highlighter values={ [ vm ] } highlights={highlights} setHighlights={setHighlights} key={i}>
+    <Highlighter values={ [ vm ] } key={i}>
       <div className="field-content">
         <div className="field-value-header">
           <div className="field-value highlight-hint-underline">{friendlyValue(vm)}</div>

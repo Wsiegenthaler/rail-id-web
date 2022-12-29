@@ -8,12 +8,12 @@ import ScalarField from './ScalarField'
 import SetField from './SetField'
 
 
-function Field({ field, highlights, setHighlights }: FieldElementProps) {
+function Field({ field }: FieldElementProps) {
   if (field.type === 'scalar') {
     const scalar = field as ScalarFieldMeta<any>
     const ft = typeof scalar.valueMeta.value
     if (ft !== 'object' || !empty(scalar.valueMeta.displayValue)) {
-      return (<ScalarField field={field} highlights={highlights} setHighlights={setHighlights} />)
+      return (<ScalarField field={field} />)
     } else {
       console.warn(`Could not render '${scalar.name}' field with value of type '${ft}':`, field)
       return (<></>)
@@ -22,7 +22,7 @@ function Field({ field, highlights, setHighlights }: FieldElementProps) {
     const set = field as SetFieldMeta<any>
     const ft = typeof set.valueMetas[0].value
     if (ft !== 'object' || some(set.valueMetas, vm => !empty(vm.displayValue))) {
-      return (<SetField field={field} highlights={highlights} setHighlights={setHighlights} />)
+      return (<SetField field={field} />)
     } else {
       console.warn(`Could not render '${set.name}' field with value of type '${ft}':`, field)
       return (<></>)

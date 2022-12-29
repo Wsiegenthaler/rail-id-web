@@ -5,8 +5,6 @@ import { RailID, Source, FieldMeta, ScalarFieldMeta, SetFieldMeta } from 'rail-i
 
 import { hashCode } from '../util'
 
-import { HighlightState, SetHighlights } from '../App'
-
 import Field from './fields/generic/Field'
 import CountryField from './fields/custom/CountryField'
 import KeeperField from './fields/custom/KeeperField'
@@ -14,14 +12,10 @@ import OtherNotesField from './fields/custom/OtherNotesField'
 
 type Props = {
   result: RailID | undefined
-  highlights: HighlightState
-  setHighlights: SetHighlights
 }
 
 export type FieldElementProps = {
   field: FieldMeta<any>
-  highlights: HighlightState
-  setHighlights: SetHighlights
 }
 
 type Map<V> = { [index: string]: V }
@@ -57,10 +51,10 @@ const fieldPriority = (f: FieldMeta<any>) => keys(FieldPriorities)
   .pop() ?? Priority.MediumLow
 
 // Creates elements for each field using the lookup map
-const buildElems = (fields: FieldMeta<any>[], elemMap: Map<ComponentFactory>, highlights: HighlightState, setHighlights: SetHighlights) =>
+const buildElems = (fields: FieldMeta<any>[], elemMap: Map<ComponentFactory>) =>
   fields
     .map(field => ({ field, fn: elemMap[field.path] ?? Field }))
-    .map(({ field, fn }) => ({ field, elem: fn({ field, highlights, setHighlights }) }))
+    .map(({ field, fn }) => ({ field, elem: fn({ field }) }))
     .map(({ field, elem }) => React.cloneElement(elem, { key: hashCode(field.path) }))
 
 // Simple method to determine sort order of a field given its start/end positions in the code
@@ -70,7 +64,7 @@ const sortValue = (source: Source, priority: Priority = Priority.MediumLow) => {
   return 1000 * priority + centerOfMass
 }
 
-function FieldRouter({ result, highlights, setHighlights }: Props) {
+function FieldRouter({ result }: Props) {
   if (result !== undefined) {
 
     // Order fields by their source location in the code
@@ -88,8 +82,8 @@ function FieldRouter({ result, highlights, setHighlights }: Props) {
     const [ metaFields, vehicleFields ] = partition(fields, f => f.path.startsWith('_meta'))
 
     // Generate element sets
-    const vehicleElems = buildElems(vehicleFields, CustomComponents, highlights, setHighlights)
-    //TODO const metaElems = buildElems(metaFields, MetaFieldMap, setHighlights)
+    const vehicleElems = buildElems(vehicleFields, CustomComponents)
+    //TODO const metaElems = buildElems(metaFields, MetaFieldMap)
 
     return (
       <div className="field-router columns" >

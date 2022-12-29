@@ -1,4 +1,4 @@
-import React, { createRef, MouseEventHandler, useEffect, useRef, useState } from 'react'
+import React, { createContext, createRef, MouseEventHandler, useEffect, useRef, useState } from 'react'
 import { useDelay } from 'react-use-precision-timer'
 import { useDebouncedCallback } from 'use-debounce'
 import { isMobile } from 'detect-touch-device'
@@ -24,15 +24,13 @@ import './App.scss'
 import './style/layout.scss'
 
 import LogoSrc from './logo.svg?raw'
+import { HighlightContextType, HighlightState } from './components/util/highlight'
 
 
 export type AppError =
   { type: 'parse-error', ref: ParseError } |
   { type: 'internal', ref: unknown } |
   { type: 'none' }
-
-export type HighlightState = 'clear' | { origin: string, source: number[]  }
-export type SetHighlights = React.Dispatch<React.SetStateAction<HighlightState>>
 
 type AppInfo = {
   pkgName: string
@@ -47,6 +45,9 @@ type AppProps = {
   appInfo: AppInfo
   codeParam?: string
 }
+
+export const HighlightContext = createContext<HighlightContextType | null>(null)
+
 
 function App({ codeParam, appInfo }: AppProps) {
 
@@ -181,66 +182,68 @@ function App({ codeParam, appInfo }: AppProps) {
   }), [/* onMount */])
 
   return (
-    <div id="rail-id">
-      <div className="body">
+    <HighlightContext.Provider value={({ state: highlights, set: setHighlights })}>
+      <div id="rail-id">
+        <div className="body">
 
-        <UncachedSvg className="logo" src={LogoSrc} />
-        <h1>{appInfo.name}</h1>
-        <h3>{appInfo.description}</h3>
+          <UncachedSvg className="logo" src={LogoSrc} />
+          <h1>{appInfo.name}</h1>
+          <h3>{appInfo.description}</h3>
 
-        <div ref={scrollRef} id="scroll-target" />
+          <div ref={scrollRef} id="scroll-target" />
 
-        <div className="controls columns is-centered">
-          <div className="mask" />
-          <div className="controls-inner column is-11-mobile is-11-tablet is-9-desktop is-9-widescreen is-8-fullhd">
-            <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} ref={boxRef} />
-            <div className="feedback">
+          <div className="controls columns is-centered">
+            <div className="mask" />
+            <div className="controls-inner column is-11-mobile is-11-tablet is-9-desktop is-9-widescreen is-8-fullhd">
+              <CodeBox code={code} error={error} onChange={onChange} onReset={() => onChange('')} className={codeboxClasses()} ref={boxRef} />
+              <div className="feedback">
 
-              <ErrorPanel error={error} />
+                <ErrorPanel error={error} />
 
-              <WarningPanel result={result} error={error} highlights={highlights} setHighlights={setHighlights} />
+                <WarningPanel result={result} error={error} />
 
-              <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
-                <FontAwesomeIcon icon={faCircleInfo} />
-                <span>Enter a UIC code to learn about a vehicle or see an <a onClick={e => demo()}>example</a></span>
+                <div className="welcome" style={ showWelcome ? {} : { display: 'none' }}>
+                  <FontAwesomeIcon icon={faCircleInfo} />
+                  <span>Enter a UIC code to learn about a vehicle or see an <a onClick={e => demo()}>example</a></span>
+                </div>
+
+                <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
+                  <FontAwesomeIcon icon={faCircleExclamation} />
+                  <span>This code is too short. Keep typing!</span>
+                </div>
+
               </div>
-
-              <div className="keep-typing-msg fade-in" style={ showKeepTyping ? {} : { display: 'none' }}>
-                <FontAwesomeIcon icon={faCircleExclamation} />
-                <span>This code is too short. Keep typing!</span>
-              </div>
-
             </div>
           </div>
-        </div>
 
-        <div className={`results ${disableResults}`} >
+          <div className={`results ${disableResults}`} >
 
-          <div className="sourcemap-tip" style={ showSourcemapTip ? {} : { display: 'none' }}>
-            { isMobile ?
-              <FontAwesomeIcon icon={faHandPointUp} /> :
-              <FontAwesomeIcon icon={faArrowPointer} /> }
-              <span>{ isMobile ? 'Tap' : 'Hover over' } results to see which part of the code they correspond to.</span>
-              <button onClick={dismissTip}>Dismiss</button>
+            <div className="sourcemap-tip" style={ showSourcemapTip ? {} : { display: 'none' }}>
+              { isMobile ?
+                <FontAwesomeIcon icon={faHandPointUp} /> :
+                <FontAwesomeIcon icon={faArrowPointer} /> }
+                <span>{ isMobile ? 'Tap' : 'Hover over' } results to see which part of the code they correspond to.</span>
+                <button onClick={dismissTip}>Dismiss</button>
+            </div>
+
+            <FieldRouter result={result} />
+
+            { result ? <Share code={code} /> : <></> }
           </div>
+        </div>
 
-          <FieldRouter result={result} highlights={highlights} setHighlights={setHighlights} />
-
-          { result ? <Share code={code} /> : <></> }
+        <div className="foot">
+          <span className="repo">
+            <a href={appInfo.repository} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faFileCode} />
+              {appInfo.pkgName}
+            </a>
+          </span>
+          <span className="version">{appInfo.version}</span>
+          <span className="license">{appInfo.license}</span>
         </div>
       </div>
-
-      <div className="foot">
-        <span className="repo">
-          <a href={appInfo.repository} target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faFileCode} />
-            {appInfo.pkgName}
-          </a>
-        </span>
-        <span className="version">{appInfo.version}</span>
-        <span className="license">{appInfo.license}</span>
-      </div>
-    </div>
+    </HighlightContext.Provider>
   )
 }
 

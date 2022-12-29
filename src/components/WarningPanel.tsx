@@ -7,7 +7,7 @@ import { RailID, ParseWarning, ParseWarnings, SetFieldMeta, ValueMeta } from 'ra
 
 import { empty, hashCode, isBenign } from '../util'
 
-import { AppError, HighlightState, SetHighlights } from '../App'
+import { AppError } from '../App'
 
 import Highlighter from './util/Highlighter'
 import HighlightHintDot from './util/HighlightHintDot'
@@ -15,11 +15,9 @@ import HighlightHintDot from './util/HighlightHintDot'
 type Props = {
   result?: RailID
   error: AppError
-  highlights: HighlightState
-  setHighlights: SetHighlights
 }
 
-function WarningPanel({ result, error, highlights, setHighlights }: Props) {
+function WarningPanel({ result, error }: Props) {
   if (!result || !isBenign(error)) return (<></>)
 
   const warningField =
@@ -30,7 +28,7 @@ function WarningPanel({ result, error, highlights, setHighlights }: Props) {
   const warning = (w: ValueMeta<ParseWarning>) => (
     <li key={hashCode(w.displayValue)} className="fade-in">
       <span>{w.displayValue}</span>
-      <Highlighter highlights={highlights} setHighlights={setHighlights} values={[ w ]}>
+      <Highlighter values={[ w ]}>
         { !empty(w.source) ? <HighlightHintDot /> : <></> }
       </Highlighter>
     </li>)

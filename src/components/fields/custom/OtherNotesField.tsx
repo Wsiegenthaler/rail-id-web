@@ -10,7 +10,7 @@ import { empty, hashCode } from '../../../util'
 import Markdown from '../../util/Markdown'
 
 
-function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps) {
+function OtherNotesField({ field }: FieldElementProps) {
 
   const noteField = field as SetFieldMeta<string>
 
@@ -19,7 +19,7 @@ function OtherNotesField({ field, highlights, setHighlights }: FieldElementProps
       <div className="field-value-body">
         <div className="field-value-desc">
             <Markdown md={ vm.value } />
-            <Highlighter values={[ vm ]} highlights={highlights} setHighlights={setHighlights} key={vm.value}>
+            <Highlighter values={[ vm ]} key={vm.value}>
               <HighlightHintDot />
             </Highlighter>
         </div>

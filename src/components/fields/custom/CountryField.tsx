@@ -9,7 +9,7 @@ import Highlighter from '../../util/Highlighter'
 import FieldValueBody from '../generic/FieldValueBody'
 
 
-function CountryField({ field, highlights, setHighlights }: FieldElementProps) {
+function CountryField({ field }: FieldElementProps) {
   const scalar = field as ScalarFieldMeta<Country>
   const country = scalar.valueMeta.value as Country
 
@@ -18,7 +18,7 @@ function CountryField({ field, highlights, setHighlights }: FieldElementProps) {
       <div className="field-header">
         <div className="field-name">{field.name}</div>
       </div>
-      <Highlighter values={[ scalar.valueMeta ]} highlights={highlights} setHighlights={setHighlights}>
+      <Highlighter values={[ scalar.valueMeta ]} >
         <div className="field-content">
           <div className="field-value-header">
             <div className="field-value">
