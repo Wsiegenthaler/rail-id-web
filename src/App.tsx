@@ -73,7 +73,7 @@ function App({ codeParam, appInfo }: AppProps) {
     if (codeParam && !empty(codeParam)) {
       onChange(codeParam)
       boxRef.current?.blur()
-      setTimeout(() => scrollToCodeBox(), 800)
+      setTimeout(() => scrollToCodeBox(), 900)
     } else {
       boxRef.current?.focus()
     }
