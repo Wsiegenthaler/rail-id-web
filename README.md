@@ -1,4 +1,4 @@
-# 🚊 Rail ID
+# 🚊 rail-id-web
 
 This is a web-based tool to showcase the [rail-id](https://github.com/Wsiegenthaler/rail-id) parser for UIC rolling stock codes.
 
@@ -6,7 +6,7 @@ A significant portion of the spec has been implemented, but some codes may retur
 
 ## Demo
 
-Check out the demo [here](https://wsiegenthaler.github.io/rail-id-web)!
+Check out the live demo [here](https://wsiegenthaler.github.io/rail-id-web)!
 
 ## License
 
