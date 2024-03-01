@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-6e567876'], (function (workbox) { 'use strict';
+define(['./workbox-2599276a'], (function (workbox) { 'use strict';
 
   self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
@@ -81,20 +81,20 @@ define(['./workbox-6e567876'], (function (workbox) { 'use strict';
    * See https://goo.gl/S9QRab
    */
   workbox.precacheAndRoute([{
-    "url": "assets/index.11df790d.js",
-    "revision": null
-  }, {
     "url": "assets/index.9371f0ea.css",
     "revision": null
   }, {
-    "url": "assets/parser.1e12e1e7.js",
+    "url": "assets/index.d0e3cb10.js",
+    "revision": null
+  }, {
+    "url": "assets/parser.b408e038.js",
     "revision": null
   }, {
     "url": "assets/world-flags.f8a1e917.js",
     "revision": null
   }, {
     "url": "index.html",
-    "revision": "ce73caf808fd53e48bf179998b04c3bd"
+    "revision": "a159b62a7c184a8aa5a3665f3f201a69"
   }, {
     "url": "registerSW.js",
     "revision": "25dae29e9bcdb22c8a0ae468abf95a23"
