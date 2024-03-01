@@ -135,8 +135,8 @@ const CodeBox = forwardRef(({ code, onChange, error, onReset, className = '' }: 
   const errorPos = (error.type === 'parse-error' && !error.ref.incompleteInput) ? error.ref.position : -1
   const codeHtml = code.split('').map((c, i) => `<span class="pos-${i} ${errorPos === i ? 'pos-error' : ''}">${c}</span>`).join('')
 
-  // Workaround for cursor placement oddity in Firefox - introduce empty span if no other content (i.e. `code.length` is zero)
-  const html = empty(codeHtml) ? '<span></span>' : codeHtml
+  // Workaround for cursor placement oddity in Firefox - introduce blank span (with just a zero-width space) if no other content (i.e. `code.length` is zero)
+  const html = empty(codeHtml) ? '<span>&ZeroWidthSpace;</span>' : codeHtml
 
   return (
     <div className='code-box-wrapper'>
