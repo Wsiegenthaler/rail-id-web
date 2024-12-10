@@ -21,7 +21,7 @@
     "buffer": "^6.0.3",
     "detect-touch-device": "^1.1.6",
     "lodash-es": "^4.17.21",
-    "nanoid": "^4.0.0",
+    "nanoid": "^5.0.9",
     "rail-id": "^0.1.7",
     "react": "^18.2.0",
     "react-contenteditable": "^3.3.6",
